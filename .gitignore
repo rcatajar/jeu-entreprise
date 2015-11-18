@@ -26,3 +26,7 @@
 *.exe
 *.out
 *.app
+
+# build folders
+build-jeu-entreprise-Desktop-Debug
+build-jeu-entreprise-Desktop-Release
