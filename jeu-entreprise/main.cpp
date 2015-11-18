@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     // conteneurs pour les differents objets du jeu
     Entreprise *entreprises[nb_entreprises];
     Client *clients[nb_clients];
-    vector<Objet> objets;  // on utilise un vecteur ici car le nombre d'objets n'est pas fixe
+    vector <Objet> objets;  // on utilise un vecteur ici car le nombre d'objets n'est pas fixe
 
     // Creation des entreprises
     for(int i = 0; i < nb_entreprises; i++){
@@ -49,11 +49,42 @@ int main(int argc, char *argv[])
         clients[i] = new Client(nom, argent_initial);
     }
 
+    // Creations des objets
+    // On devrait creer un nombre aleatoire dobjets entre 0 et nb_objets
+
     // Boucle principale
     while(tour < tour_max){
         tour ++;
 
-        // TODO
+        // Phase de Production. Chaque entreprise produit autant d'objet qu'elle veux
+        for(int i = 0; i < nb_entreprises; i++){
+            int n = i;  // FIXME: il faut le demander a l'utisateur et verifier qu'il est correct (< (treso - frais fixe) / frais variables)
+
+            // l'entreprise produit, et retourne les objets produits
+            vector <Objet> objets_produits = entreprises[i]->produire(n);
+            // on les stocke dans notre vecteur d'objet
+            objets.insert(objets.end(), objets_produits.begin(), objets_produits.end());
+        }
+
+        // Phase de Marketing. L'entreprise fixe son prix de vente
+        for(int i = 0; i < nb_entreprises; i++){
+            float prix_de_vente = 100;  // FIXME: le demander a l'utilisateur
+            entreprises[i]->set_prix_de_vente(prix_de_vente);
+        }
+
+        // Phase de Vente.
+        for(int i = 0; i < nb_clients; i++){
+            // check si le client n'a pas d'objet
+            // si c le cas, on fait le pseudo code suivant
+            // objets_a_vendre = le stock de toutes les entreprises (/!\ different de la variable objets deja defini qui contient TOUT les objets, objet du client compris)
+            // clients[i]->achat(objets_a_vendre)
+        }
+
+        // Phase de gestion des stocks
+        for(auto objet = objets.begin(); objet != objets.end(); objet++){
+            // objet->detruire
+        }
+
     }
 
     // Determine le gagnant

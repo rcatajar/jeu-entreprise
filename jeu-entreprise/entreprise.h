@@ -1,7 +1,11 @@
 #ifndef ENTREPRISE_H
 #define ENTREPRISE_H
 
+#include <string>
+#include <vector>
+
 #include "entite.h"
+#include "objet.h"
 
 class Entreprise : public virtual Entite
 {
@@ -12,6 +16,8 @@ class Entreprise : public virtual Entite
 
         float get_prix_de_vente() const;
         void set_prix_de_vente(float);
+
+        std::vector <Objet> produire(int);
 };
 
 #endif // ENTREPRISE_H
