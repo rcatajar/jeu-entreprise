@@ -14,13 +14,17 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    entreprise.cpp \
+    objet.cpp \
+    entite.cpp \
     client.cpp \
-    objet.cpp
+    entreprise.cpp
 
 HEADERS  += mainwindow.h \
-    entreprise.h \
+    objet.h \
+    entite.h \
     client.h \
-    objet.h
+    entreprise.h
 
 FORMS    += mainwindow.ui
+
+CONFIG += c++11

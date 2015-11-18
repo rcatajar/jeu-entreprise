@@ -1,10 +1,12 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
-class Client
+#include "entite.h"
+
+class Client : public Entite
 {
 public:
-    Client();
+    Client(const std:: string&, float);
 };
 
 #endif // CLIENT_H

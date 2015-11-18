@@ -1,5 +1,9 @@
+#include "entite.h"
 #include "client.h"
 
-Client::Client()
-{
-}
+using namespace std;
+
+Client::Client(const std::string &n, float treso):
+    Entite(n, treso)
+
+{}
