@@ -30,3 +30,6 @@
 # build folders
 build-jeu-entreprise-Desktop-Debug
 build-jeu-entreprise-Desktop-Release
+
+# user project settings
+jeu-entreprise.pro.user
