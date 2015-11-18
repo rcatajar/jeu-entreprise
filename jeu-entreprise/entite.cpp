@@ -6,7 +6,7 @@ using namespace std;
 
 Entite::Entite(const string &n, float x):
     nom(n),
-    tresorerie(x){};
+    tresorerie(x){}
 
 const string & Entite::get_nom() const{
     return nom;
