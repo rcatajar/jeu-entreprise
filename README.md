@@ -27,5 +27,8 @@ retire l'objet des stocks de lentreprise
 - attribut proprietaire
 - methode detruire (detruire lobjet avec la proba qualite)
 
+### Interface graphique
+- documentation http://doc.qt.io/
+
 
 
