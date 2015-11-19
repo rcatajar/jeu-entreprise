@@ -36,3 +36,6 @@ retire l'objet des stocks de lentreprise
 
 
 
+
+## Miscs
+pour build le .exe pour windows http://askubuntu.com/questions/656219/building-a-windows-executable-in-qt-on-a-linux-system
