@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     int tour = 0;
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
     int nb_clients = 10;
-    int nb_entreprises = 2;
+    int nb_entreprises = 3;
     float treso_initiale = 10000;
     float argent_initial = 500;
 
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     for(int i = 0; i < nb_entreprises; i++){
         string nom = "Entreprise " + to_string(i + 1);
         entreprises[i] = new Entreprise(nom, treso_initiale);
-    }
+    }   
 
     // Creation des clients
     for(int i = 0; i < nb_clients; i++){
@@ -62,6 +62,7 @@ int main(int argc, char *argv[])
 
             // l'entreprise produit, et retourne les objets produits
             vector <Objet> objets_produits = entreprises[i]->produire(n);
+
             // on les stocke dans notre vecteur d'objet
             objets.insert(objets.end(), objets_produits.begin(), objets_produits.end());
         }
