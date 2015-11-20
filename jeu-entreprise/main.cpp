@@ -40,7 +40,11 @@ int main(int argc, char *argv[])
     // Creation des entreprises
     for(int i = 0; i < nb_entreprises; i++){
         string nom = "Entreprise " + to_string(i + 1);
-        entreprises[i] = new Entreprise(nom, treso_initiale);
+        if(i<2){
+            entreprises[i] = new Entreprise(nom, treso_initiale);
+        } else {
+            entreprises[i] = new Entreprise(nom, treso_initiale, 500, 10);
+        }
     }   
 
     // Creation des clients

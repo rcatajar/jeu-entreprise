@@ -20,6 +20,7 @@ Entreprise::Entreprise(const std::string &n, float treso, float param_cout_fixe,
     Entite(n, treso){
     cout_fixe = param_cout_fixe;
     cout_variable = param_cout_variable;
+
 }
 
 float Entreprise::get_prix_de_vente() const{
@@ -66,8 +67,7 @@ vector<Objet> Entreprise::produire(int n){
         stock.insert(stock.end(), objets[i]);
     }
 
-
-
+    tresorerie -= cout_fixe + n*cout_variable;
 
     return objets;
 }

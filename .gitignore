@@ -28,8 +28,7 @@
 *.app
 
 # build folders
-build-jeu-entreprise-Desktop-Debug
-build-jeu-entreprise-Desktop-Release
+build-*
 
 # user project settings
 jeu-entreprise.pro.user
