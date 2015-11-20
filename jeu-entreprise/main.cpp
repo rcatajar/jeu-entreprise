@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         } else {
             entreprises[i] = new Entreprise(nom, treso_initiale, 500, 10);
         }
-    }   
+    }
 
     // Creation des clients
     for(int i = 0; i < nb_clients; i++){

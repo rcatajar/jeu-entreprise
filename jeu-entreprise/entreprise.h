@@ -14,7 +14,7 @@ class Entreprise : public virtual Entite
         std::vector <Objet> stock;
         float cout_fixe;
         float cout_variable;
-        
+
     public:
         Entreprise(const std::string &, float);
         Entreprise(const std::string &, float, float, float);
@@ -27,7 +27,7 @@ class Entreprise : public virtual Entite
 
         float get_cout_variable() const;
         void set_cout_variable(float);
-        
+
         std::vector <Objet> get_stock() const;
 
         std::vector <Objet> produire(int);
