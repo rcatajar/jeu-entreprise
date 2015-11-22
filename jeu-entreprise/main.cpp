@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
     int nb_entreprises = 2;
     float treso_initiale = 10000;
     float argent_initial = 500;
+    int nb_objets_initials = rand() % nb_clients;
 
     // conteneurs pour les differents objets du jeu
     Entreprise *entreprises[nb_entreprises];
@@ -49,8 +50,12 @@ int main(int argc, char *argv[])
         clients[i] = new Client(nom, argent_initial);
     }
 
-    // Creations des objets
-    // On devrait creer un nombre aleatoire dobjets entre 0 et nb_objets
+    // Creations des objets initiaux
+    for(int i = 0; i < nb_objets_initials; i++){
+        Objet objet = Objet(clients[i]);
+        objets.push_back(objet);
+        clients[i]->set_objet(&objet);
+    }
 
     // Boucle principale
     while(tour < tour_max){
