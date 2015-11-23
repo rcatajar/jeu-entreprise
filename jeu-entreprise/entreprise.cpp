@@ -33,3 +33,8 @@ void Entreprise::remove_objet(Objet * o){
     // TODO
     // Retire du vecteur d'objets le pointeur o
 }
+
+void Entreprise::gestion_des_stocks(){
+    // TODO
+    // Parcourir le vecteur d'objet et appeler check_qualite
+}

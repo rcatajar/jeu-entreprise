@@ -25,3 +25,9 @@ Objet* Client::get_objet() const{
 void Client::remove_objet(Objet*){
     this->set_objet(NULL);
 }
+
+void Client::gestion_des_stocks(){
+    if(objet != NULL){
+        objet->check_qualite();
+    }
+}

@@ -33,6 +33,8 @@ class Entite
         // FIXME: on devrait utiliser des vecteurs partout
         //        et remonter les méthodes associés dans cette classe
         virtual void remove_objet(Objet*) = 0;
+
+        virtual void gestion_des_stocks() = 0;
 };
 
 #endif // ENTITE_H
