@@ -11,7 +11,7 @@ class Entreprise : public virtual Entite
 {
     protected:
         float prix_de_vente;
-        std::vector <Objet> stock;
+        std::vector <Objet*> stock;
         float cout_fixe;
         float cout_variable;
 
@@ -28,7 +28,10 @@ class Entreprise : public virtual Entite
         float get_cout_variable() const;
         void set_cout_variable(float);
 
-        std::vector <Objet> get_stock() const;
+        void ajouter_au_stock(Objet*);
+        void retirer_au_stock(Objet*);
+
+        std::vector <Objet*> get_stock() const;
 
         std::vector <Objet> produire(int);
 };

@@ -48,23 +48,45 @@ void Entreprise::set_cout_variable(float x){
 }
 
 
-vector<Objet> Entreprise::get_stock() const{
+vector <Objet*> Entreprise::get_stock() const{
     return stock;
+}
+
+void Entreprise::ajouter_au_stock(Objet* objet){
+    stock.push_back(objet);
+}
+
+void Entreprise::retirer_au_stock(Objet* objet){
+    int index = 0;
+    bool appartenance = false;
+
+    for(int i=0; i<stock.size(); i++){
+        if(stock[i] == objet){
+            index = i;
+            appartenance = true;
+        }
+    }
+    if(appartenance){
+        stock.erase(stock.begin()+index);
+    }
 }
 
 vector<Objet> Entreprise::produire(int n){
     /* Ici on devrait:
      * instancier n objets
-     * les stocker dans le stock
+     * lstocker leur pointeurs dans le stock
      * faire baisser la treso de a + b * n
      * retourner un vecteur de ces objets
      */
 
-    vector<Objet> objets;
+    vector <Objet> objets;
 
     for (int i=0; i<n; i++){
-        objets.insert(objets.end(), Objet());
-        stock.insert(stock.end(), objets[i]);
+
+        Objet objet_cree = Objet(this);
+
+        objets.insert(objets.end(), objet_cree);
+        ajouter_au_stock(&objet_cree);
     }
 
     tresorerie -= cout_fixe + n*cout_variable;

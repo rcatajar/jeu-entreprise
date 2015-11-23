@@ -69,6 +69,7 @@ int main(int argc, char *argv[])
 
             // on les stocke dans notre vecteur d'objet
             objets.insert(objets.end(), objets_produits.begin(), objets_produits.end());
+            cout << entreprises[i]->get_nom() << " possède : " << entreprises[i]->get_stock().size() << " objets" << endl;
         }
 
         // Phase de Marketing. L'entreprise fixe son prix de vente
