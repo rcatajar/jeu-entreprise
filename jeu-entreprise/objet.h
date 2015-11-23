@@ -14,6 +14,9 @@ public:
     void set_proprietaire(Entite*);
     Entite* get_proprietaire() const;
     int get_qualite() const;
+
+    // Check la qualite de l'objet et le detruit si necessaire
+    void check_qualite();
 };
 
 #endif // OBJET_H
