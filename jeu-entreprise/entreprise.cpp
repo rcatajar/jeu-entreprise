@@ -71,27 +71,20 @@ void Entreprise::retirer_au_stock(Objet* objet){
     }
 }
 
-vector<Objet> Entreprise::produire(int n){
+void Entreprise::produire(int n){
     /* Ici on devrait:
      * instancier n objets
      * lstocker leur pointeurs dans le stock
      * faire baisser la treso de a + b * n
      * retourner un vecteur de ces objets
      */
-
-    vector <Objet> objets;
-
     for (int i=0; i<n; i++){
 
-        Objet objet_cree = Objet(this);
-
-        objets.insert(objets.end(), objet_cree);
-        ajouter_au_stock(&objet_cree);
+        Objet* objet_cree = new Objet(this);
+        ajouter_au_stock(objet_cree);
     }
 
     tresorerie -= cout_fixe + n*cout_variable;
-
-    return objets;
 }
 
 void Entreprise::remove_objet(Objet * o){

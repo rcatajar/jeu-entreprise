@@ -33,7 +33,7 @@ class Entreprise : public Entite
 
         std::vector <Objet*> get_stock() const;
 
-        std::vector <Objet> produire(int);
+        void produire(int);
 
         void remove_objet(Objet*);
 
