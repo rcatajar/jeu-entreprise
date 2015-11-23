@@ -7,7 +7,7 @@
 #include "entite.h"
 #include "objet.h"
 
-class Entreprise : public virtual Entite
+class Entreprise : public Entite
 {
     protected:
         float prix_de_vente;
@@ -34,6 +34,10 @@ class Entreprise : public virtual Entite
         std::vector <Objet*> get_stock() const;
 
         std::vector <Objet> produire(int);
+
+        void remove_objet(Objet*);
+
+        void gestion_des_stocks();
 };
 
 #endif // ENTREPRISE_H

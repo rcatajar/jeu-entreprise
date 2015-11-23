@@ -31,11 +31,11 @@ int main(int argc, char *argv[])
     int nb_entreprises = 3;
     float treso_initiale = 10000;
     float argent_initial = 500;
+    int nb_objets_initials = rand() % nb_clients;
 
     // conteneurs pour les differents objets du jeu
     Entreprise *entreprises[nb_entreprises];
     Client *clients[nb_clients];
-    vector <Objet> objets;  // on utilise un vecteur ici car le nombre d'objets n'est pas fixe
 
     // Creation des entreprises
     for(int i = 0; i < nb_entreprises; i++){
@@ -53,8 +53,11 @@ int main(int argc, char *argv[])
         clients[i] = new Client(nom, argent_initial);
     }
 
-    // Creations des objets
-    // On devrait creer un nombre aleatoire dobjets entre 0 et nb_objets
+    // Creations des objets initiaux
+    for(int i = 0; i < nb_objets_initials; i++){
+        Objet* objet = new Objet(clients[i]);
+        clients[i]->set_objet(objet);
+    }
 
     // Boucle principale
     while(tour < tour_max){
@@ -63,13 +66,7 @@ int main(int argc, char *argv[])
         // Phase de Production. Chaque entreprise produit autant d'objet qu'elle veux
         for(int i = 0; i < nb_entreprises; i++){
             int n = i;  // FIXME: il faut le demander a l'utisateur et verifier qu'il est correct (< (treso - frais fixe) / frais variables)
-
-            // l'entreprise produit, et retourne les objets produits
-            vector <Objet> objets_produits = entreprises[i]->produire(n);
-
-            // on les stocke dans notre vecteur d'objet
-            objets.insert(objets.end(), objets_produits.begin(), objets_produits.end());
-            cout << entreprises[i]->get_nom() << " possède : " << entreprises[i]->get_stock().size() << " objets" << endl;
+            entreprises[i]->produire(n);
         }
 
         // Phase de Marketing. L'entreprise fixe son prix de vente
@@ -87,8 +84,11 @@ int main(int argc, char *argv[])
         }
 
         // Phase de gestion des stocks
-        for(auto objet = objets.begin(); objet != objets.end(); objet++){
-            // objet->detruire
+        for(int i = 0; i < nb_clients; i++){
+            clients[i]->gestion_des_stocks();
+        }
+        for(int i=0; i < nb_entreprises; i++){
+            entreprises[i]->gestion_des_stocks();
         }
 
     }
