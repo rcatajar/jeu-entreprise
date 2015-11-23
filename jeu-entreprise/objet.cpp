@@ -7,7 +7,7 @@
 Objet::Objet(Entite* e):
     proprietaire(e){
     qualite = rand() % 99 + 1; // qualité aléatoire entre 1 et 99
-    }
+}
 
 void Objet::set_qualite(int q){
     qualite = q;

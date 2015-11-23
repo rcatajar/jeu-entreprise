@@ -76,6 +76,14 @@ int main(int argc, char *argv[])
         }
 
         // Phase de Vente.
+        // On récupère tous les objets en vente sur le marché
+        // en concatenant le stock de de toutes les entreprises
+        vector <Objet*> objets_en_vente;
+        for(int i=0; i < nb_entreprises; i++){
+            vector <Objet*> stock = entreprises[i]->get_stock();
+            objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
+        }
+
         for(int i = 0; i < nb_clients; i++){
             // check si le client n'a pas d'objet
             // si c le cas, on fait le pseudo code suivant
