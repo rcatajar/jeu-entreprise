@@ -21,3 +21,15 @@ Entite* Objet::get_proprietaire() const{
 int Objet::get_qualite() const{
     return qualite;
 }
+
+void Objet::check_qualite(){
+    // On détruit l'objet aléatoirement en fonction de sa qualite
+    int roll = rand() % 100 + 1;  // nombre aléatoire entre 1 et 100.
+    // On compare le roll à la qualité
+    if (roll >= qualite){
+        // On retire l'objet de son propriétaire et on le détruit
+        proprietaire->remove_objet(this);
+        delete this;
+    }
+
+}

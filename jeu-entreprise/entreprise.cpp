@@ -28,3 +28,8 @@ vector<Objet> Entreprise::produire(int n){
     vector<Objet> objets;
     return objets;
 }
+
+void Entreprise::remove_objet(Objet * o){
+    // TODO
+    // Retire du vecteur d'objets le pointeur o
+}
