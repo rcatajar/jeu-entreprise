@@ -1,3 +1,6 @@
+#include <iostream>
+
+
 #include "objet.h"
 #include "entite.h"
 

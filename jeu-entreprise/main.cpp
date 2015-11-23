@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     int tour = 0;
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
     int nb_clients = 10;
-    int nb_entreprises = 2;
+    int nb_entreprises = 3;
     float treso_initiale = 10000;
     float argent_initial = 500;
     int nb_objets_initials = rand() % nb_clients;
@@ -40,7 +40,11 @@ int main(int argc, char *argv[])
     // Creation des entreprises
     for(int i = 0; i < nb_entreprises; i++){
         string nom = "Entreprise " + to_string(i + 1);
-        entreprises[i] = new Entreprise(nom, treso_initiale);
+        if(i<2){
+            entreprises[i] = new Entreprise(nom, treso_initiale);
+        } else {
+            entreprises[i] = new Entreprise(nom, treso_initiale, 500, 10);
+        }
     }
 
     // Creation des clients
@@ -72,6 +76,14 @@ int main(int argc, char *argv[])
         }
 
         // Phase de Vente.
+        // On récupère tous les objets en vente sur le marché
+        // en concatenant le stock de de toutes les entreprises
+        vector <Objet*> objets_en_vente;
+        for(int i=0; i < nb_entreprises; i++){
+            vector <Objet*> stock = entreprises[i]->get_stock();
+            objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
+        }
+
         for(int i = 0; i < nb_clients; i++){
             // check si le client n'a pas d'objet
             // si c le cas, on fait le pseudo code suivant
