@@ -78,12 +78,15 @@ void Entreprise::produire(int n){
     tresorerie -= cout_fixe + n*cout_variable;
 }
 
-void Entreprise::remove_objet(Objet * o){
-    // TODO
-    // Retire du vecteur d'objets le pointeur o
+void Entreprise::remove_objet(Objet * objet){
+    retirer_au_stock(objet);
 }
 
 void Entreprise::gestion_des_stocks(){
-    // TODO
-    // Parcourir le vecteur d'objet et appeler check_qualite
+    // On copie le stock courant, car certains objets vont etre retirer
+    // du stock pendant l'iteration, ce qui empeche d'iterer sur stock directement
+    vector <Objet*> copie_stock = stock;
+    for(int i=0; i < copie_stock.size(); i++){
+        copie_stock[i]->check_qualite();
+    }
 }

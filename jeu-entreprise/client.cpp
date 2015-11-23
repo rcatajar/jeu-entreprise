@@ -23,7 +23,9 @@ Objet* Client::get_objet() const{
 }
 
 void Client::remove_objet(Objet*){
-    this->set_objet(NULL);
+    // On n'appelle pas set_objet, car set_objet va essayé de faire
+    // objet->set_proprietaire(this), ce qui fait une segfault car objet = NULL
+    objet = NULL;
 }
 
 void Client::gestion_des_stocks(){
