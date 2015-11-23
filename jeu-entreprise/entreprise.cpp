@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <algorithm>  // needed for retirer_au_stock
 
 #include "entite.h"
 #include "entreprise.h"
@@ -57,18 +58,8 @@ void Entreprise::ajouter_au_stock(Objet* objet){
 }
 
 void Entreprise::retirer_au_stock(Objet* objet){
-    int index = 0;
-    bool appartenance = false;
-
-    for(int i=0; i<stock.size(); i++){
-        if(stock[i] == objet){
-            index = i;
-            appartenance = true;
-        }
-    }
-    if(appartenance){
-        stock.erase(stock.begin()+index);
-    }
+    // erase-remove idiom, see http://stackoverflow.com/q/3385229
+    stock.erase(std::remove(stock.begin(), stock.end(), objet), stock.end());
 }
 
 void Entreprise::produire(int n){
