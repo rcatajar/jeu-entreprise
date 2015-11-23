@@ -16,6 +16,8 @@ public:
     Objet* get_objet() const;
 
     void remove_objet(Objet*);
+
+    void gestion_des_stocks();
 };
 
 #endif // CLIENT_H
