@@ -14,6 +14,8 @@ public:
     Client(const std:: string&, float);
     void set_objet(Objet*);
     Objet* get_objet() const;
+
+    void remove_objet(Objet*);
 };
 
 #endif // CLIENT_H

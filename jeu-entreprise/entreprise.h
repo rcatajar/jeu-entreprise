@@ -18,6 +18,8 @@ class Entreprise : public virtual Entite
         void set_prix_de_vente(float);
 
         std::vector <Objet> produire(int);
+
+        void remove_objet(Objet*);
 };
 
 #endif // ENTREPRISE_H

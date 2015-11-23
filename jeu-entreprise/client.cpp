@@ -21,3 +21,7 @@ void Client::set_objet(Objet* o){
 Objet* Client::get_objet() const{
     return objet;
 }
+
+void Client::remove_objet(Objet*){
+    this->set_objet(NULL);
+}
