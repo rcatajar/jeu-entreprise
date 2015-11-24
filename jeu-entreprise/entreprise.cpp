@@ -63,24 +63,15 @@ void Entreprise::retirer_au_stock(Objet* objet){
 }
 
 void Entreprise::produire(int n){
-    /* Ici on devrait:
-     * instancier n objets
-     * lstocker leur pointeurs dans le stock
-     * faire baisser la treso de a + b * n
-     * retourner un vecteur de ces objets
-     */
+    // Produit n objets et les ajoute au stock de l'entreprise
+    // Diminue sa trésorerie du cout de production associé
     if(n>0){ // ca ne coute rien si on ne produit pas de vélos
-        float cout_prod = cout_fixe + n*cout_variable;
-
-        if(cout_prod > 0){
-            for (int i=0; i<n; i++){
-
-                Objet* objet_cree = new Objet(this);
-                ajouter_au_stock(objet_cree);
-            }
-
-        tresorerie -= cout_prod;
+        float cout_prod = cout_fixe + n * cout_variable;
+        for (int i=0; i<n; i++){
+            Objet* objet_cree = new Objet(this);
+            ajouter_au_stock(objet_cree);
         }
+        tresorerie -= cout_prod;
     }
 
 }
