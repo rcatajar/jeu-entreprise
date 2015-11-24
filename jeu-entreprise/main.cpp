@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
     // Setup les variables de bases
     int tour = 0;
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
-    int nb_clients = 10;
+    int nb_clients = 500;
     int nb_entreprises = 3;
     float treso_initiale = 10000;
     float argent_initial = 500;
@@ -81,6 +81,7 @@ int main(int argc, char *argv[])
             while(!intervention_user){ // boucle pour être sur qu'on produit bien un nombre entier de vélo
 
                 cout << "Combien de vélos doit produire " << entreprises[i]->get_nom() << endl;
+                cout << "Vous avez déjà : " << entreprises[i]->get_stock().size() << " vélos." << endl;
                 cout << "Sa trésorerie est de : " << entreprises[i]->get_tresorerie() << endl;
                 cout << "Son cout fixe est de : " << entreprises[i]->get_cout_fixe() << " et son cout variable de : " << entreprises[i]->get_cout_variable() << endl;
                 cout << endl;
@@ -142,7 +143,6 @@ int main(int argc, char *argv[])
 
         for(int i =0; i<nb_entreprises; i++){
             entreprises_tresorerie_precedente[i] = entreprises[i]->get_tresorerie(); // je le stock dans un vecteur pour calculer le nombre de vélos vendus
-            cout << entreprises[i]->get_nom() << " a : " << entreprises_tresorerie_precedente[i] << endl;
         }
 
         for(int i = 0; i < nb_clients; i++){ // pour tous les clients
@@ -161,7 +161,7 @@ int main(int argc, char *argv[])
         }
 
         for(int i =0; i<nb_entreprises; i++){
-            cout << entreprises[i]->get_nom() << " a : " << entreprises[i]->get_tresorerie() << " et a vendu : " << ( entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i] ) / entreprises[i]->get_prix_de_vente()<< endl;
+            cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : " << ( entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i] ) << " et a vendu : " << ( entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i] ) / entreprises[i]->get_prix_de_vente() << " vélos." << endl;
         }
 
         // Phase de gestion des stocks
