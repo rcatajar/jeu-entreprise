@@ -69,13 +69,20 @@ void Entreprise::produire(int n){
      * faire baisser la treso de a + b * n
      * retourner un vecteur de ces objets
      */
-    for (int i=0; i<n; i++){
+    if(n>0){ // ca ne coute rien si on ne produit pas de vélos
+        float cout_prod = cout_fixe + n*cout_variable;
 
-        Objet* objet_cree = new Objet(this);
-        ajouter_au_stock(objet_cree);
+        if(cout_prod > 0){
+            for (int i=0; i<n; i++){
+
+                Objet* objet_cree = new Objet(this);
+                ajouter_au_stock(objet_cree);
+            }
+
+        tresorerie -= cout_prod;
+        }
     }
 
-    tresorerie -= cout_fixe + n*cout_variable;
 }
 
 void Entreprise::remove_objet(Objet * objet){
