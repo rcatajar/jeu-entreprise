@@ -2,17 +2,14 @@
 #define ENTREPRISE_H
 
 #include <string>
-#include <vector>
 #include <typeinfo> // a retirer plus tard  http://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c
 
 #include "entite.h"
-#include "objet.h"
 
 class Entreprise : public Entite
 {
     protected:
         float prix_de_vente;
-        std::vector <Objet*> stock;
         float cout_fixe;
         float cout_variable;
 
@@ -29,16 +26,7 @@ class Entreprise : public Entite
         float get_cout_variable() const;
         void set_cout_variable(float);
 
-        void ajouter_au_stock(Objet*);
-        void retirer_au_stock(Objet*);
-
-        std::vector <Objet*> get_stock() const;
-
         void produire(int);
-
-        void remove_objet(Objet*);
-
-        void gestion_des_stocks();
 };
 
 #endif // ENTREPRISE_H

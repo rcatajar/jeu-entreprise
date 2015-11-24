@@ -60,7 +60,7 @@ int main(int argc, char *argv[])
     // Creations des objets initiaux
     for(int i = 0; i < nb_objets_initials; i++){
         Objet* objet = new Objet(clients[i]);
-        clients[i]->set_objet(objet);
+        clients[i]->ajouter_au_stock(objet);
     }
 
     // Boucle principale
@@ -155,7 +155,7 @@ int main(int argc, char *argv[])
                 objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
             }
 
-            if(clients[i]->get_objet() == NULL){ // check si le client n'a pas d'objet
+            if(clients[i]->quantite_a_acheter() == 1){ // check si le client veux acheter
                 clients[i]->achat(objets_en_vente); // si il n'a pas d'objets
             }
         }

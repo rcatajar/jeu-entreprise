@@ -6,6 +6,7 @@
 #ifndef ENTITE_H
 #define ENTITE_H
 
+#include <vector>
 #include <string>
 
 //  forward-declaration de la classe.
@@ -17,6 +18,7 @@ class Entite
     protected:
         std::string nom;
         float tresorerie;
+        std::vector <Objet*> stock;
 
     public:
         Entite(const std::string &, float);
@@ -26,15 +28,11 @@ class Entite
 
         void set_tresorerie(float);
 
-        // Retire un objet de l'entité.
-        // La méthode est virtuelle et doit être redéfinie par les classes filles
-        // on fait ça car la gestion des objets est différente selon les classes filles:
-        // Objet utilise un pointeur, Entreprise utilise un vecteur de pointeur
-        // FIXME: on devrait utiliser des vecteurs partout
-        //        et remonter les méthodes associés dans cette classe
-        virtual void remove_objet(Objet*) = 0;
+        std::vector <Objet*> get_stock() const;
+        void ajouter_au_stock(Objet*);
+        void retirer_au_stock(Objet*);
 
-        virtual void gestion_des_stocks() = 0;
+        void gestion_des_stocks();
 };
 
 #endif // ENTITE_H

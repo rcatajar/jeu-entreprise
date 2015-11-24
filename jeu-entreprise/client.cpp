@@ -12,35 +12,16 @@
 using namespace std;
 
 Client::Client(const std::string &n, float treso):
-    Entite(n, treso){
-    // au début, le client n'as pas d'objet
-    // on assigne donc le pointeur NULL
-    //(grosso modo c'est comme None en python)
-    objet = NULL;
-}
+    Entite(n, treso){}
 
-void Client::set_objet(Objet* o){
-    objet = o;
-    // Quand le client s'attribue un objet, on change le proprio dans l'objet
-    objet->set_proprietaire(this);
-}
-
-Objet* Client::get_objet() const{
-    return objet;
-}
-
-void Client::remove_objet(Objet*){
-    // On n'appelle pas set_objet, car set_objet va essayé de faire
-    // objet->set_proprietaire(this), ce qui fait une segfault car objet = NULL
-    objet = NULL;
-}
-
-void Client::gestion_des_stocks(){
-    if(objet != NULL){
-        objet->check_qualite();
+int Client::quantite_a_acheter(){
+    // Retourne le nombre d'objet que le client veux acheter
+    // Pour le moment, le client achete un objet uniquement s'il n'en a aucun
+    if (stock.size() == 0){
+        return 0;
     }
+    return 1;
 }
-
 void Client::achat(std::vector <Objet*> objets_a_vendre){
 
     int n = objets_a_vendre.size();
@@ -101,12 +82,6 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
             e[index_max]->retirer_au_stock(objets_a_vendre[index_max]);
 
         }
-        else{ // sinon il n'y a aucun objet qu'on peut acheter
-            // do nothing
-        }
-
-
-
 
     }
 
