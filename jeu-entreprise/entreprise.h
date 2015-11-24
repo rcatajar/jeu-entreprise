@@ -27,6 +27,9 @@ class Entreprise : public Entite
         void set_cout_variable(float);
 
         void produire(int);
+
+        // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
+        void vente_objet(Objet*);
 };
 
 #endif // ENTREPRISE_H

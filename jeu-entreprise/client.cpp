@@ -45,7 +45,6 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
             tableau_preferences[i] = 0;
         }
 
-
     }
     if(norm != 0){ // si il y a bien un objet qu'peut acheter la dedans
 
@@ -63,9 +62,9 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
         this->set_tresorerie(argent_restant[index_max]);
         //cout << "après l'achat : " << this->get_tresorerie() << endl;
 
-        // l'entreprise reçoit l'argent que j'ai dépensé
+        // l'entreprise effectue la vente (retire l'objet de son stock et augemente sa tréso)
         //cout << "avant l'achat : " << e[index_max]->get_tresorerie() << endl;
-        e[index_max]->set_tresorerie(e[index_max]->get_tresorerie() + e[index_max]->get_prix_de_vente());
+        e[index_max]->vente_objet(objets_a_vendre[index_max]);
         //cout << "après l'achat : " << e[index_max]->get_tresorerie() << endl;
 
         // je deviens propriétaire de l'objet et l'ajoute à mon stock
@@ -73,8 +72,6 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
         this->ajouter_au_stock(objets_a_vendre[index_max]);
         //cout << "après l'achat : " << objets_a_vendre[index_max]->get_proprietaire()->get_nom() << endl;
 
-        // l'entreprise perd l'objet de son stock
-        e[index_max]->retirer_au_stock(objets_a_vendre[index_max]);
 
     }
 
