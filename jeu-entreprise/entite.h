@@ -1,6 +1,9 @@
 // Classe (abstraite) representant une Entité.
 // Une entité est un acteur du marché (client ou entreprise)
-// avec un nom (constant) et une tresorerie (variable)
+// avec:
+//      - un nom (constant)
+//      - une tresorerie (variable)
+//      - un stock (vecteur d'Objets)
 
 
 #ifndef ENTITE_H
