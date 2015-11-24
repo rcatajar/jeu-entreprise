@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <istream>
+#include <sstream>
 
 // Qt libs
 #include <QApplication>
@@ -27,11 +29,13 @@ int main(int argc, char *argv[])
     // Setup les variables de bases
     int tour = 0;
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
-    int nb_clients = 10;
+    int nb_clients = 500;
     int nb_entreprises = 3;
     float treso_initiale = 10000;
     float argent_initial = 500;
     int nb_objets_initials = rand() % nb_clients;
+
+    int entreprises_tresorerie_precedente[nb_entreprises];
 
     // conteneurs pour les differents objets du jeu
     Entreprise *entreprises[nb_entreprises];
@@ -43,7 +47,7 @@ int main(int argc, char *argv[])
         if(i<2){
             entreprises[i] = new Entreprise(nom, treso_initiale);
         } else {
-            entreprises[i] = new Entreprise(nom, treso_initiale, 500, 10);
+            entreprises[i] = new Entreprise(nom, treso_initiale, 500, 20);
         }
     }
 
@@ -63,32 +67,101 @@ int main(int argc, char *argv[])
     while(tour < tour_max){
         tour ++;
 
+        cout << endl;
+        cout << " ---------Phase de production -------------" << endl;
+        cout << endl;
+
         // Phase de Production. Chaque entreprise produit autant d'objet qu'elle veux
         for(int i = 0; i < nb_entreprises; i++){
-            int n = i;  // FIXME: il faut le demander a l'utisateur et verifier qu'il est correct (< (treso - frais fixe) / frais variables)
-            entreprises[i]->produire(n);
+
+            bool intervention_user = false;
+            int valeur_entree = 0;
+
+
+            while(!intervention_user){ // boucle pour être sur qu'on produit bien un nombre entier de vélo
+
+                cout << "Combien de vélos doit produire " << entreprises[i]->get_nom() << endl;
+                cout << "Vous avez déjà : " << entreprises[i]->get_stock().size() << " vélos." << endl;
+                cout << "Sa trésorerie est de : " << entreprises[i]->get_tresorerie() << endl;
+                cout << "Son cout fixe est de : " << entreprises[i]->get_cout_fixe() << " et son cout variable de : " << entreprises[i]->get_cout_variable() << endl;
+                cout << endl;
+
+
+                if (cin >> valeur_entree && entreprises[i]->get_tresorerie() >  entreprises[i]->get_cout_fixe() + valeur_entree * entreprises[i]->get_cout_variable()){
+                    intervention_user = true;
+                }
+                else{
+                    cout << "Nombre invalide, mauvais caractère ou vous n'avez pas assez d'argent" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+            }
+
+
+            entreprises[i]->produire(valeur_entree);
+
+            cout << "Vous produisez :  " << valeur_entree << " vélo(s)." << endl;
+            cout << "Nouvelle trésorerie : " << entreprises[i]->get_tresorerie() << endl;
+            cout << endl;
         }
+
+        cout << endl;
+        cout << " ---------Phase de marketing-------------" << endl;
+        cout << endl;
+
 
         // Phase de Marketing. L'entreprise fixe son prix de vente
         for(int i = 0; i < nb_entreprises; i++){
-            float prix_de_vente = 100;  // FIXME: le demander a l'utilisateur
-            entreprises[i]->set_prix_de_vente(prix_de_vente);
+
+            bool intervention_user = false;
+            float valeur_entree = 0;
+
+
+            while(!intervention_user){
+
+                cout << "A quel prix " << entreprises[i]->get_nom() << " doit-elle vendre ses vélos? : " << endl;
+
+                if (cin >> valeur_entree){
+                    intervention_user = true;
+                }
+                else{
+                    cout << "Nombre invalide, mauvais caractère" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+            }
+
+            entreprises[i]->set_prix_de_vente(valeur_entree);
         }
 
         // Phase de Vente.
-        // On récupère tous les objets en vente sur le marché
-        // en concatenant le stock de de toutes les entreprises
-        vector <Objet*> objets_en_vente;
-        for(int i=0; i < nb_entreprises; i++){
-            vector <Objet*> stock = entreprises[i]->get_stock();
-            objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
+
+        cout << endl;
+        cout << " ---------Phase de vente -------------" << endl;
+        cout << endl;
+
+        for(int i =0; i<nb_entreprises; i++){
+            entreprises_tresorerie_precedente[i] = entreprises[i]->get_tresorerie(); // je le stock dans un vecteur pour calculer le nombre de vélos vendus
         }
 
-        for(int i = 0; i < nb_clients; i++){
-            // check si le client n'a pas d'objet
-            // si c le cas, on fait le pseudo code suivant
-            // objets_a_vendre = le stock de toutes les entreprises (/!\ different de la variable objets deja defini qui contient TOUT les objets, objet du client compris)
-            // clients[i]->achat(objets_a_vendre)
+        for(int i = 0; i < nb_clients; i++){ // pour tous les clients
+
+            // On récupère tous les objets en vente sur le marché
+            // en concatenant le stock de de toutes les entreprises
+            vector <Objet*> objets_en_vente;
+            for(int i=0; i < nb_entreprises; i++){
+                vector <Objet*> stock = entreprises[i]->get_stock();
+                objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
+            }
+
+            if(clients[i]->get_objet() == NULL){ // check si le client n'a pas d'objet
+                clients[i]->achat(objets_en_vente); // si il n'a pas d'objets
+            }
+        }
+
+        for(int i =0; i<nb_entreprises; i++){
+            cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : " << ( entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i] ) << " et a vendu : " << ( entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i] ) / entreprises[i]->get_prix_de_vente() << " vélos." << endl;
         }
 
         // Phase de gestion des stocks
