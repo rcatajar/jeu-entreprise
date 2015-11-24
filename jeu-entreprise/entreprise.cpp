@@ -60,6 +60,6 @@ void Entreprise::produire(int n){
 }
 
 void Entreprise::vente_objet(Objet * objet){
-    this->retirer_au_stock(objet);
+    retirer_au_stock(objet);
     tresorerie = tresorerie + prix_de_vente;
 }
