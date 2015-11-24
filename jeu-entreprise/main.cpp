@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
                 objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
             }
 
-            if(clients[i]->get_objet() != 0){ // check si le client n'a pas d'objet
+            if(clients[i]->get_objet() == NULL){ // check si le client n'a pas d'objet
 
                 clients[i]->achat(objets_en_vente); // si il n'a pas d'objets
             }
