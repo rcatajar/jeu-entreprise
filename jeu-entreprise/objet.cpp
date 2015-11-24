@@ -31,7 +31,7 @@ void Objet::check_qualite(){
     // On compare le roll à la qualité
     if (roll >= qualite){
         // On retire l'objet de son propriétaire et on le détruit
-        proprietaire->remove_objet(this);
+        proprietaire->retirer_au_stock(this);
         delete this;
     }
 

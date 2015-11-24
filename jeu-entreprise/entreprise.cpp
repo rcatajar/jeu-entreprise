@@ -48,43 +48,18 @@ void Entreprise::set_cout_variable(float x){
     cout_variable = x;
 }
 
-
-vector <Objet*> Entreprise::get_stock() const{
-    return stock;
-}
-
-void Entreprise::ajouter_au_stock(Objet* objet){
-    stock.push_back(objet);
-}
-
-void Entreprise::retirer_au_stock(Objet* objet){
-    // erase-remove idiom, see http://stackoverflow.com/q/3385229
-    stock.erase(std::remove(stock.begin(), stock.end(), objet), stock.end());
-}
-
 void Entreprise::produire(int n){
     // Produit n objets et les ajoute au stock de l'entreprise
     // Diminue sa trésorerie du cout de production associé
-    if(n>0){ // ca ne coute rien si on ne produit pas de vélos
-        float cout_prod = cout_fixe + n * cout_variable;
-        for (int i=0; i<n; i++){
-            Objet* objet_cree = new Objet(this);
-            ajouter_au_stock(objet_cree);
-        }
-        tresorerie -= cout_prod;
+    float cout_prod = cout_fixe + n * cout_variable;
+    for (int i=0; i<n; i++){
+        Objet* objet_cree = new Objet(this);
+        ajouter_au_stock(objet_cree);
     }
-
+    tresorerie -= cout_prod;
 }
 
-void Entreprise::remove_objet(Objet * objet){
+void Entreprise::vente_objet(Objet * objet){
     retirer_au_stock(objet);
-}
-
-void Entreprise::gestion_des_stocks(){
-    // On copie le stock courant, car certains objets vont etre retirer
-    // du stock pendant l'iteration, ce qui empeche d'iterer sur stock directement
-    vector <Objet*> copie_stock = stock;
-    for(int i=0; i < copie_stock.size(); i++){
-        copie_stock[i]->check_qualite();
-    }
+    tresorerie = tresorerie + prix_de_vente;
 }
