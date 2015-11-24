@@ -1,6 +1,8 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 
+#include <vector>
+
 #include "entite.h"
 #include "objet.h"
 
@@ -18,6 +20,8 @@ public:
     void remove_objet(Objet*);
 
     void gestion_des_stocks();
+
+    void achat(std::vector <Objet*>);
 };
 
 #endif // CLIENT_H

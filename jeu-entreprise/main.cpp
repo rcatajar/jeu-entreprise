@@ -76,19 +76,21 @@ int main(int argc, char *argv[])
         }
 
         // Phase de Vente.
-        // On récupère tous les objets en vente sur le marché
-        // en concatenant le stock de de toutes les entreprises
-        vector <Objet*> objets_en_vente;
-        for(int i=0; i < nb_entreprises; i++){
-            vector <Objet*> stock = entreprises[i]->get_stock();
-            objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
-        }
 
-        for(int i = 0; i < nb_clients; i++){
-            // check si le client n'a pas d'objet
-            // si c le cas, on fait le pseudo code suivant
-            // objets_a_vendre = le stock de toutes les entreprises (/!\ different de la variable objets deja defini qui contient TOUT les objets, objet du client compris)
-            // clients[i]->achat(objets_a_vendre)
+        for(int i = 0; i < nb_clients; i++){ // pour tous les clients
+
+            // On récupère tous les objets en vente sur le marché
+            // en concatenant le stock de de toutes les entreprises
+            vector <Objet*> objets_en_vente;
+            for(int i=0; i < nb_entreprises; i++){
+                vector <Objet*> stock = entreprises[i]->get_stock();
+                objets_en_vente.insert(objets_en_vente.end(), stock.begin(), stock.end());
+            }
+
+            if(clients[i]->get_objet() != 0){ // check si le client n'a pas d'objet
+
+                clients[i]->achat(objets_en_vente); // si il n'a pas d'objets
+            }
         }
 
         // Phase de gestion des stocks

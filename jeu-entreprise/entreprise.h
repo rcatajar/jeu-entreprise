@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <typeinfo> // a retirer plus tard  http://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c
 
 #include "entite.h"
 #include "objet.h"
