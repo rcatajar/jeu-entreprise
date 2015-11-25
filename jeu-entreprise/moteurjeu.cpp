@@ -179,11 +179,20 @@ void MoteurJeu::phase_de_vente(){
 }
 
 void MoteurJeu::phase_de_gestion_des_stocks(){
+    cout << endl;
+    cout << " ---------Phase de gestion des stocks -------------" << endl;
+    cout << endl;
     for (int i=0; i < clients.size(); i++){
         clients[i]->gestion_des_stocks();
     }
     for (int i=0; i < entreprises.size(); i++){
+        int taille_stock_avant_gestion = entreprises[i]->get_stock().size();
         entreprises[i]->gestion_des_stocks();
+        int taille_stock_apres_gestion = entreprises[i]->get_stock().size();
+        cout << entreprises[i]->get_nom() << " a perdu ";
+        cout << taille_stock_avant_gestion - taille_stock_apres_gestion;
+        cout << " vélos dans son stock" << endl;
+        cout << "Noveau stock: " << taille_stock_apres_gestion << " velos." << endl;
     }
 }
 
