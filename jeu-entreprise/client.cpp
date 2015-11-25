@@ -17,7 +17,7 @@ Client::Client(const std::string &n, float treso):
 int Client::quantite_a_acheter(){
     // Retourne le nombre d'objet que le client veux acheter
     // Pour le moment, le client achete un objet uniquement s'il n'en a aucun
-    if (stock.size() == 0){
+    if (stock.size() > 0){
         return 0;
     }
     return 1;
