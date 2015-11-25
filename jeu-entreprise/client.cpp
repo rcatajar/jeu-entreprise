@@ -12,7 +12,10 @@
 using namespace std;
 
 Client::Client(const std::string &n, float treso):
-    Entite(n, treso){}
+    Entite(n, treso){
+    preference_qualite = (rand() % 99)/100 + 1;
+    preference_tresorerie = (rand() % 99)/100 + 1;
+}
 
 int Client::quantite_a_acheter(){
     // Retourne le nombre d'objet que le client veux acheter
@@ -38,7 +41,7 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
         argent_restant[i] = tresorerie - e[i]->get_prix_de_vente();
 
         if(argent_restant[i] > 0){
-            tableau_preferences[i] = argent_restant[i] * objets_a_vendre[i]->get_qualite();
+            tableau_preferences[i] = pow(argent_restant[i], preference_tresorerie) * pow(objets_a_vendre[i]->get_qualite(), preference_qualite);
             norm += tableau_preferences[i] * tableau_preferences[i];
         }
         else{
