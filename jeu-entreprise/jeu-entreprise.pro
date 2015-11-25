@@ -17,13 +17,15 @@ SOURCES += main.cpp\
     objet.cpp \
     entite.cpp \
     client.cpp \
-    entreprise.cpp
+    entreprise.cpp \
+    moteurjeu.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
     entite.h \
     client.h \
-    entreprise.h
+    entreprise.h \
+    moteurjeu.h
 
 FORMS    += mainwindow.ui
 
