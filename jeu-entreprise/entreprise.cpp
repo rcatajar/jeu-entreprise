@@ -82,3 +82,36 @@ void Entreprise::phase_de_marketing(){
         prix_de_vente = valeur_entree;
     }
 }
+
+void Entreprise::phase_de_production(){
+    if(ia == true){
+        int production = (tresorerie - cout_fixe) / (2 * cout_variable);
+        produire(production);
+    } else {
+        bool intervention_user = false;
+        int valeur_entree = 0;
+
+        while(!intervention_user){ // boucle pour être sur qu'on produit bien un nombre entier de vélo
+            cout << "Combien de vélos voulez vous produire ?" << endl;
+            cout << "Vous avez déjà : " << stock.size() << " vélos." << endl;
+            cout << "Votre trésorerie est de : " << tresorerie << endl;
+            cout << "Votre cout fixe est de : " << cout_fixe;
+            cout << " et votre cout variable de : " << cout_variable << endl;
+            cout << endl;
+
+            if (cin >> valeur_entree && tresorerie > cout_fixe + valeur_entree * cout_variable){
+                intervention_user = true;
+            }
+            else{
+                cout << "Nombre invalide, mauvais caractère ou vous n'avez pas assez d'argent" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        }
+        produire(valeur_entree);
+        cout << "Vous produisez :  " << valeur_entree << " vélo(s)." << endl;
+        cout << "Nouvelle trésorerie : " << tresorerie << endl;
+        cout << "Nouveau stock :" << stock.size() << endl;
+        cout << endl;
+    }
+}

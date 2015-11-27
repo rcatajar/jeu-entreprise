@@ -34,6 +34,7 @@ class Entreprise : public Entite
         void vente_objet(Objet*);
 
         void phase_de_marketing();
+        void phase_de_production();
 };
 
 #endif // ENTREPRISE_H

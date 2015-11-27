@@ -82,37 +82,7 @@ void MoteurJeu::phase_de_production(){
 
     // On demande à l'utilisateur ce qu'il veux produire pour chaque entreprise
     for(int i = 0; i < entreprises.size(); i++){
-
-        bool intervention_user = false;
-        int valeur_entree = 0;
-        Entreprise* entreprise = entreprises[i];
-        string nom = entreprise->get_nom();
-        int taille_stock = entreprise->get_stock().size();
-        int tresorerie = entreprise->get_tresorerie();
-        int cout_fixe = entreprise->get_cout_fixe();
-        int cout_variable = entreprise->get_cout_variable();
-
-        while(!intervention_user){ // boucle pour être sur qu'on produit bien un nombre entier de vélo
-            cout << "Combien de vélos doit produire " << nom << " ?" << endl;
-            cout << "Vous avez déjà : " << taille_stock << " vélos." << endl;
-            cout << "Sa trésorerie est de : " << tresorerie << endl;
-            cout << "Son cout fixe est de : " << cout_fixe;
-            cout << " et son cout variable de : " << cout_variable << endl;
-            cout << endl;
-
-            if (cin >> valeur_entree && tresorerie > cout_fixe + valeur_entree * cout_variable){
-                intervention_user = true;
-            }
-            else{
-                cout << "Nombre invalide, mauvais caractère ou vous n'avez pas assez d'argent" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-        entreprise->produire(valeur_entree);
-        cout << "Vous produisez :  " << valeur_entree << " vélo(s)." << endl;
-        cout << "Nouvelle trésorerie : " << entreprises[i]->get_tresorerie() << endl;
-        cout << endl;
+        entreprises[i]->phase_de_production();
     }
 }
 
