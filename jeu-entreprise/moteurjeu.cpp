@@ -22,9 +22,13 @@ MoteurJeu::MoteurJeu(int nb_entreprises, int treso_initiale, int nb_clients, int
 }
 
 void MoteurJeu::creation_entreprises_initiales(int nb_entreprises, int treso_initiale){
-    for(int i = 0; i < nb_entreprises; i++){
-        string nom = "Entreprise " + to_string(i + 1);
-        entreprises.push_back(new Entreprise(nom, treso_initiale));
+    // On crée une entreprise controllé par le joueur
+    entreprises.push_back((new Entreprise("Joueur", treso_initiale, false)));
+
+    // Les entreprises restantes sont des IA
+    for(int i = 1; i < nb_entreprises; i++){
+        string nom = "IA " + to_string(i);
+        entreprises.push_back(new Entreprise(nom, treso_initiale, true));
     }
 }
 
@@ -76,39 +80,8 @@ void MoteurJeu::phase_de_production(){
     cout << " ---------Phase de production -------------" << endl;
     cout << endl;
 
-    // On demande à l'utilisateur ce qu'il veux produire pour chaque entreprise
     for(int i = 0; i < entreprises.size(); i++){
-
-        bool intervention_user = false;
-        int valeur_entree = 0;
-        Entreprise* entreprise = entreprises[i];
-        string nom = entreprise->get_nom();
-        int taille_stock = entreprise->get_stock().size();
-        int tresorerie = entreprise->get_tresorerie();
-        int cout_fixe = entreprise->get_cout_fixe();
-        int cout_variable = entreprise->get_cout_variable();
-
-        while(!intervention_user){ // boucle pour être sur qu'on produit bien un nombre entier de vélo
-            cout << "Combien de vélos doit produire " << nom << " ?" << endl;
-            cout << "Vous avez déjà : " << taille_stock << " vélos." << endl;
-            cout << "Sa trésorerie est de : " << tresorerie << endl;
-            cout << "Son cout fixe est de : " << cout_fixe;
-            cout << " et son cout variable de : " << cout_variable << endl;
-            cout << endl;
-
-            if (cin >> valeur_entree && tresorerie > cout_fixe + valeur_entree * cout_variable){
-                intervention_user = true;
-            }
-            else{
-                cout << "Nombre invalide, mauvais caractère ou vous n'avez pas assez d'argent" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-        entreprise->produire(valeur_entree);
-        cout << "Vous produisez :  " << valeur_entree << " vélo(s)." << endl;
-        cout << "Nouvelle trésorerie : " << entreprises[i]->get_tresorerie() << endl;
-        cout << endl;
+        entreprises[i]->phase_de_production();
     }
 }
 
@@ -117,23 +90,8 @@ void MoteurJeu::phase_de_marketing(){
     cout << " ---------Phase de marketing-------------" << endl;
     cout << endl;
 
-    // Pour chaque entreprise, on demande le prix de vente pour le tour
-    for(int i = 0; i < entreprises.size(); i++){
-        bool intervention_user = false;
-        float valeur_entree = 0;
-
-        while(!intervention_user){
-            cout << "A quel prix " << entreprises[i]->get_nom() << " doit-elle vendre ses vélos? : " << endl;
-            if (cin >> valeur_entree){
-                intervention_user = true;
-            }
-            else{
-                cout << "Nombre invalide, mauvais caractère" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-        entreprises[i]->set_prix_de_vente(valeur_entree);
+    for (int i = 0; i < entreprises.size(); i++){
+        entreprises[i]->phase_de_marketing();
     }
 }
 
@@ -169,12 +127,11 @@ void MoteurJeu::phase_de_vente(){
 
     // On affiche les achats
     for (int i=0; i <entreprises.size(); i++){
-        cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : ";
-        cout << entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
-        cout << " et a vendu : ";
-        cout << (entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i]) / entreprises[i]->get_prix_de_vente();
-        cout << " vélos." << endl;
 
+        int augmentation_treso = entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
+        int quantite_vendus = augmentation_treso / entreprises[i]->get_prix_de_vente();
+        cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : " << augmentation_treso;
+        cout << " et a vendu : " << quantite_vendus << " vélos" << endl;
     }
 }
 
