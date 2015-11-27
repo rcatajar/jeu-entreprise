@@ -121,23 +121,8 @@ void MoteurJeu::phase_de_marketing(){
     cout << " ---------Phase de marketing-------------" << endl;
     cout << endl;
 
-    // Pour chaque entreprise, on demande le prix de vente pour le tour
-    for(int i = 0; i < entreprises.size(); i++){
-        bool intervention_user = false;
-        float valeur_entree = 0;
-
-        while(!intervention_user){
-            cout << "A quel prix " << entreprises[i]->get_nom() << " doit-elle vendre ses vélos? : " << endl;
-            if (cin >> valeur_entree){
-                intervention_user = true;
-            }
-            else{
-                cout << "Nombre invalide, mauvais caractère" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-        entreprises[i]->set_prix_de_vente(valeur_entree);
+    for (int i = 0; i < entreprises.size(); i++){
+        entreprises[i]->phase_de_marketing();
     }
 }
 

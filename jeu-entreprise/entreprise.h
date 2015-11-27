@@ -32,6 +32,8 @@ class Entreprise : public Entite
 
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);
+
+        void phase_de_marketing();
 };
 
 #endif // ENTREPRISE_H

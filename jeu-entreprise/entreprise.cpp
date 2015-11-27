@@ -61,3 +61,24 @@ void Entreprise::vente_objet(Objet * objet){
     retirer_au_stock(objet);
     tresorerie = tresorerie + prix_de_vente;
 }
+
+void Entreprise::phase_de_marketing(){
+    if(ia == true){
+        prix_de_vente = 1.5 * (cout_fixe / stock.size() + cout_variable);
+    } else{
+        bool intervention_user = false;
+        float valeur_entree = 0;
+        while(!intervention_user){
+            cout << "Entrez votre prix de vente : " << endl;
+            if (cin >> valeur_entree){
+                intervention_user = true;
+            }
+            else{
+                cout << "Nombre invalide, mauvais caractère" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        }
+        prix_de_vente = valeur_entree;
+    }
+}
