@@ -84,7 +84,7 @@ void Entreprise::phase_de_marketing(){
 }
 
 void Entreprise::phase_de_production(){
-    if(ia == true){
+    if(ia){
         int production = (tresorerie - cout_fixe) / (2 * cout_variable);
         produire(production);
     } else {

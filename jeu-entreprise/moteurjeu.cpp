@@ -28,7 +28,7 @@ void MoteurJeu::creation_entreprises_initiales(int nb_entreprises, int treso_ini
     // Les entreprises restantes sont des IA
     for(int i = 1; i < nb_entreprises; i++){
         string nom = "IA " + to_string(i);
-        entreprises.push_back(new Entreprise(nom, treso_initiale, false));
+        entreprises.push_back(new Entreprise(nom, treso_initiale, true));
     }
 }
 
@@ -80,7 +80,6 @@ void MoteurJeu::phase_de_production(){
     cout << " ---------Phase de production -------------" << endl;
     cout << endl;
 
-    // On demande à l'utilisateur ce qu'il veux produire pour chaque entreprise
     for(int i = 0; i < entreprises.size(); i++){
         entreprises[i]->phase_de_production();
     }
@@ -128,12 +127,11 @@ void MoteurJeu::phase_de_vente(){
 
     // On affiche les achats
     for (int i=0; i <entreprises.size(); i++){
-        cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : ";
-        cout << entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
-        cout << " et a vendu : ";
-        cout << (entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i]) / entreprises[i]->get_prix_de_vente();
-        cout << " vélos." << endl;
 
+        int augmentation_treso = entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
+        int quantite_vendus = augmentation_treso / entreprises[i]->get_prix_de_vente();
+        cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : " << augmentation_treso;
+        cout << " et a vendu : " << quantite_vendus << " vélos" << endl;
     }
 }
 
