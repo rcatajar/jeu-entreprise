@@ -9,19 +9,13 @@
 
 using namespace std;
 
-Entreprise::Entreprise(const std::string &n, float treso):
+Entreprise::Entreprise(const std::string &n, float treso, bool _ia):
     Entite(n, treso){
     cout_fixe = 200;
     cout_variable = 10;
+    ia = _ia;
 
     /*std::cout << "creation d'entreprise avec pour "*/
-}
-
-Entreprise::Entreprise(const std::string &n, float treso, float param_cout_fixe, float param_cout_variable):
-    Entite(n, treso){
-    cout_fixe = param_cout_fixe;
-    cout_variable = param_cout_variable;
-
 }
 
 float Entreprise::get_prix_de_vente() const{
@@ -46,6 +40,10 @@ float Entreprise::get_cout_variable() const{
 
 void Entreprise::set_cout_variable(float x){
     cout_variable = x;
+}
+
+bool Entreprise::is_ia(){
+    return ia;
 }
 
 void Entreprise::produire(int n){

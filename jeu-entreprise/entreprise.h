@@ -12,10 +12,10 @@ class Entreprise : public Entite
         float prix_de_vente;
         float cout_fixe;
         float cout_variable;
+        bool ia;
 
     public:
-        Entreprise(const std::string &, float);
-        Entreprise(const std::string &, float, float, float);
+        Entreprise(const std::string &, float, bool);
 
         float get_prix_de_vente() const;
         void set_prix_de_vente(float);
@@ -25,6 +25,8 @@ class Entreprise : public Entite
 
         float get_cout_variable() const;
         void set_cout_variable(float);
+
+        bool is_ia();
 
         void produire(int);
 

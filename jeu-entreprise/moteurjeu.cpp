@@ -22,9 +22,13 @@ MoteurJeu::MoteurJeu(int nb_entreprises, int treso_initiale, int nb_clients, int
 }
 
 void MoteurJeu::creation_entreprises_initiales(int nb_entreprises, int treso_initiale){
-    for(int i = 0; i < nb_entreprises; i++){
-        string nom = "Entreprise " + to_string(i + 1);
-        entreprises.push_back(new Entreprise(nom, treso_initiale));
+    // On crée une entreprise controllé par le joueur
+    entreprises.push_back((new Entreprise("Joueur", treso_initiale, false)));
+
+    // Les entreprises restantes sont des IA
+    for(int i = 1; i < nb_entreprises; i++){
+        string nom = "IA " + to_string(i);
+        entreprises.push_back(new Entreprise(nom, treso_initiale, false));
     }
 }
 
