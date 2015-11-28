@@ -11,6 +11,7 @@ protected:
 
 public:
     Objet(Entite*);
+    Objet(Entite*, int qualite);
     void set_qualite(int);
     void set_proprietaire(Entite*);
 

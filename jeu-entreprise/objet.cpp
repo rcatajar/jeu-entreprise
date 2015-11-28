@@ -1,5 +1,5 @@
-#include <iostream>
-
+﻿#include <iostream>
+#include <random>
 
 #include "objet.h"
 #include "entite.h"
@@ -8,7 +8,23 @@ using namespace std;
 
 Objet::Objet(Entite* e):
     proprietaire(e){
-    qualite = rand() % 99 + 1; // qualité aléatoire entre 1 et 99
+
+    std::default_random_engine generator;
+    std::normal_distribution<float> distribution(50, 15);
+
+    qualite = distribution(generator); // qualité déterminée par une loi uniforme centrée sur 50;
+    if (qualite <1){
+        qualite = 1;
+    }
+    else if (qualite > 99){
+        qualite = 99;
+    }
+}
+
+Objet::Objet(Entite* e, int q):
+    proprietaire(e),
+    qualite(q)
+{
 }
 
 void Objet::set_qualite(int q){
