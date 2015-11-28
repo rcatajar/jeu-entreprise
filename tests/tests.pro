@@ -14,8 +14,16 @@ CONFIG   -= app_bundle
 
 TEMPLATE = app
 
+# Testrunner
+SOURCES += main.cpp
 
+# Les classes de tests
 SOURCES += tests_objet.cpp
+HEADERS += tests_objet.h
+
+SOURCES += tests_entite.cpp
+HEADERS += tests_entite.h
+
 
 # On inclut les classes du projet principale a tester
 SOURCES += ../jeu-entreprise/objet.cpp \
@@ -29,7 +37,6 @@ HEADERS  += ../jeu-entreprise/objet.h \
     ../jeu-entreprise/client.h \
     ../jeu-entreprise/entreprise.h \
     ../jeu-entreprise/moteurjeu.h
-
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 

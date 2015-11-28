@@ -1,31 +1,12 @@
 #include <QString>
 #include <QtTest>
 
+#include "tests_objet.h"
 #include "../jeu-entreprise/objet.h"
 #include "../jeu-entreprise/entite.h"
 
-class TestsObjet : public QObject
-{
-    Q_OBJECT
 
-public:
-    TestsObjet();
-
-private Q_SLOTS:
-    void init(); // appelé automatiquement avant chaque test
-    void test_constructeur_set_proprietaire();
-    void test_constructeur_set_qualite_valide();
-    void test_qualite();
-    void test_proprietaire();
-
-private:
-    Objet* objet;
-    Entite* entite;
-};
-
-TestsObjet::TestsObjet()
-{
-}
+TestsObjet::TestsObjet(){}
 
 // Initialise chaque test en creant un objet et son proprietaire
 void TestsObjet::init(){
@@ -54,8 +35,3 @@ void TestsObjet::test_proprietaire(){
     objet->set_proprietaire(proprio);
     QVERIFY(objet->get_proprietaire() == proprio);
 }
-
-// Indique a QtTest qu'il faut run ces tests
-QTEST_APPLESS_MAIN(TestsObjet)
-
-#include "tests_objet.moc"
