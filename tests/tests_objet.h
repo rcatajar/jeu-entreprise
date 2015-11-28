@@ -17,7 +17,8 @@ public:
 private Q_SLOTS:
     void init(); // appelé automatiquement avant chaque test
     void test_constructeur_set_proprietaire();
-    void test_constructeur_set_qualite_valide();
+    void test_constructeur_qualite_aleatoire_valide();
+    void test_constructeur_qualite_fixe();
     void test_qualite();
     void test_proprietaire();
 

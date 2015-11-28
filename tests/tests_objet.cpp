@@ -19,10 +19,15 @@ void TestsObjet::test_constructeur_set_proprietaire()
     QVERIFY(objet->get_proprietaire() == entite);
 }
 
-void TestsObjet::test_constructeur_set_qualite_valide()
+void TestsObjet::test_constructeur_qualite_aleatoire_valide()
 {
     QVERIFY(objet->get_qualite() < 100);
     QVERIFY(objet->get_qualite() > 0);
+}
+
+void TestsObjet::test_constructeur_qualite_fixe(){
+    Objet* objet2 = new Objet(entite, 42);
+    QVERIFY(objet2->get_qualite() == 42);
 }
 
 void TestsObjet::test_qualite(){
