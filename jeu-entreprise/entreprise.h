@@ -1,4 +1,4 @@
-#ifndef ENTREPRISE_H
+﻿#ifndef ENTREPRISE_H
 #define ENTREPRISE_H
 
 #include <string>
@@ -12,6 +12,8 @@ class Entreprise : public Entite
         float prix_de_vente;
         float cout_fixe;
         float cout_variable;
+        float investissement_realise;
+        float qualite_marginale;
 
     public:
         Entreprise(const std::string &, float);
@@ -27,6 +29,9 @@ class Entreprise : public Entite
         void set_cout_variable(float);
 
         void produire(int);
+        void investir(int);
+
+        float get_investissement_realise() const;
 
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);

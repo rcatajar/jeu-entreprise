@@ -52,6 +52,7 @@ Entreprise* MoteurJeu::run(){
 
 void MoteurJeu::run_tour(){
     tour ++;
+    phase_de_recherche();
     phase_de_production();
     phase_de_marketing();
     phase_de_vente();
@@ -135,6 +136,33 @@ void MoteurJeu::phase_de_marketing(){
         }
         entreprises[i]->set_prix_de_vente(valeur_entree);
     }
+
+
+}
+
+void MoteurJeu::phase_de_recherche(){
+    cout << endl;
+    cout << " ---------Phase de recherche-------------" << endl;
+    cout << endl;
+
+    for(int i = 0; i < entreprises.size(); i++){
+        bool intervention_user = false;
+        float valeur_entree = 0;
+
+        while(!intervention_user){
+            cout << "Combien  " << entreprises[i]->get_nom() << " doit-elle investir en R&D pour augmenter la qualité de ses vélos? : " << endl;
+            if (cin >> valeur_entree && valeur_entree < entreprises[i]->get_tresorerie()){
+                intervention_user = true;
+            }
+            else{
+                cout << "Nombre invalide, mauvais caractère" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        }
+        entreprises[i]->investir(valeur_entree);
+    }
+
 }
 
 vector <Objet*> MoteurJeu::get_objets_marche(){

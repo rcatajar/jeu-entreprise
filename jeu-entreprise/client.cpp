@@ -13,8 +13,8 @@ using namespace std;
 
 Client::Client(const std::string &n, float treso):
     Entite(n, treso){
-    preference_qualite = (rand() % 99)/100 + 1;
-    preference_tresorerie = (rand() % 99)/100 + 1;
+    preference_qualite = (rand() % 99) / 100 + 1;
+    preference_tresorerie = (rand() % 99) / 100 + 1;
 }
 
 int Client::quantite_a_acheter(){
@@ -60,7 +60,7 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
             }
         }
 
-        // je perds l'argent nécéssaire
+               // je perds l'argent nécéssaire
         //cout << "avant l'achat : " << this->get_tresorerie() << endl;
         this->set_tresorerie(argent_restant[index_max]);
         //cout << "après l'achat : " << this->get_tresorerie() << endl;
