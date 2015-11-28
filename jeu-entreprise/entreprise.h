@@ -40,6 +40,7 @@ class Entreprise : public Entite
 
         void phase_de_marketing();
         void phase_de_production();
+        void phase_de_recherche();
 };
 
 #endif // ENTREPRISE_H

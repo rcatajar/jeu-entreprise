@@ -136,3 +136,29 @@ void Entreprise::phase_de_production(){
         cout << endl;
     }
 }
+
+void Entreprise::phase_de_recherche(){
+    if(ia){
+        // L'IA investi une somme aleatoire entre 0 et 1000 chaque tour
+        int investissement = rand() % 1000;
+        investir(investissement);
+    } else{
+        cout << endl;
+        cout << " ---------Phase de recherche-------------" << endl;
+        cout << endl;
+        bool intervention_user = false;
+        float valeur_entree = 0;
+        while(!intervention_user){
+            cout << "Combien  voulez vous investir en R&D pour augmenter la qualité de vos vélos? : " << endl;
+            if (cin >> valeur_entree && valeur_entree < tresorerie){
+                intervention_user = true;
+            }
+            else{
+                cout << "Nombre invalide, mauvais caractère" << endl;
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+        }
+        investir(valeur_entree);
+    }
+}
