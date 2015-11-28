@@ -31,7 +31,7 @@
 build-*
 
 # user project settings
-jeu-entreprise.pro.user
+*.pro.user
 
 # idea
 ./idea
