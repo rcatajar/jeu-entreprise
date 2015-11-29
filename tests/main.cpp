@@ -4,7 +4,7 @@
 #include "tests_entite.h"
 #include "tests_objet.h"
 #include "tests_client.h"
-
+#include "tests_entreprise.h"
 
 // Le main run les tests de chacune des classes de tests
 // cf http://www.davideling.it/2014/01/qtest-multiple-unit-test-classes/
@@ -22,6 +22,10 @@ int main(int argc, char** argv)
    {
         TestsClient tc;
         status |= QTest::qExec(&tc, argc, argv);
+   }
+   {
+       TestsEntreprise tc;
+       status |= QTest::qExec(&tc, argc, argv);
    }
    return status;
 }
