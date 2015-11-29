@@ -61,6 +61,7 @@ void MoteurJeu::run_tour(){
     phase_de_marketing();
     phase_de_vente();
     phase_de_gestion_des_stocks();
+    phase_de_revenu();
 }
 
 Entreprise* MoteurJeu::get_gagnant(){
@@ -159,6 +160,12 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
         cout << taille_stock_avant_gestion - taille_stock_apres_gestion;
         cout << " vélos dans son stock" << endl;
         cout << "Noveau stock: " << taille_stock_apres_gestion << " velos." << endl;
+    }
+}
+
+void MoteurJeu::phase_de_revenu(){
+    for(int i=0; i<clients.size(); i++){
+        clients[i]->set_tresorerie(clients[i]->get_tresorerie() + clients[i]->get_revenu());
     }
 }
 

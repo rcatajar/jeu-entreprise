@@ -29,8 +29,8 @@ int main(int argc, char *argv[])
 
     // Setup les variables de bases
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
-    int nb_clients = 500;
-    int nb_entreprises = 3;
+    int nb_clients = 5000;
+    int nb_entreprises = 5;
     float treso_initiale = 10000;
     float argent_initial = 500;
 
