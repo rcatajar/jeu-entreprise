@@ -13,6 +13,7 @@ using namespace std;
 
 Client::Client(const std::string &n, float treso):
     Entite(n, treso){
+    revenu = (rand() % 99) + 1; // On affecte a chaque client un revenu aléatoire entre 1 et 99.
     preference_qualite = (rand() % 99) / 100 + 1;
     preference_tresorerie = (rand() % 99) / 100 + 1;
 }
@@ -25,6 +26,11 @@ int Client::quantite_a_acheter(){
     }
     return 1;
 }
+
+float Client::get_revenu() const{
+    return revenu;
+}
+
 void Client::achat(std::vector <Objet*> objets_a_vendre){
 
     int n = objets_a_vendre.size();

@@ -26,6 +26,7 @@ public:
     void phase_de_marketing();
     void phase_de_vente();
     void phase_de_recherche();
+    void phase_de_revenu();
     std::vector <Objet*> get_objets_marche();
     void phase_de_gestion_des_stocks();
     Entreprise* get_gagnant();
