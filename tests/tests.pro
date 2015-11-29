@@ -27,6 +27,10 @@ HEADERS += tests_entite.h
 SOURCES += tests_client.cpp
 HEADERS += tests_client.h
 
+SOURCES += tests_entreprise.cpp
+HEADERS += tests_entreprise.h
+
+
 # On inclut les classes du projet principale a tester
 SOURCES += ../jeu-entreprise/objet.cpp \
     ../jeu-entreprise/entite.cpp \

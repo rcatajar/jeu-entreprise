@@ -25,10 +25,10 @@ void TestsObjet::test_constructeur_qualite_aleatoire_valide()
     QVERIFY(objet->get_qualite() > 0);
 }
 
-void TestsObjet::test_constructeur_qualite_fixe(){
+void TestsObjet::test_constructeur_avec_centre_qualite(){
     Objet* objet2 = new Objet(entite, 42);
-    QVERIFY(objet2->get_qualite() == 42);
-}
+    QVERIFY(objet2->get_qualite() < 100);
+    QVERIFY(objet2->get_qualite() > 0);}
 
 void TestsObjet::test_qualite(){
     objet->set_qualite(42);

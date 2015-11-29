@@ -13,8 +13,9 @@ class Entreprise : public Entite
         float cout_fixe;
         float cout_variable;
         float investissement_realise;
-        float qualite_marginale;
+        int qualite_marginale;
         bool ia;
+        bool max_recherche;
 
     public:
         Entreprise(const std::string &, float, bool);
@@ -28,12 +29,15 @@ class Entreprise : public Entite
         float get_cout_variable() const;
         void set_cout_variable(float);
 
-        bool is_ia();
+        bool is_ia() const;
+
+        bool recherche_max_atteinte() const;
 
         void produire(int);
         void investir(int);
 
         float get_investissement_realise() const;
+        int get_qualite_marginale() const;
 
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);
