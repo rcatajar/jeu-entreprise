@@ -9,10 +9,11 @@ using namespace std;
 Objet::Objet(Entite* e):
     proprietaire(e){
 
-    std::default_random_engine generator;
-    std::normal_distribution<float> distribution(50, 15);
-
-    qualite = distribution(generator); // qualité déterminée par une loi uniforme centrée sur 50;
+    // qualité déterminée par une loi uniforme centrée sur 50;
+    default_random_engine generator;
+    normal_distribution<float> distribution(50, 15);
+    qualite = distribution(generator);
+    // On s'assure d'être en 1 et 99
     if (qualite <1){
         qualite = 1;
     }
@@ -22,9 +23,18 @@ Objet::Objet(Entite* e):
 }
 
 Objet::Objet(Entite* e, int q):
-    proprietaire(e),
-    qualite(q)
-{
+    proprietaire(e){
+    // qualité déterminée par une loi normale centré sur l'argument)
+    default_random_engine generator;
+    normal_distribution<float> distribution(q, 15);
+    qualite = distribution(generator);
+    // On s'assure d'être en 1 et 99
+    if (qualite <1){
+        qualite = 1;
+    }
+    else if (qualite > 99){
+        qualite = 99;
+    }
 }
 
 void Objet::set_qualite(int q){
