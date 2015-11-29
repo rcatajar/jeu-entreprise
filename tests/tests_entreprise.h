@@ -20,6 +20,7 @@ private Q_SLOTS:
     void test_cout_fixe();
     void test_cout_variable();
     void test_investissement_realise();
+    void test_produire_0_objet();
     void test_produire();
     void test_investir();
     void test_vente_objet();
