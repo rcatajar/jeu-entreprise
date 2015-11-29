@@ -15,7 +15,7 @@ private:
 public:
     Client(const std:: string&, float);
     int quantite_a_acheter();
-    int get_revenu();
+    int get_revenu() const;
     void achat(std::vector <Objet*>);
     void phase_de_revenu();
 };

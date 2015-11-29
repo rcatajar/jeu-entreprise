@@ -27,7 +27,7 @@ int Client::quantite_a_acheter(){
     return 1;
 }
 
-int Client::get_revenu(){
+int Client::get_revenu() const{
     return revenu;
 }
 
