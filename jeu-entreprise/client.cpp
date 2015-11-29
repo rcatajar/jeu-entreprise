@@ -27,7 +27,7 @@ int Client::quantite_a_acheter(){
     return 1;
 }
 
-float Client::get_revenu() const{
+int Client::get_revenu() const{
     return revenu;
 }
 
@@ -49,8 +49,7 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
         if(argent_restant[i] > 0){
             tableau_preferences[i] = pow(argent_restant[i], preference_tresorerie) * pow(objets_a_vendre[i]->get_qualite(), preference_qualite);
             norm += tableau_preferences[i] * tableau_preferences[i];
-        }
-        else{
+        } else{
             tableau_preferences[i] = 0;
         }
 
@@ -58,30 +57,23 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
     if(norm != 0){ // si il y a bien un objet qu'peut acheter la dedans
 
         for(int i=0; i<n; i++){ // je boucle sur tous les objets que je peux acheter
-
             tableau_preferences[i] = tableau_preferences[i] / norm; // = 0 si on n'aimait pas l'objet, >0 sinon
-
             if(tableau_preferences[i] > tableau_preferences[index_max]){ // Je vais chercher l'objet que je préfère
                 index_max = i;
             }
         }
-
-               // je perds l'argent nécéssaire
-        //cout << "avant l'achat : " << this->get_tresorerie() << endl;
+        // On retire le prix de l'objet à la tresorerie du client
         this->set_tresorerie(argent_restant[index_max]);
-        //cout << "après l'achat : " << this->get_tresorerie() << endl;
 
         // l'entreprise effectue la vente (retire l'objet de son stock et augemente sa tréso)
-        //cout << "avant l'achat : " << e[index_max]->get_tresorerie() << endl;
         e[index_max]->vente_objet(objets_a_vendre[index_max]);
-        //cout << "après l'achat : " << e[index_max]->get_tresorerie() << endl;
 
-        // je deviens propriétaire de l'objet et l'ajoute à mon stock
-        //cout << "avant l'achat : " << objets_a_vendre[index_max]->get_proprietaire()->get_nom() << endl;
+        // le client s'approprie l'objet
         this->ajouter_au_stock(objets_a_vendre[index_max]);
-        //cout << "après l'achat : " << objets_a_vendre[index_max]->get_proprietaire()->get_nom() << endl;
-
-
     }
+}
+
+void Client::phase_de_revenu(){
+    tresorerie = tresorerie + revenu;
 
 }

@@ -8,15 +8,16 @@
 class Client : public Entite
 {
 private:
-    float revenu;
+    int revenu;
     float preference_qualite;
     float preference_tresorerie;
 
 public:
     Client(const std:: string&, float);
-    float get_revenu() const;
     int quantite_a_acheter();
+    int get_revenu() const;
     void achat(std::vector <Objet*>);
+    void phase_de_revenu();
 };
 
 #endif // CLIENT_H

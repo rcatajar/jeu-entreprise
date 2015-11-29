@@ -149,6 +149,7 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
     cout << endl;
     cout << " ---------Phase de gestion des stocks -------------" << endl;
     cout << endl;
+
     for (int i=0; i < clients.size(); i++){
         clients[i]->gestion_des_stocks();
     }
@@ -165,7 +166,7 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
 
 void MoteurJeu::phase_de_revenu(){
     for(int i=0; i<clients.size(); i++){
-        clients[i]->set_tresorerie(clients[i]->get_tresorerie() + clients[i]->get_revenu());
+        clients[i]->phase_de_revenu();
     }
 }
 
