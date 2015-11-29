@@ -80,6 +80,7 @@ void Entreprise::investir(int n){
     tresorerie -= n;
     if (investissement_realise > 10 * seuil){
         qualite_marginale = 50;
+        max_recherche = true;
     }
     else{
         qualite_marginale = 5 * (investissement_realise / seuil);
