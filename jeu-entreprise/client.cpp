@@ -27,6 +27,10 @@ int Client::quantite_a_acheter(){
     return 1;
 }
 
+int Client::get_revenu(){
+    return revenu;
+}
+
 void Client::achat(std::vector <Objet*> objets_a_vendre){
 
     int n = objets_a_vendre.size();
