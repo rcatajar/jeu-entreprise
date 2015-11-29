@@ -93,7 +93,7 @@ void TestsEntreprise::test_investir_pas_de_changement_de_seuil(){
 void TestsEntreprise::test_investir_saut_de_seuil(){
     entreprise->investir(1000);
     QVERIFY(entreprise->get_qualite_marginale() == 5);
-    entreprise->investir(2500);
+    entreprise->investir(2000);
     QVERIFY(entreprise->get_qualite_marginale() == 15);
     QVERIFY(entreprise->recherche_max_atteinte() == false);
 }
@@ -107,7 +107,7 @@ void TestsEntreprise::test_investir_set_investissement_realise(){
     entreprise->investir(200);
     QVERIFY(entreprise->get_investissement_realise() == 200);
     entreprise->investir(42);
-    QVERIFY(entreprise->get_investissement_realise() == 42);
+    QVERIFY(entreprise->get_investissement_realise() == 242);
 }
 
 void TestsEntreprise::test_investir_set_tresorerie(){
