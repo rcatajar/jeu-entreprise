@@ -14,8 +14,8 @@ Entreprise::Entreprise(const std::string &n, float treso, bool _ia):
     cout_fixe = 200;
     cout_variable = 10;
     investissement_realise = 0;
-    // ce facteur correspond à l'augmentation de la qualité pour un investissement de 1000
-    qualite_marginale = 5;
+    qualite_marginale = 0;
+    max_recherche = false;
     ia = _ia;
 
 }
@@ -48,8 +48,16 @@ float Entreprise::get_investissement_realise() const{
     return investissement_realise;
 }
 
-bool Entreprise::is_ia(){
+int Entreprise::get_qualite_marginale() const{
+    return qualite_marginale;
+}
+
+bool Entreprise::is_ia() const{
     return ia;
+}
+
+bool Entreprise::recherche_max_atteinte() const{
+    return max_recherche;
 }
 
 void Entreprise::produire(int n){
@@ -57,24 +65,24 @@ void Entreprise::produire(int n){
     // Diminue sa trésorerie du cout de production associé
     float cout_prod = cout_fixe + n * cout_variable;
     for (int i=0; i<n; i++){
-        Objet* objet_cree = new Objet(this, 50 + qualite_marginale * investissement_realise / 1000);
+        Objet* objet_cree = new Objet(this, 50 + qualite_marginale);
         ajouter_au_stock(objet_cree);
     }
     tresorerie -= cout_prod;
 }
 
 void Entreprise::investir(int n){
+    // Investir de l'argent permet d'améliorer la qualité des objets produits
+    // La qualité marginale augmente de 5 tout les seuil=1000$ investi
+    int seuil = 1000;
 
-    // un investissement de 1000 augmentera la recherche du montant de qualite marginale, initialisé à 5
-
-    int recherche_realise = (int)  qualite_marginale * investissement_realise / 1000;
-
-    if(recherche_realise + qualite_marginale * n / 1000 < 100){
-        investissement_realise += n;
-        tresorerie -= n;
+    investissement_realise += n;
+    tresorerie -= n;
+    if (investissement_realise > 10 * seuil){
+        qualite_marginale = 50;
     }
     else{
-        cout << "Vous avez déjà investi la somme maximale en recherche" << endl;
+        qualite_marginale = 5 * (investissement_realise / seuil);
     }
 }
 
@@ -138,27 +146,34 @@ void Entreprise::phase_de_production(){
 }
 
 void Entreprise::phase_de_recherche(){
-    if(ia){
-        // L'IA investi une somme aleatoire entre 0 et 1000 chaque tour
+    // L'IA investi entre 0 et 1000$ par tour tant qu'elle n'a pas maxé sa recherche
+    if(ia && !max_recherche){
         int investissement = rand() % 1000;
         investir(investissement);
-    } else{
+    }
+
+    else {
         cout << endl;
         cout << " ---------Phase de recherche-------------" << endl;
         cout << endl;
-        bool intervention_user = false;
-        float valeur_entree = 0;
-        while(!intervention_user){
-            cout << "Combien  voulez vous investir en R&D pour augmenter la qualité de vos vélos? : " << endl;
-            if (cin >> valeur_entree && valeur_entree < tresorerie){
-                intervention_user = true;
+
+        if(max_recherche){
+            cout << "Vous avez déja investi la somme maximale en recherche!" << endl;
+        } else{
+            bool intervention_user = false;
+            float valeur_entree = 0;
+            while(!intervention_user){
+                cout << "Combien  voulez vous investir en R&D pour augmenter la qualité de vos vélos? : " << endl;
+                if (cin >> valeur_entree && valeur_entree < tresorerie){
+                    intervention_user = true;
+                }
+                else{
+                    cout << "Nombre invalide, mauvais caractère" << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
             }
-            else{
-                cout << "Nombre invalide, mauvais caractère" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
+            investir(valeur_entree);
         }
-        investir(valeur_entree);
     }
 }
