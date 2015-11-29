@@ -17,6 +17,7 @@ public:
     float get_revenu() const;
     int quantite_a_acheter();
     void achat(std::vector <Objet*>);
+    void phase_de_revenue();
 };
 
 #endif // CLIENT_H

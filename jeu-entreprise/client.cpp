@@ -85,3 +85,8 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
     }
 
 }
+
+void Client::phase_de_revenu(){
+    tresorerie = tresorerie + revenu;
+
+}
