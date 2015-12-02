@@ -14,7 +14,7 @@ class TurnWindow : public QWidget
     Q_OBJECT
 
 public slots:
-    void openNewWindow();
+    void openLoadingWindow();
 
 public:
     explicit TurnWindow(QWidget *parent = 0);

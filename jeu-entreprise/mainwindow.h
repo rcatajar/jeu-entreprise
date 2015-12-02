@@ -6,7 +6,6 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 
-#include "tabwidget.h"
 #include "inputwidget.h"
 #include "turnwindow.h"
 
@@ -24,17 +23,13 @@ public:
     ~MainWindow();
 
 public slots:
-    void openNewWindow();
+    void openTurnWindow();
 
 private:
     Ui::MainWindow *ui;
-    TabWidget *mTabWidget;
     QPushButton *startButton;
-    InputWidget *mInputWidget;
     TurnWindow *mTurnWindow;
 
-    //    QTabWidget *tabWidget;
-    //    QDialogButtonBox *buttonBox;
 };
 
 #endif // MAINWINDOW_H

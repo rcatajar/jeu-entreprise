@@ -21,7 +21,7 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::openNewWindow()
+void MainWindow::openTurnWindow()
 {
 
     mTurnWindow = new TurnWindow();

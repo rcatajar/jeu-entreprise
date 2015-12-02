@@ -29,10 +29,10 @@ TabWidget::TabWidget(QWidget *parent) :
 //    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
 //    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 
-//    QVBoxLayout *mainLayout = new QVBoxLayout;
-//    mainLayout->addWidget(tabWidget);
+    QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(tabWidget);
 //    mainLayout->addWidget(buttonBox);
-//    setLayout(mainLayout);
+    setLayout(mainLayout);
 
 //    setWindowTitle(tr("Tour 1"));
 }

@@ -133,20 +133,36 @@
    <sender>nextButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>openNewWindow()</slot>
+   <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>74</x>
-     <y>312</y>
+     <x>528</x>
+     <y>346</y>
     </hint>
     <hint type="destinationlabel">
-     <x>5</x>
-     <y>312</y>
+     <x>4</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>nextButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openTurnWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>535</x>
+     <y>333</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>339</x>
+     <y>190</y>
     </hint>
    </hints>
   </connection>
  </connections>
  <slots>
-  <slot>openNewWindow()</slot>
+  <slot>openTurnWindow()</slot>
  </slots>
 </ui>

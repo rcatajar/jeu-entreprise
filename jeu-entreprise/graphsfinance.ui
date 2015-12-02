@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Graphs Finance</string>
   </property>
   <widget class="QGraphicsView" name="graphicsView">
    <property name="geometry">
