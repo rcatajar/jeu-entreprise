@@ -2,8 +2,8 @@
  <author/>
  <comment/>
  <exportmacro/>
- <class>PermissionsTab</class>
- <widget class="QWidget" name="PermissionsTab">
+ <class>TabProduction</class>
+ <widget class="QWidget" name="TabProduction">
   <property name="geometry">
    <rect>
     <x>0</x>

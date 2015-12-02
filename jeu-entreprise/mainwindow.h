@@ -7,6 +7,7 @@
 #include <QPushButton>
 
 #include "tabdialog.h"
+#include "widgetinput.h"
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +29,7 @@ private:
     Ui::MainWindow *ui;
     TabDialog *mTabDialog;
     QPushButton *startButton;
+    WidgetInput *mWidgetInput;
 
     //    QTabWidget *tabWidget;
     //    QDialogButtonBox *buttonBox;

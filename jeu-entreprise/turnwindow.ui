@@ -2,8 +2,8 @@
  <author/>
  <comment/>
  <exportmacro/>
- <class>GeneralTab</class>
- <widget class="QWidget" name="GeneralTab">
+ <class>turnWindow</class>
+ <widget class="QWidget" name="turnWindow">
   <property name="geometry">
    <rect>
     <x>0</x>

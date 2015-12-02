@@ -15,7 +15,7 @@ class TabDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit TabDialog(const QString &fileName, QWidget *parent = 0);
+    explicit TabDialog(QWidget *parent = 0);
     ~TabDialog();
 
 private:

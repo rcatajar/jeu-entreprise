@@ -4,24 +4,23 @@
 #include "generaltab.h"
 #include "permissionstab.h"
 #include "applicationstab.h"
+#include "tabproduction.h"
+#include "tabfinance.h"
 
 #include <QTabWidget>
 #include <QFileInfo>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
-TabDialog::TabDialog(const QString &fileName, QWidget *parent) :
+TabDialog::TabDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TabDialog)
 {
     ui->setupUi(this);
 
-    QFileInfo fileInfo(fileName);
-
     tabWidget = new QTabWidget;
-    tabWidget->addTab(new GeneralTab(fileInfo), tr("General"));
-    tabWidget->addTab(new PermissionsTab(fileInfo), tr("Permissions"));
-    tabWidget->addTab(new ApplicationsTab(fileInfo), tr("Applications"));
+    tabWidget->addTab(new TabFinance, tr("Finance"));
+    tabWidget->addTab(new TabProduction, tr("Production"));
 
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
                                          | QDialogButtonBox::Cancel);
@@ -34,7 +33,7 @@ TabDialog::TabDialog(const QString &fileName, QWidget *parent) :
     mainLayout->addWidget(buttonBox);
     setLayout(mainLayout);
 
-    setWindowTitle(tr("Tab Dialog"));
+    setWindowTitle(tr("Tour 1"));
 }
 
 TabDialog::~TabDialog()

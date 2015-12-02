@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "tabdialog.h"
+#include "widgetinput.h"
 
 #include <QTabWidget>
 #include <QWidget>
@@ -35,13 +36,21 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete mTabDialog;
+    delete mWidgetInput;
+
+//    delete mTabDialog;
+
 }
 
 void MainWindow::openNewWindow()
 {
 
-   mTabDialog = new TabDialog("hey");
-   mTabDialog->show();
+    mWidgetInput = new WidgetInput();
+    mWidgetInput->show();
+
+
+
+//    mTabDialog = new TabDialog();
+//    mTabDialog->show();
 
 }

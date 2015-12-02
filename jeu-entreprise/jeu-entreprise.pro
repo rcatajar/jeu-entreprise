@@ -20,9 +20,10 @@ SOURCES += main.cpp\
     entreprise.cpp \
     moteurjeu.cpp \
     tabdialog.cpp \
-    generaltab.cpp \
-    permissionstab.cpp \
-    applicationstab.cpp
+    tabproduction.cpp \
+    tabfinance.cpp \
+    widgetinput.cpp \
+    turnwindow.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
@@ -31,14 +32,16 @@ HEADERS  += mainwindow.h \
     entreprise.h \
     moteurjeu.h \
     tabdialog.h \
-    generaltab.h \
-    permissionstab.h \
-    applicationstab.h
+    tabproduction.h \
+    tabfinance.h \
+    widgetinput.h \
+    turnwindow.h
 
 FORMS    += mainwindow.ui \
     tabdialog.ui \
-    generaltab.ui \
-    permissionstab.ui \
-    applicationstab.ui
+    tabproduction.ui \
+    tabfinance.ui \
+    widgetinput.ui \
+    turnwindow.ui
 
 CONFIG += c++11
