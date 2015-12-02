@@ -19,11 +19,14 @@ SOURCES += main.cpp\
     client.cpp \
     entreprise.cpp \
     moteurjeu.cpp \
-    tabdialog.cpp \
-    tabproduction.cpp \
-    tabfinance.cpp \
-    widgetinput.cpp \
-    turnwindow.cpp
+    turnwindow.cpp \
+    tabwidget.cpp \
+    inputwidget.cpp \
+    loadingwindow.cpp \
+    graphsfinance.cpp \
+    graphsproduction.cpp \
+    graphsrecherche.cpp \
+    graphsmarketing.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
@@ -31,17 +34,23 @@ HEADERS  += mainwindow.h \
     client.h \
     entreprise.h \
     moteurjeu.h \
-    tabdialog.h \
-    tabproduction.h \
-    tabfinance.h \
-    widgetinput.h \
-    turnwindow.h
+    turnwindow.h \
+    tabwidget.h \
+    inputwidget.h \
+    loadingwindow.h \
+    graphsfinance.h \
+    graphsproduction.h \
+    graphsrecherche.h \
+    graphsmarketing.h
 
 FORMS    += mainwindow.ui \
-    tabdialog.ui \
-    tabproduction.ui \
-    tabfinance.ui \
-    widgetinput.ui \
-    turnwindow.ui
+    turnwindow.ui \
+    tabwidget.ui \
+    inputwidget.ui \
+    loadingwindow.ui \
+    graphsfinance.ui \
+    graphsproduction.ui \
+    graphsrecherche.ui \
+    graphsmarketing.ui
 
 CONFIG += c++11

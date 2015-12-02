@@ -1,26 +1,27 @@
-#include "tabdialog.h"
-#include "ui_tabdialog.h"
+#include "tabwidget.h"
+#include "ui_tabwidget.h"
 
-#include "generaltab.h"
-#include "permissionstab.h"
-#include "applicationstab.h"
-#include "tabproduction.h"
-#include "tabfinance.h"
+#include "graphsproduction.h"
+#include "graphsfinance.h"
+#include "graphsrecherche.h"
+#include "graphsmarketing.h"
 
 #include <QTabWidget>
 #include <QFileInfo>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
 
-TabDialog::TabDialog(QWidget *parent) :
+TabWidget::TabWidget(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::TabDialog)
+    ui(new Ui::TabWidget)
 {
     ui->setupUi(this);
 
     tabWidget = new QTabWidget;
-    tabWidget->addTab(new TabFinance, tr("Finance"));
-    tabWidget->addTab(new TabProduction, tr("Production"));
+    tabWidget->addTab(new GraphsFinance, tr("Finance"));
+    tabWidget->addTab(new GraphsProduction, tr("Production"));
+    tabWidget->addTab(new GraphsRecherche, tr("Recherche"));
+    tabWidget->addTab(new GraphsMarketing, tr("Marketing"));
 
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
                                          | QDialogButtonBox::Cancel);
@@ -36,7 +37,7 @@ TabDialog::TabDialog(QWidget *parent) :
     setWindowTitle(tr("Tour 1"));
 }
 
-TabDialog::~TabDialog()
+TabWidget::~TabWidget()
 {
     delete ui;
 }

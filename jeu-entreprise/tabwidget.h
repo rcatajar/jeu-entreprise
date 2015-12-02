@@ -1,5 +1,5 @@
-#ifndef TABDIALOG_H
-#define TABDIALOG_H
+#ifndef TABWIDGET_H
+#define TABWIDGET_H
 
 #include <QWidget>
 #include <QTabWidget>
@@ -7,22 +7,22 @@
 #include <QDialog>
 
 namespace Ui {
-class TabDialog;
+class TabWidget;
 }
 
-class TabDialog : public QDialog
+class TabWidget : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit TabDialog(QWidget *parent = 0);
-    ~TabDialog();
+    explicit TabWidget(QWidget *parent = 0);
+    ~TabWidget();
 
 private:
-    Ui::TabDialog *ui;
+    Ui::TabWidget *ui;
 
     QTabWidget *tabWidget;
     QDialogButtonBox *buttonBox;
 };
 
-#endif // TABDIALOG_H
+#endif // TABWIDGET_H

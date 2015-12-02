@@ -1,14 +1,14 @@
 #include "turnwindow.h"
 #include "ui_turnwindow.h"
 
-turnWindow::turnWindow(QWidget *parent) :
+TurnWindow::TurnWindow(QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::turnWindow)
+    ui(new Ui::TurnWindow)
 {
     ui->setupUi(this);
 }
 
-turnWindow::~turnWindow()
+TurnWindow::~TurnWindow()
 {
     delete ui;
 }

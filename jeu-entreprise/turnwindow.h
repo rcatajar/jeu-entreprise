@@ -4,19 +4,19 @@
 #include <QWidget>
 
 namespace Ui {
-class turnWindow;
+class TurnWindow;
 }
 
-class turnWindow : public QWidget
+class TurnWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit turnWindow(QWidget *parent = 0);
-    ~turnWindow();
+    explicit TurnWindow(QWidget *parent = 0);
+    ~TurnWindow();
 
 private:
-    Ui::turnWindow *ui;
+    Ui::TurnWindow *ui;
 };
 
 #endif // TURNWINDOW_H

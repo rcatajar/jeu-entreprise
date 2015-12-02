@@ -6,8 +6,9 @@
 #include <QDialogButtonBox>
 #include <QPushButton>
 
-#include "tabdialog.h"
-#include "widgetinput.h"
+#include "tabwidget.h"
+#include "inputwidget.h"
+#include "turnwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,9 +28,10 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    TabDialog *mTabDialog;
+    TabWidget *mTabWidget;
     QPushButton *startButton;
-    WidgetInput *mWidgetInput;
+    InputWidget *mInputWidget;
+    TurnWindow *mTurnWindow;
 
     //    QTabWidget *tabWidget;
     //    QDialogButtonBox *buttonBox;

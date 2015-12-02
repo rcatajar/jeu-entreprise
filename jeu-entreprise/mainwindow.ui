@@ -17,77 +17,91 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>9</x>
-      <y>-1</y>
-      <width>661</width>
-      <height>321</height>
+      <x>10</x>
+      <y>10</y>
+      <width>631</width>
+      <height>301</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <widget class="QTabWidget" name="tabWidget">
-       <widget class="QWidget" name="finance">
-        <attribute name="title">
-         <string>Tab 1</string>
-        </attribute>
-        <widget class="QWidget" name="gridLayoutWidget">
-         <property name="geometry">
-          <rect>
-           <x>-1</x>
-           <y>-1</y>
-           <width>661</width>
-           <height>291</height>
-          </rect>
-         </property>
-         <layout class="QGridLayout" name="gridLayout">
-          <property name="leftMargin">
-           <number>10</number>
-          </property>
-          <property name="topMargin">
-           <number>10</number>
-          </property>
-          <property name="rightMargin">
-           <number>10</number>
-          </property>
-          <property name="bottomMargin">
-           <number>10</number>
-          </property>
-          <item row="2" column="0">
-           <widget class="QSlider" name="horizontalSlider">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLCDNumber" name="lcdNumber"/>
-          </item>
-          <item row="1" column="0">
-           <widget class="QPushButton" name="nextButton">
-            <property name="text">
-             <string>Next</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </widget>
-       <widget class="QWidget" name="marketing">
-        <attribute name="title">
-         <string>Tab 2</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="production">
-        <attribute name="title">
-         <string>Page</string>
-        </attribute>
-       </widget>
-       <widget class="QWidget" name="recherche">
-        <attribute name="title">
-         <string>Page</string>
-        </attribute>
-       </widget>
+    <layout class="QVBoxLayout" name="verticalLayout" stretch="1,3,0">
+     <item alignment="Qt::AlignHCenter">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:36pt; font-weight:600;&quot;&gt;Bienvenue !!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
       </widget>
+     </item>
+     <item>
+      <layout class="QFormLayout" name="formLayout">
+       <property name="labelAlignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="formAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="verticalSpacing">
+        <number>30</number>
+       </property>
+       <property name="leftMargin">
+        <number>30</number>
+       </property>
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_2">
+         <property name="text">
+          <string>Ton nom :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="lineEdit"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_3">
+         <property name="text">
+          <string>Nombre d'IAs :</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QSpinBox" name="spinBox"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,1">
+       <property name="rightMargin">
+        <number>30</number>
+       </property>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
+        <widget class="QPushButton" name="nextButton">
+         <property name="maximumSize">
+          <size>
+           <width>200</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>C'est parti !</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
@@ -115,22 +129,6 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections>
-  <connection>
-   <sender>horizontalSlider</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>lcdNumber</receiver>
-   <slot>display(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>341</x>
-     <y>340</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>341</x>
-     <y>186</y>
-    </hint>
-   </hints>
-  </connection>
   <connection>
    <sender>nextButton</sender>
    <signal>clicked()</signal>
