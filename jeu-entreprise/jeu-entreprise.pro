@@ -18,15 +18,27 @@ SOURCES += main.cpp\
     entite.cpp \
     client.cpp \
     entreprise.cpp \
-    moteurjeu.cpp
+    moteurjeu.cpp \
+    tabdialog.cpp \
+    generaltab.cpp \
+    permissionstab.cpp \
+    applicationstab.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
     entite.h \
     client.h \
     entreprise.h \
-    moteurjeu.h
+    moteurjeu.h \
+    tabdialog.h \
+    generaltab.h \
+    permissionstab.h \
+    applicationstab.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    tabdialog.ui \
+    generaltab.ui \
+    permissionstab.ui \
+    applicationstab.ui
 
 CONFIG += c++11

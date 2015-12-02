@@ -22,10 +22,10 @@ using namespace std;
 int main(int argc, char *argv[])
 {
     // QT old stuff
-    // QApplication a(argc, argv);
-    // MainWindow w;
-    // w.show();
-    // return a.exec();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+    return a.exec();
 
     // Setup les variables de bases
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
