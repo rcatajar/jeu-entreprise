@@ -45,6 +45,7 @@ public:
     void set_historique_recherche();
     void set_historique_tresoreries();
     void set_historique_acheteurs();
+    void set_historique_productions();
 
 };
 

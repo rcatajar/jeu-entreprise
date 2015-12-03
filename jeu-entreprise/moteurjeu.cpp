@@ -58,8 +58,15 @@ Entreprise* MoteurJeu::run(){
 
 void MoteurJeu::run_tour(){
     tour ++;
+    historique->tour = tour;
+    set_historique_stocks();
+
     phase_de_recherche();
+    set_historique_recherche();
+
     phase_de_production();
+    set_historique_productions();
+
     phase_de_marketing();
     phase_de_vente();
     phase_de_gestion_des_stocks();
@@ -210,7 +217,7 @@ void MoteurJeu::set_historique_stocks(){
 void MoteurJeu::set_historique_recherche(){
     vector <int> investissements;
     vector <int> qualite;
-    for (int i; i < entreprises.size(); i++){
+    for (int i = 0; i < entreprises.size(); i++){
         investissements.push_back(entreprises[i]->get_investissement_realise());
         qualite.push_back(entreprises[i]->get_qualite_marginale());
     }
@@ -232,4 +239,13 @@ void MoteurJeu::set_historique_acheteurs(){
         }
     }
     historique->nombre_acheteurs.push_back(acheteurs);
+}
+
+void MoteurJeu::set_historique_productions(){
+    vector <int> previous_stock = historique->stocks[tour];
+    vector <int> production;
+    for(int i=0; i < entreprises.size(); i++){
+        production.push_back(entreprises[i]->get_stock().size() - previous_stock[i]);
+    }
+    historique->productions.push_back(production);
 }
