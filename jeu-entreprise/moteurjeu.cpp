@@ -1,5 +1,5 @@
 #include <vector>
-#include <string>
+#include <QString>
 #include <iostream>
 #include <istream>
 #include <sstream>
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_initial, int param_tour_max, string nom)
+MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_initial, int param_tour_max, QString nom)
 {
     tour = 0;
     tour_max = param_tour_max;
@@ -29,14 +29,14 @@ void MoteurJeu::creation_entreprises_initiales(int nb_ia, int treso_initiale){
 
     // Les entreprises restantes sont des IA
     for(int i = 0; i < nb_ia; i++){
-        string nom = "IA " + to_string(i + 1);
+        QString nom = "IA";
         entreprises.push_back(new Entreprise(nom, treso_initiale, true));
     }
 }
 
 void MoteurJeu::creation_clients_initiaux(int nb_clients, int argent_initial){
     for(int i = 0; i < nb_clients; i++){
-        string nom = "Client " + to_string(i + 1);
+        QString nom = "Client ";
         clients.push_back(new Client(nom, argent_initial));
     }
 }
@@ -159,8 +159,6 @@ void MoteurJeu::phase_de_vente(){
         int quantite_vendus = augmentation_treso / entreprises[i]->get_prix_de_vente();
         ventes.push_back(quantite_vendus);
         achat += quantite_vendus;
-        cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : " << augmentation_treso;
-        cout << " et a vendu : " << quantite_vendus << " vélos" << endl;
     }
     historique->ventes.push_back(ventes);
     historique->objets_achetes.push_back(achat);
@@ -185,10 +183,6 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
         int taille_stock_avant_gestion = entreprises[i]->get_stock().size();
         entreprises[i]->gestion_des_stocks();
         int taille_stock_apres_gestion = entreprises[i]->get_stock().size();
-        cout << entreprises[i]->get_nom() << " a perdu ";
-        cout << taille_stock_avant_gestion - taille_stock_apres_gestion;
-        cout << " vélos dans son stock" << endl;
-        cout << "Noveau stock: " << taille_stock_apres_gestion << " velos." << endl;
         objets_detruits.push_back(taille_stock_avant_gestion - taille_stock_apres_gestion);
     }
     historique->objets_detruits.push_back(objets_detruits);

@@ -1,6 +1,5 @@
 // standard libraries
 #include <vector>
-#include <string>
 #include <iostream>
 #include <istream>
 #include <sstream>
@@ -27,23 +26,11 @@ int main(int argc, char *argv[])
     w.show();
     return a.exec();
 
-    // Setup les variables de bases
-    int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
-    int nb_clients = 5000;
-    int nb_ia = 5;
-    float treso_initiale = 20000;
-    float argent_initial = 500;
-    string nom = "Cata";
 
+//    MoteurJeu moteur = MoteurJeu(nb_ia, treso_initiale, nb_clients, argent_initial, tour_max, nom);
 
-    MoteurJeu moteur = MoteurJeu(nb_ia, treso_initiale, nb_clients, argent_initial, tour_max, nom);
-
-    // C'est parti !
-    Entreprise* gagnant = moteur.run();
-
-    // On affiche le gagnant
-    cout << "Le gagnant est " << gagnant->get_nom();
-    cout << " avec une tresorerie finale de " << gagnant->get_tresorerie() << endl;
+//    Entreprise* gagnant = moteur.run();
+//    // C'est parti !
 
     return 0;
 }

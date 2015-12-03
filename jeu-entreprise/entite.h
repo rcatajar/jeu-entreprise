@@ -10,7 +10,7 @@
 #define ENTITE_H
 
 #include <vector>
-#include <string>
+#include <QString>
 
 //  forward-declaration de la classe.
 // On ne peux pas include "objet.h", car ça cause un import circulaire
@@ -19,14 +19,14 @@ class Objet;
 class Entite
 {
     protected:
-        std::string nom;
+        QString nom;
         float tresorerie;
         std::vector <Objet*> stock;
 
     public:
-        Entite(const std::string &, float);
+        Entite(const QString &, float);
 
-        const std::string & get_nom() const;
+        const QString & get_nom() const;
         float get_tresorerie() const;
 
         void set_tresorerie(float);

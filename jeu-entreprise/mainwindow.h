@@ -14,6 +14,8 @@
 #include "turnwindow.h"
 #include "inputwidget.h"
 
+#include "moteurjeu.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -25,7 +27,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
-
+    MoteurJeu* moteur;
     ~MainWindow();
 
 public slots:

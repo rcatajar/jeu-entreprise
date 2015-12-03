@@ -1,17 +1,17 @@
-#include <string>
 #include <vector>
 #include <algorithm>  // needed for retirer_au_stock
 
 #include "entite.h"
 #include "objet.h"
+#include "QString"
 
 using namespace std;
 
-Entite::Entite(const string &n, float x):
+Entite::Entite(const QString &n, float x):
     nom(n),
     tresorerie(x){}
 
-const string & Entite::get_nom() const{
+const QString & Entite::get_nom() const{
     return nom;
 }
 

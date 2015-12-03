@@ -1,5 +1,4 @@
 #include <vector>
-#include <string>
 #include <iostream>
 #include <typeinfo>
 #include <math.h>
@@ -9,9 +8,11 @@
 #include "objet.h"
 #include "entreprise.h"
 
+#include <QString>
+
 using namespace std;
 
-Client::Client(const std::string &n, float treso):
+Client::Client(const QString &n, float treso):
     Entite(n, treso){
     revenu = (rand() % 99) + 1; // On affecte a chaque client un revenu aléatoire entre 1 et 99.
     preference_qualite = (rand() % 99) / 100 + 1;
