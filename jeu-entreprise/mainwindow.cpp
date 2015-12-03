@@ -23,7 +23,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::openTurnWindow()
 {
-
+    // TODO: Instancier un MoteurJeu avec les paramètres du form (nom entreprise + nb IA)
     mTurnWindow = new TurnWindow();
     mTurnWindow->show();
 

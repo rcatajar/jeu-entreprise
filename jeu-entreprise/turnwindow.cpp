@@ -42,7 +42,8 @@ TurnWindow::~TurnWindow()
 
 void TurnWindow::openLoadingWindow()
 {
-
+    // TODO: run le tour pour les IA et le joueur avec les paramètres entrés
+    // TODO: Si c'est le dernier tour, on arrête le jeu et affiche le gagnant
     mLoadingWindow = new LoadingWindow();
     mLoadingWindow->show();
 
