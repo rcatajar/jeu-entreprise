@@ -20,7 +20,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete mTurnWindow;
-    delete temp;
 
 }
 
@@ -29,9 +28,5 @@ void MainWindow::openTurnWindow()
     // TODO: Instancier un MoteurJeu avec les paramètres du form (nom entreprise + nb IA)
     mTurnWindow = new TurnWindow();
     mTurnWindow->show();
-
-    temp = new InputWidget;
-    temp->show();
-
 
 }

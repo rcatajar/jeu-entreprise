@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>643</width>
-    <height>375</height>
+    <height>275</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -19,47 +19,6 @@
   <property name="windowTitle">
    <string>Graphs Finance</string>
   </property>
-  <widget class="QGraphicsView" name="graphicsView">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>100</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-   <property name="backgroundBrush">
-    <brush brushstyle="BDiagPattern">
-     <color alpha="255">
-      <red>51</red>
-      <green>40</green>
-      <blue>168</blue>
-     </color>
-    </brush>
-   </property>
-   <property name="foregroundBrush">
-    <brush brushstyle="HorPattern">
-     <color alpha="255">
-      <red>209</red>
-      <green>46</green>
-      <blue>46</blue>
-     </color>
-    </brush>
-   </property>
-   <property name="interactive">
-    <bool>false</bool>
-   </property>
-  </widget>
-  <widget class="QGraphicsView" name="graphicsView_2">
-   <property name="geometry">
-    <rect>
-     <x>350</x>
-     <y>90</y>
-     <width>256</width>
-     <height>192</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="Line" name="line">
    <property name="geometry">
     <rect>

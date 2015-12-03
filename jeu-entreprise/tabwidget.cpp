@@ -15,9 +15,7 @@ TabWidget::TabWidget(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TabWidget)
 {
-//    ui->setupUi(this);
-
-//    setFixedSize(300, 200);
+    ui->setupUi(this);
 
     tabWidget = new QTabWidget;
     tabWidget->addTab(new GraphsFinance, tr("Finance"));
@@ -25,18 +23,9 @@ TabWidget::TabWidget(QWidget *parent) :
     tabWidget->addTab(new GraphsRecherche, tr("Recherche"));
     tabWidget->addTab(new GraphsMarketing, tr("Marketing"));
 
-//    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
-//                                         | QDialogButtonBox::Cancel);
-
-//    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-//    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
-
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(tabWidget);
-//    mainLayout->addWidget(buttonBox);
     setLayout(mainLayout);
-
-//    setWindowTitle(tr("Tour 1"));
 }
 
 TabWidget::~TabWidget()

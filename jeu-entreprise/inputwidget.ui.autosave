@@ -208,7 +208,7 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Useless</string>
+       <string>Recherche</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>

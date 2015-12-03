@@ -36,8 +36,6 @@ private:
     QPushButton *startButton;
     TurnWindow *mTurnWindow;
 
-    InputWidget *temp;
-
 };
 
 #endif // MAINWINDOW_H
