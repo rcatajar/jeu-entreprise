@@ -1,3 +1,10 @@
+/* Fenêtre générée à chaque tour.
+ * Présente les informations des tours précédents (TabWidget + Graphs).
+ * Permet les inputs pour passer au tour suivant (InputWidget).
+ * Appelée par : MainWindow, LoadingWindow
+ * Intègre : TabWidget, InputWidget
+ * Appelle : LoadingWindow */
+
 #ifndef TURNWINDOW_H
 #define TURNWINDOW_H
 

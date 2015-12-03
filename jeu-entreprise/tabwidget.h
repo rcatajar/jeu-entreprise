@@ -1,3 +1,7 @@
+/* TabWidget,appelé à l'intérieur de TurnWindow, présente les différentes classes "Graphs" sous forme d'onglets.
+ * Appelée par : TurnWindow
+ * Intègre : GraphsFinance, GraphsProduction, GraphsRecherche, GraphsMarketing */
+
 #ifndef TABWIDGET_H
 #define TABWIDGET_H
 

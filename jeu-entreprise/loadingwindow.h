@@ -1,3 +1,7 @@
+/* Fenêtre affichée lors du chargement du tour suivant. Spécificité : processus circulaire
+ * Appelée par : TurnWindow
+ * Appelle : TurnWindow */
+
 #ifndef LOADINGWINDOW_H
 #define LOADINGWINDOW_H
 

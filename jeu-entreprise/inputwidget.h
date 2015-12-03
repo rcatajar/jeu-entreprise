@@ -1,3 +1,6 @@
+/* Widget rassemblant tous les inputs du jouer lors d'un tour
+ * Appelée par : TurnWindow */
+
 #ifndef INPUTWIDGET_H
 #define INPUTWIDGET_H
 

@@ -15,7 +15,9 @@ TabWidget::TabWidget(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::TabWidget)
 {
-    ui->setupUi(this);
+//    ui->setupUi(this);
+
+//    setFixedSize(300, 200);
 
     tabWidget = new QTabWidget;
     tabWidget->addTab(new GraphsFinance, tr("Finance"));

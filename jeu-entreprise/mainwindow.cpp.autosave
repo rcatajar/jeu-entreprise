@@ -35,11 +35,3 @@ void MainWindow::openTurnWindow()
 
 
 }
-
-bool MainWindow::event(QEvent *ev) {
-    if(ev->type() == QEvent::LayoutRequest) {
-        setFixedSize(sizeHint());
-    }
-    bool result;
-    return result = QMainWindow::event(ev);
-}

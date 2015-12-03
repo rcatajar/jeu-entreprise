@@ -38,8 +38,6 @@ private:
 
     InputWidget *temp;
 
-    bool event(QEvent *event);
-
 };
 
 #endif // MAINWINDOW_H
