@@ -171,9 +171,16 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
     cout << " ---------Phase de gestion des stocks -------------" << endl;
     cout << endl;
 
+    int objets_detruits_clients = 0;
+    vector <int> objets_detruits;
     for (int i=0; i < clients.size(); i++){
+        int stock_avant_gestion = clients[i]->get_stock().size();
         clients[i]->gestion_des_stocks();
+        int perte = clients[i]->get_stock().size() - stock_avant_gestion;
+        objets_detruits_clients += perte;
     }
+    historique->objets_detruits_client.push_back(objets_detruits_clients);
+
     for (int i=0; i < entreprises.size(); i++){
         int taille_stock_avant_gestion = entreprises[i]->get_stock().size();
         entreprises[i]->gestion_des_stocks();
@@ -182,7 +189,9 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
         cout << taille_stock_avant_gestion - taille_stock_apres_gestion;
         cout << " vélos dans son stock" << endl;
         cout << "Noveau stock: " << taille_stock_apres_gestion << " velos." << endl;
+        objets_detruits.push_back(taille_stock_avant_gestion - taille_stock_apres_gestion);
     }
+    historique->objets_detruits.push_back(objets_detruits);
 }
 
 void MoteurJeu::phase_de_revenu(){
@@ -264,11 +273,11 @@ void MoteurJeu::set_historique_productions(){
 
 void MoteurJeu::set_historique_prix_de_vente(){
     vector <int> prix_de_vente;
-    int prix_moyen;
+    int prix_moyen = 0;
     for (int i =0; i < entreprises.size(); i++){
         int prix = entreprises[i]->get_prix_de_vente();
         prix_de_vente.push_back(prix);
-        prix_moyen += prix_de_vente;
+        prix_moyen += prix;
     }
     prix_moyen = prix_moyen / entreprises.size();
     historique->prix_de_vente_moyen.push_back(prix_moyen);
