@@ -53,8 +53,8 @@ Entreprise* MoteurJeu::run(){
         run_tour();
     }
     return get_gagnant();
-
 }
+
 
 void MoteurJeu::run_tour(){
     tour ++;
@@ -172,3 +172,64 @@ void MoteurJeu::phase_de_revenu(){
     }
 }
 
+void MoteurJeu::set_historique_intiale(){
+    // On crée un vecteur de la taille du nombre d'entreprises, rempli de 0
+    vector <int> zero_vector;
+    for (int i=0; i < entreprises.size(); i++){
+        zero_vector.push_back(0);
+    }
+    historique->prix_de_vente.push_back(zero_vector);
+    historique->productions.push_back(zero_vector);
+    historique->ventes.push_back(zero_vector);
+    historique->objets_detruits.push_back(zero_vector);
+
+    historique->objets_achetes.push_back(0);
+    historique->objets_detruits_client.push_back(0);
+    historique->prix_de_vente_moyen.push_back(0);
+
+    set_historique_objets_en_vente();
+    set_historique_stocks();
+    set_historique_recherche();
+    set_historique_tresoreries();
+    set_historique_acheteurs();
+}
+
+void MoteurJeu::set_historique_objets_en_vente(){
+    int nb = get_objets_marche().size();
+    historique->objets_en_vente.push_back(nb);
+}
+
+void MoteurJeu::set_historique_stocks(){
+    vector <int> stocks;
+    for (int i=0; i < entreprises.size(); i++){
+        stocks.push_back(entreprises[i]->get_stock().size());
+    }
+    historique->stocks.push_back(stocks);
+}
+
+void MoteurJeu::set_historique_recherche(){
+    vector <int> investissements;
+    vector <int> qualite;
+    for (int i; i < entreprises.size(); i++){
+        investissements.push_back(entreprises[i]->get_investissement_realise());
+        qualite.push_back(entreprises[i]->get_qualite_marginale());
+    }
+}
+
+void MoteurJeu::set_historique_tresoreries(){
+    vector <int> tresos;
+    for (int i = 0; i < entreprises.size(); i++){
+        tresos.push_back(entreprises[i]->get_tresorerie());
+    }
+    historique->tresoreries.push_back(tresos);
+}
+
+void MoteurJeu::set_historique_acheteurs(){
+    int acheteurs = 0;
+    for (int i= 0; i < clients.size(); i++){
+        if(clients[i]->quantite_a_acheter() > 0){
+            acheteurs++;
+        }
+    }
+    historique->nombre_acheteurs.push_back(acheteurs);
+}
