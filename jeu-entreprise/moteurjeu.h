@@ -5,6 +5,7 @@
 #define MOTEURJEU_H
 
 #include <vector>
+#include <string>
 
 #include "entreprise.h"
 #include "objet.h"
@@ -19,8 +20,10 @@ protected:
     std::vector <Client*> clients;
     int tour;
     int tour_max;
+    std::string nom_joueur;
+
 public:
-    MoteurJeu(int, int, int, int, int);
+    MoteurJeu(int, int, int, int, int, std::string);
     void creation_entreprises_initiales(int, int);
     void creation_clients_initiaux(int, int);
     void creation_objets_initiaux(int);

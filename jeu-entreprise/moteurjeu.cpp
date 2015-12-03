@@ -11,24 +11,25 @@
 
 using namespace std;
 
-MoteurJeu::MoteurJeu(int nb_entreprises, int treso_initiale, int nb_clients, int argent_initial, int param_tour_max)
+MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_initial, int param_tour_max, string nom)
 {
-    historique = new Historique();
     tour = 0;
     tour_max = param_tour_max;
-    creation_entreprises_initiales(nb_entreprises, treso_initiale);
+    nom_joueur = nom;
+    creation_entreprises_initiales(nb_ia, treso_initiale);
     creation_clients_initiaux(nb_clients, argent_initial);
     int nb_objets_initials = rand() % nb_clients;
     creation_objets_initiaux(nb_objets_initials);
+    historique = new Historique(tour, tour_max, nom_joueur, nb_ia, nb_clients);
 }
 
-void MoteurJeu::creation_entreprises_initiales(int nb_entreprises, int treso_initiale){
+void MoteurJeu::creation_entreprises_initiales(int nb_ia, int treso_initiale){
     // On crée une entreprise controllé par le joueur
-    entreprises.push_back((new Entreprise("Joueur", treso_initiale, false)));
+    entreprises.push_back((new Entreprise(nom_joueur, treso_initiale, false)));
 
     // Les entreprises restantes sont des IA
-    for(int i = 1; i < nb_entreprises; i++){
-        string nom = "IA " + to_string(i);
+    for(int i = 0; i < nb_ia; i++){
+        string nom = "IA " + to_string(i + 1);
         entreprises.push_back(new Entreprise(nom, treso_initiale, true));
     }
 }
