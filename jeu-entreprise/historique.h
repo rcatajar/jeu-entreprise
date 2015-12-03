@@ -53,11 +53,11 @@ public:
     // Entreprise
     std::string nom_joueur;
     int nombre_ias;
-    std::vector <std::vector <int>> stock;
+    std::vector <std::vector <int>> stocks;
     std::vector <std::vector <int>> prix_de_vente;
-    std::vector <std::vector <int>> production;
-    std::vector <std::vector <int>> investissement_recherche;
-    std::vector <std::vector <int>> qualite_marginale;
+    std::vector <std::vector <int>> productions;
+    std::vector <std::vector <int>> investissements_recherche;
+    std::vector <std::vector <int>> qualites_marginale;
     std::vector <std::vector <int>> ventes;
     std::vector <std::vector <int>> tresoreries;
     std::vector <std::vector <int>> objets_detruits;
