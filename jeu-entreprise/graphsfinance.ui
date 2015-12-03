@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
+    <width>640</width>
     <height>275</height>
    </rect>
   </property>
@@ -24,18 +24,18 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>291</width>
-     <height>261</height>
+     <width>300</width>
+     <height>260</height>
     </rect>
    </property>
   </widget>
   <widget class="QCustomPlot" name="graph2" native="true">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>330</x>
      <y>10</y>
-     <width>311</width>
-     <height>261</height>
+     <width>300</width>
+     <height>260</height>
     </rect>
    </property>
   </widget>
