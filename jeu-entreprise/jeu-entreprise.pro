@@ -18,14 +18,16 @@ SOURCES += main.cpp\
     entite.cpp \
     client.cpp \
     entreprise.cpp \
-    moteurjeu.cpp
+    moteurjeu.cpp \
+    historique.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
     entite.h \
     client.h \
     entreprise.h \
-    moteurjeu.h
+    moteurjeu.h \
+    historique.h
 
 FORMS    += mainwindow.ui
 
