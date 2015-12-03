@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     graphsfinance.cpp \
     graphsproduction.cpp \
     graphsrecherche.cpp \
-    graphsmarketing.cpp
+    graphsmarketing.cpp \
+    historique.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
@@ -41,7 +42,8 @@ HEADERS  += mainwindow.h \
     graphsfinance.h \
     graphsproduction.h \
     graphsrecherche.h \
-    graphsmarketing.h
+    graphsmarketing.h \
+    historique.h
 
 FORMS    += mainwindow.ui \
     turnwindow.ui \
