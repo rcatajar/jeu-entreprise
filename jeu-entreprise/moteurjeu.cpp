@@ -68,7 +68,13 @@ void MoteurJeu::run_tour(){
     set_historique_productions();
 
     phase_de_marketing();
+    set_historique_prix_de_vente();
+
+    set_historique_objets_en_vente();
+    set_historique_acheteurs();
     phase_de_vente();
+    set_historique_tresoreries();
+
     phase_de_gestion_des_stocks();
     phase_de_revenu();
 }
@@ -144,14 +150,20 @@ void MoteurJeu::phase_de_vente(){
         }
     }
 
-    // On affiche les achats
+    // On affiche les achats et remplit l'historique
+    vector <int> ventes;
+    int achat = 0;
     for (int i=0; i <entreprises.size(); i++){
 
         int augmentation_treso = entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
         int quantite_vendus = augmentation_treso / entreprises[i]->get_prix_de_vente();
+        ventes.push_back(quantite_vendus);
+        achat += quantite_vendus;
         cout << entreprises[i]->get_nom() << " a augmenté sa trésorerie de : " << augmentation_treso;
         cout << " et a vendu : " << quantite_vendus << " vélos" << endl;
     }
+    historique->ventes.push_back(ventes);
+    historique->objets_achetes.push_back(achat);
 }
 
 void MoteurJeu::phase_de_gestion_des_stocks(){
@@ -248,4 +260,17 @@ void MoteurJeu::set_historique_productions(){
         production.push_back(entreprises[i]->get_stock().size() - previous_stock[i]);
     }
     historique->productions.push_back(production);
+}
+
+void MoteurJeu::set_historique_prix_de_vente(){
+    vector <int> prix_de_vente;
+    int prix_moyen;
+    for (int i =0; i < entreprises.size(); i++){
+        int prix = entreprises[i]->get_prix_de_vente();
+        prix_de_vente.push_back(prix);
+        prix_moyen += prix_de_vente;
+    }
+    prix_moyen = prix_moyen / entreprises.size();
+    historique->prix_de_vente_moyen.push_back(prix_moyen);
+    historique->prix_de_vente.push_back(prix_de_vente);
 }
