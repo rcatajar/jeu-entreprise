@@ -30,12 +30,13 @@ int main(int argc, char *argv[])
     // Setup les variables de bases
     int tour_max = 10; // le nb de tour apres lesquels le jeu s'arrete
     int nb_clients = 5000;
-    int nb_entreprises = 5;
+    int nb_ia = 5;
     float treso_initiale = 20000;
     float argent_initial = 500;
+    string nom = "Cata";
 
 
-    MoteurJeu moteur = MoteurJeu(nb_entreprises, treso_initiale, nb_clients, argent_initial, tour_max);
+    MoteurJeu moteur = MoteurJeu(nb_ia, treso_initiale, nb_clients, argent_initial, tour_max, nom);
 
     // C'est parti !
     Entreprise* gagnant = moteur.run();

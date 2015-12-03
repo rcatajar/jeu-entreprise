@@ -37,7 +37,7 @@
 class Historique
 {
 public:
-    Historique();
+    Historique(int, int, std::string, int, int);
 
     // J'ai mis toute les variables en public pour qu'on puisse les modfier directement
     // (c'est pas top mais c'est plus rapide a faire)
@@ -64,9 +64,9 @@ public:
 
     // Client
     int nombre_clients;
-    int nombre_acheteurs;
-    int objets_achetes;
-    int objets_detruits_client;
+    std::vector <int> nombre_acheteurs;
+    std::vector <int> objets_achetes;
+    std::vector <int> objets_detruits_client;
 
 };
 
