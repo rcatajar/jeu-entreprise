@@ -2,7 +2,6 @@
 #define GRAPHSFINANCE_H
 
 #include <QWidget>
-#include <QTimer>
 #include "qcustomplot.h"
 
 namespace Ui {

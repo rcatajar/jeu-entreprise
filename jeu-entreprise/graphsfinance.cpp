@@ -7,8 +7,8 @@ GraphsFinance::GraphsFinance(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    GraphsFinance::ajouterGraphTresoCA(ui->graph1);
-    GraphsFinance::ajouterGraphRepartitionCouts(ui->graph2);
+    ajouterGraphTresoCA(ui->graph1);
+    ajouterGraphRepartitionCouts(ui->graph2);
 
 }
 
@@ -25,19 +25,29 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
 
     customPlot->addPlottable(CA);
 
+    // Création d'un deuxième graphe (classique)
     customPlot->addGraph(customPlot->xAxis, customPlot->yAxis2);
+    customPlot->graph(0)->setName("Trésorerie");
 
 
-    // Noms et couleurs :
+    // Noms et couleurs barchart:
     QPen pen;
     pen.setWidthF(1.2);
 
-    pen.setColor(QColor(255, 131, 0));
-    pen.setColor(QColor(1, 92, 191));
     CA->setName("CA");
     pen.setColor(QColor(150, 222, 0));
     CA->setPen(pen);
     CA->setBrush(QColor(150, 222, 0, 70));
+
+    // Noms et couleurs graph 0:
+    QPen pen0;
+    pen0.setWidthF(1.2);
+
+//    pen0.setColor(QColor(255, 131, 0));
+//    pen.setColor(QColor(150, 222, 0));
+    pen0.setColor(QColor(1, 91, 191));
+    customPlot->graph(0)->setPen(pen0);
+    customPlot->graph(0)->setBrush(QColor(1, 92, 191, 50));
 
     // Préparation de l'axe X :
     QVector<double> ticks;
@@ -108,17 +118,17 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     // Création de 3 barcharts vides :
     QCPBars *coutsFixes = new QCPBars(customPlot->xAxis, customPlot->yAxis);
     QCPBars *coutsVariables = new QCPBars(customPlot->xAxis, customPlot->yAxis);
-    QCPBars *invendus = new QCPBars(customPlot->xAxis, customPlot->yAxis);
+    QCPBars *investissements = new QCPBars(customPlot->xAxis, customPlot->yAxis);
     customPlot->addPlottable(coutsFixes);
     customPlot->addPlottable(coutsVariables);
-    customPlot->addPlottable(invendus);
+    customPlot->addPlottable(investissements);
     // Noms et couleurs :
     QPen pen;
     pen.setWidthF(1.2);
-    invendus->setName("Invendus");
+    investissements->setName("Investissements");
     pen.setColor(QColor(255, 131, 0));
-    invendus->setPen(pen);
-    invendus->setBrush(QColor(255, 131, 0, 50));
+    investissements->setPen(pen);
+    investissements->setBrush(QColor(255, 131, 0, 50));
     coutsVariables->setName("Coûts Variables");
     pen.setColor(QColor(1, 92, 191));
     coutsVariables->setPen(pen);
@@ -129,7 +139,7 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     coutsFixes->setBrush(QColor(150, 222, 0, 70));
     // Ordre des barcharts :
     coutsVariables->moveAbove(coutsFixes);
-    invendus->moveAbove(coutsVariables);
+    investissements->moveAbove(coutsVariables);
 
     // Préparation de l'axe X :
     QVector<double> ticks;
@@ -163,11 +173,11 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
 
     // Ajout de données:
     // TODO : doit se mettre à jour à chaque tour
-    QVector<double> invendusData, coutsVariablesData, coutsFixesData;
+    QVector<double> investissementsData, coutsVariablesData, coutsFixesData;
     coutsVariablesData  << 0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2 << 0.90*4.2 << 0.67*11.2;
     coutsFixesData << 0.08*10.5 << 0.12*5.5 << 0.12*5.5 << 0.40*5.8 << 0.09*5.2 << 0.00*4.2 << 0.07*11.2;
-    invendusData   << 0.06*10.5 << 0.05*5.5 << 0.04*5.5 << 0.06*5.8 << 0.02*5.2 << 0.07*4.2 << 0.25*11.2;
-    invendus->setData(ticks, invendusData);
+    investissementsData   << 0.06*10.5 << 0.05*5.5 << 0.04*5.5 << 0.06*5.8 << 0.02*5.2 << 0.07*4.2 << 0.25*11.2;
+    investissements->setData(ticks, investissementsData);
     coutsVariables->setData(ticks, coutsVariablesData);
     coutsFixes->setData(ticks, coutsFixesData);
 
