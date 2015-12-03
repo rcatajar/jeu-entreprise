@@ -37,6 +37,15 @@ public:
     Entreprise* get_gagnant();
     void run_tour();
     Entreprise* run();
+
+    // Les méthodes utilisées pour remplir l'historique
+    void set_historique_intiale();
+    void set_historique_objets_en_vente();
+    void set_historique_stocks();
+    void set_historique_recherche();
+    void set_historique_tresoreries();
+    void set_historique_acheteurs();
+
 };
 
 #endif // MOTEURJEU_H
