@@ -8,11 +8,6 @@ InputWidget::InputWidget(QWidget *parent) :
 {
     ui->setupUi(this);
 
-//    setFixedSize(650, 190);
-
-    mTabWidget = new TabWidget();
-    mTabWidget->show();
-
 }
 
 InputWidget::~InputWidget()
