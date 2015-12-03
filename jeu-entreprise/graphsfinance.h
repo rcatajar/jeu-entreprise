@@ -2,6 +2,8 @@
 #define GRAPHSFINANCE_H
 
 #include <QWidget>
+#include <QTimer>
+#include "qcustomplot.h"
 
 namespace Ui {
 class GraphsFinance;
@@ -14,6 +16,9 @@ class GraphsFinance : public QWidget
 public:
     explicit GraphsFinance(QWidget *parent = 0);
     ~GraphsFinance();
+
+    void ajouterGraphTresoCA(QCustomPlot *customPlot);
+    void ajouterGraphRepartitionCouts(QCustomPlot *customPlot);
 
 private:
     Ui::GraphsFinance *ui;

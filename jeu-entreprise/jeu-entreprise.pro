@@ -6,7 +6,7 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = jeu-entreprise
 TEMPLATE = app
@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     graphsproduction.cpp \
     graphsrecherche.cpp \
     graphsmarketing.cpp \
-    historique.cpp
+    historique.cpp \
+    qcustomplot.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
@@ -43,7 +44,8 @@ HEADERS  += mainwindow.h \
     graphsproduction.h \
     graphsrecherche.h \
     graphsmarketing.h \
-    historique.h
+    historique.h \
+    qcustomplot.h
 
 FORMS    += mainwindow.ui \
     turnwindow.ui \
