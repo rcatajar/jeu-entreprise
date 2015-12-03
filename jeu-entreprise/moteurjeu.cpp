@@ -13,6 +13,7 @@ using namespace std;
 
 MoteurJeu::MoteurJeu(int nb_entreprises, int treso_initiale, int nb_clients, int argent_initial, int param_tour_max)
 {
+    historique = new Historique();
     tour = 0;
     tour_max = param_tour_max;
     creation_entreprises_initiales(nb_entreprises, treso_initiale);

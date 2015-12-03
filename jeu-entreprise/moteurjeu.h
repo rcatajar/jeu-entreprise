@@ -9,10 +9,12 @@
 #include "entreprise.h"
 #include "objet.h"
 #include "client.h"
+#include "historique.h"
 
 class MoteurJeu
 {
 protected:
+    Historique* historique;
     std::vector <Entreprise*> entreprises;
     std::vector <Client*> clients;
     int tour;
