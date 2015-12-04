@@ -31,13 +31,13 @@
 #define HISTORIQUE_H
 
 #include <vector>
-#include <string>
+#include <QString>
 
 
 class Historique
 {
 public:
-    Historique(int, int, std::string, int, int);
+    Historique(int, int, QString, int, int);
 
     // J'ai mis toute les variables en public pour qu'on puisse les modfier directement
     // (c'est pas top mais c'est plus rapide a faire)
@@ -51,7 +51,7 @@ public:
     std::vector <int> prix_de_vente_moyen;
 
     // Entreprise
-    std::string nom_joueur;
+    QString nom_joueur;
     int nombre_ias;
     std::vector <std::vector <int>> stocks;
     std::vector <std::vector <int>> prix_de_vente;

@@ -1,4 +1,3 @@
-#include <string>
 #include <vector>
 #include <algorithm>  // needed for retirer_au_stock
 
@@ -7,9 +6,11 @@
 #include "objet.h"
 #include "iostream"
 
+#include <QString>
+
 using namespace std;
 
-Entreprise::Entreprise(const std::string &n, float treso, bool _ia):
+Entreprise::Entreprise(const QString &n, float treso, bool _ia):
     Entite(n, treso){
     cout_fixe = 200;
     cout_variable = 10;

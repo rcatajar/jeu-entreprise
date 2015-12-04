@@ -3,13 +3,15 @@
 #include "inputwidget.h"
 #include "tabwidget.h"
 #include "loadingwindow.h"
+#include "moteurjeu.h"
 
 #include <QPushButton>
 
-TurnWindow::TurnWindow(QWidget *parent) :
+TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::TurnWindow)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     QWidget* window = new QWidget;

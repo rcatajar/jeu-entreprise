@@ -36,13 +36,16 @@ SOURCES += ../jeu-entreprise/objet.cpp \
     ../jeu-entreprise/entite.cpp \
     ../jeu-entreprise/client.cpp \
     ../jeu-entreprise/entreprise.cpp \
-    ../jeu-entreprise/moteurjeu.cpp
+    ../jeu-entreprise/moteurjeu.cpp \
+    ../jeu-entreprise/historique.cpp
+
 
 HEADERS  += ../jeu-entreprise/objet.h \
     ../jeu-entreprise/entite.h \
     ../jeu-entreprise/client.h \
     ../jeu-entreprise/entreprise.h \
-    ../jeu-entreprise/moteurjeu.h
+    ../jeu-entreprise/moteurjeu.h \
+    ../jeu-entreprise/historique.h
 
 DEFINES += SRCDIR=\\\"$$PWD/\\\"
 

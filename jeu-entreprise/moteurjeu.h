@@ -5,25 +5,25 @@
 #define MOTEURJEU_H
 
 #include <vector>
-#include <string>
 
 #include "entreprise.h"
 #include "objet.h"
 #include "client.h"
 #include "historique.h"
+#include "QString"
 
 class MoteurJeu
 {
 protected:
-    Historique* historique;
     std::vector <Entreprise*> entreprises;
     std::vector <Client*> clients;
     int tour;
     int tour_max;
-    std::string nom_joueur;
+    QString nom_joueur;
 
 public:
-    MoteurJeu(int, int, int, int, int, std::string);
+    Historique* historique;
+    MoteurJeu(int, int, int, int, int, QString);
     void creation_entreprises_initiales(int, int);
     void creation_clients_initiaux(int, int);
     void creation_objets_initiaux(int);

@@ -11,6 +11,7 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include "loadingwindow.h"
+#include "moteurjeu.h"
 
 namespace Ui {
 class TurnWindow;
@@ -24,7 +25,8 @@ public slots:
     void openLoadingWindow();
 
 public:
-    explicit TurnWindow(QWidget *parent = 0);
+    explicit TurnWindow(QWidget *parent = 0, MoteurJeu* moteur = NULL);
+    MoteurJeu* moteur;
     ~TurnWindow();
 
 private:

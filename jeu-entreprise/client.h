@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "entite.h"
-
+#include <QString>
 class Client : public Entite
 {
 private:
@@ -13,7 +13,7 @@ private:
     float preference_tresorerie;
 
 public:
-    Client(const std:: string&, float);
+    Client(const QString&, float);
     int quantite_a_acheter();
     int get_revenu() const;
     void achat(std::vector <Objet*>);
