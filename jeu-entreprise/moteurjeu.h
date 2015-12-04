@@ -36,7 +36,6 @@ public:
     void phase_de_gestion_des_stocks();
     Entreprise* get_gagnant();
     void run_tour(int, int, int);
-    //Entreprise* run();
 
     // Les méthodes utilisées pour remplir l'historique
     void set_historique_intiale();

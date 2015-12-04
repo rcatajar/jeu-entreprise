@@ -49,16 +49,6 @@ void MoteurJeu::creation_objets_initiaux(int nb_objets){
     }
 }
 
-/*
-
-Entreprise* MoteurJeu::run(){
-    while (tour < tour_max){
-        run_tour();
-    }
-    return get_gagnant();
-}
-*/
-
 void MoteurJeu::run_tour(int prod, int prix, int recherche){
 
     tour ++;
@@ -162,9 +152,6 @@ void MoteurJeu::phase_de_vente(){
 }
 
 void MoteurJeu::phase_de_gestion_des_stocks(){
-    cout << endl;
-    cout << " ---------Phase de gestion des stocks -------------" << endl;
-    cout << endl;
 
     int objets_detruits_clients = 0;
     vector <int> objets_detruits;
