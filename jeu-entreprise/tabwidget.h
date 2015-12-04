@@ -10,6 +10,8 @@
 #include <QDialogButtonBox>
 #include <QDialog>
 
+#include "moteurjeu.h"
+
 namespace Ui {
 class TabWidget;
 }
@@ -19,8 +21,9 @@ class TabWidget : public QDialog
     Q_OBJECT
 
 public:
-    explicit TabWidget(QWidget *parent = 0);
+    explicit TabWidget(QWidget *parent = 0, MoteurJeu* m = NULL);
     ~TabWidget();
+    MoteurJeu* moteur;
 
 private:
     Ui::TabWidget *ui;

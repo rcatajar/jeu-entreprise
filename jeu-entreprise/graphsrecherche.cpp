@@ -1,10 +1,14 @@
 #include "graphsrecherche.h"
 #include "ui_graphsrecherche.h"
 
-GraphsRecherche::GraphsRecherche(QWidget *parent) :
+#include "moteurjeu.h"
+
+
+GraphsRecherche::GraphsRecherche(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsRecherche)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     ajouterGraphInvestissementRecherche(ui->graph1);

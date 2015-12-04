@@ -31,7 +31,6 @@ public:
     explicit TurnWindow(QWidget *parent = 0, MoteurJeu* moteur = NULL);
     MoteurJeu* moteur;
     ~TurnWindow();
-    //MoteurJeu* get_moteur() const;
 
 private:
     Ui::TurnWindow *ui;

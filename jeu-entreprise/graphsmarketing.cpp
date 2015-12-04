@@ -1,10 +1,14 @@
 #include "graphsmarketing.h"
 #include "ui_graphsmarketing.h"
 
-GraphsMarketing::GraphsMarketing(QWidget *parent) :
+
+#include "moteurjeu.h"
+
+GraphsMarketing::GraphsMarketing(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsMarketing)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     ajouterGraphPrixDesVelos(ui->graph1);

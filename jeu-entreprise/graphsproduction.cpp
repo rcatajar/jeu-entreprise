@@ -1,10 +1,13 @@
 #include "graphsproduction.h"
 #include "ui_graphsproduction.h"
 
-GraphsProduction::GraphsProduction(QWidget *parent) :
+#include "moteurjeu.h"
+
+GraphsProduction::GraphsProduction(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsProduction)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     ajouterGraphNbVelosProduits(ui->graph1);

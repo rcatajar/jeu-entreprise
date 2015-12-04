@@ -1,10 +1,13 @@
 #include "graphsfinance.h"
 #include "ui_graphsfinance.h"
+#include "moteurjeu.h"
 
-GraphsFinance::GraphsFinance(QWidget *parent) :
+
+GraphsFinance::GraphsFinance(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsFinance)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     ajouterGraphTresoCA(ui->graph1);

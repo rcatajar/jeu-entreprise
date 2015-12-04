@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "qcustomplot.h"
 
+#include "moteurjeu.h"
+
 namespace Ui {
 class GraphsRecherche;
 }
@@ -13,8 +15,9 @@ class GraphsRecherche : public QWidget
     Q_OBJECT
 
 public:
-    explicit GraphsRecherche(QWidget *parent = 0);
+    explicit GraphsRecherche(QWidget *parent = 0, MoteurJeu* _moteur = NULL);
     ~GraphsRecherche();
+    MoteurJeu* moteur;
 
     void ajouterGraphInvestissementRecherche(QCustomPlot *customPlot);
     void ajouterGraphQualiteVelos(QCustomPlot *customPlot);
