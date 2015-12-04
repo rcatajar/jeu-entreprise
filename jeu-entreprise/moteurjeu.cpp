@@ -59,18 +59,23 @@ Entreprise* MoteurJeu::run(){
 */
 
 void MoteurJeu::run_tour(int prod, int prix, int recherche){
+
     tour ++;
+
     historique->tour = tour;
+
     set_historique_stocks();
 
     phase_de_recherche(recherche);
     set_historique_recherche();
 
+    phase_de_marketing(prix);
+    set_historique_prix_de_vente();
+
     phase_de_production(prod);
     set_historique_productions();
 
-    phase_de_marketing(prix);
-    set_historique_prix_de_vente();
+/*
 
     set_historique_objets_en_vente();
     set_historique_acheteurs();
@@ -80,6 +85,8 @@ void MoteurJeu::run_tour(int prod, int prix, int recherche){
 
     phase_de_gestion_des_stocks();
     phase_de_revenu();
+
+    */
 
 }
 
@@ -98,7 +105,7 @@ Entreprise* MoteurJeu::get_gagnant(){
 
 void MoteurJeu::phase_de_production(int prod){
 
-    for(int i = 0; i < entreprises.size(); i++){
+    for (int i = 0; i < entreprises.size(); i++){
         entreprises[i]->phase_de_production(prod);
     }
 }
@@ -112,7 +119,7 @@ void MoteurJeu::phase_de_marketing(int prix){
 
 void MoteurJeu::phase_de_recherche(int recherche){
 
-    for(int i=0; i < entreprises.size(); i++){
+    for (int i=0; i < entreprises.size(); i++){
         entreprises[i]->phase_de_recherche(recherche);
     }
 }
@@ -253,12 +260,19 @@ void MoteurJeu::set_historique_acheteurs(){
 }
 
 void MoteurJeu::set_historique_productions(){
-    vector <int> previous_stock = historique->stocks[tour];
     vector <int> production;
+    vector <int> previous_stock;
+
+    previous_stock.push_back(historique->stocks[tour]);
+/*
+
     for(int i=0; i < entreprises.size(); i++){
         production.push_back(entreprises[i]->get_stock().size() - previous_stock[i]);
     }
+
     historique->productions.push_back(production);
+*/
+
 }
 
 void MoteurJeu::set_historique_prix_de_vente(){
