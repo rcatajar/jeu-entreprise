@@ -18,7 +18,7 @@ TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
 
     QVBoxLayout *layout = new QVBoxLayout;
     inputWidget = new InputWidget(0, moteur);
-    TabWidget *tabWidget = new TabWidget(0, moteur);
+    tabWidget = new TabWidget(0, moteur);
     QPushButton *endTurnButton = new QPushButton("Fin du tour");
 
     // Insertion des widgets dans le VLayout
@@ -43,6 +43,10 @@ TurnWindow::~TurnWindow()
 void TurnWindow::NextTurn()
 {
     moteur->run_tour(inputWidget->get_production(), inputWidget->get_prix(), inputWidget->get_recherche());
+
+    // TODO: refresh les graphes
+    tabWidget->redraw();
+
 }
 
 

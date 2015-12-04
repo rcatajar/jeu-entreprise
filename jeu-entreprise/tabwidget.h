@@ -24,6 +24,7 @@ public:
     explicit TabWidget(QWidget *parent = 0, MoteurJeu* m = NULL);
     ~TabWidget();
     MoteurJeu* moteur;
+    void redraw();
 
 private:
     Ui::TabWidget *ui;

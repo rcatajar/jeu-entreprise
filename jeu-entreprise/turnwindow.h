@@ -13,6 +13,7 @@
 #include "loadingwindow.h"
 #include "moteurjeu.h"
 #include "inputwidget.h"
+#include "tabwidget.h"
 
 namespace Ui {
 class TurnWindow;
@@ -36,6 +37,7 @@ private:
     Ui::TurnWindow *ui;
     LoadingWindow *mLoadingWindow;
     InputWidget *inputWidget;
+    TabWidget *tabWidget;
 };
 
 #endif // TURNWINDOW_H

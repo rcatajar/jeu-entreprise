@@ -53,12 +53,9 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->graph(0)->setBrush(QColor(1, 92, 191, 50));
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels = moteur->historique->get_labels();
 
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -67,8 +64,7 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    // TODO : range doit évoluer avec nombre de tours passés
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
     // TODO : range doit évoluer automatiquement avec les données
