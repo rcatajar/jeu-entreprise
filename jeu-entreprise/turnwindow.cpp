@@ -43,10 +43,10 @@ TurnWindow::~TurnWindow()
 void TurnWindow::NextTurn()
 {
     moteur->run_tour(inputWidget->get_production(), inputWidget->get_prix(), inputWidget->get_recherche());
-
     // TODO: refresh les graphes
     tabWidget->redraw();
-
+    // Refresh les inputs
+    inputWidget->initialiser();
 }
 
 
