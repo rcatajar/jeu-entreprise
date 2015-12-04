@@ -48,35 +48,39 @@ void MoteurJeu::creation_objets_initiaux(int nb_objets){
     }
 }
 
+/*
+
 Entreprise* MoteurJeu::run(){
     while (tour < tour_max){
         run_tour();
     }
     return get_gagnant();
 }
+*/
 
-
-void MoteurJeu::run_tour(){
+void MoteurJeu::run_tour(int prod, int prix, int recherche){
     tour ++;
     historique->tour = tour;
     set_historique_stocks();
 
-    phase_de_recherche();
+    phase_de_recherche(recherche);
     set_historique_recherche();
 
-    phase_de_production();
+    phase_de_production(prod);
     set_historique_productions();
 
-    phase_de_marketing();
+    phase_de_marketing(prix);
     set_historique_prix_de_vente();
 
     set_historique_objets_en_vente();
     set_historique_acheteurs();
+
     phase_de_vente();
     set_historique_tresoreries();
 
     phase_de_gestion_des_stocks();
     phase_de_revenu();
+
 }
 
 Entreprise* MoteurJeu::get_gagnant(){
@@ -92,31 +96,24 @@ Entreprise* MoteurJeu::get_gagnant(){
     return entreprises[idx_gagnant];
 }
 
-void MoteurJeu::phase_de_production(){
-    cout << endl;
-    cout << " ---------Phase de production -------------" << endl;
-    cout << endl;
+void MoteurJeu::phase_de_production(int prod){
 
     for(int i = 0; i < entreprises.size(); i++){
-        entreprises[i]->phase_de_production();
+        entreprises[i]->phase_de_production(prod);
     }
 }
 
-void MoteurJeu::phase_de_marketing(){
-    cout << endl;
-    cout << " ---------Phase de marketing-------------" << endl;
-    cout << endl;
+void MoteurJeu::phase_de_marketing(int prix){
 
     for (int i = 0; i < entreprises.size(); i++){
-        entreprises[i]->phase_de_marketing();
+        entreprises[i]->phase_de_marketing(prix);
     }
-
-
 }
 
-void MoteurJeu::phase_de_recherche(){
+void MoteurJeu::phase_de_recherche(int recherche){
+
     for(int i=0; i < entreprises.size(); i++){
-        entreprises[i]->phase_de_recherche();
+        entreprises[i]->phase_de_recherche(recherche);
     }
 }
 
@@ -130,9 +127,6 @@ vector <Objet*> MoteurJeu::get_objets_marche(){
 }
 
 void MoteurJeu::phase_de_vente(){
-    cout << endl;
-    cout << " ---------Phase de vente -------------" << endl;
-    cout << endl;
 
     // Permettra de calculer le nombre de vélo vendus
     int entreprises_tresorerie_precedente[entreprises.size()];
@@ -177,6 +171,7 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
         int perte = clients[i]->get_stock().size() - stock_avant_gestion;
         objets_detruits_clients += perte;
     }
+
     historique->objets_detruits_client.push_back(objets_detruits_clients);
 
     for (int i=0; i < entreprises.size(); i++){
@@ -185,6 +180,7 @@ void MoteurJeu::phase_de_gestion_des_stocks(){
         int taille_stock_apres_gestion = entreprises[i]->get_stock().size();
         objets_detruits.push_back(taille_stock_avant_gestion - taille_stock_apres_gestion);
     }
+
     historique->objets_detruits.push_back(objets_detruits);
 }
 

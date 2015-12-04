@@ -17,7 +17,7 @@ TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
     QWidget* window = new QWidget;
 
     QVBoxLayout *layout = new QVBoxLayout;
-    InputWidget *inputWidget = new InputWidget;
+    inputWidget = new InputWidget(0, moteur);
     TabWidget *tabWidget = new TabWidget;
     QPushButton *endTurnButton = new QPushButton("Fin du tour");
 
@@ -29,7 +29,7 @@ TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
     window->setLayout(layout);
     window->show();
 
-    connect(endTurnButton, SIGNAL(clicked()), this, SLOT(openLoadingWindow()));
+    connect(endTurnButton, SIGNAL(clicked()), this, SLOT(NextTurn()));
 
     ui->verticalPushed->addWidget(window);
 
@@ -39,6 +39,13 @@ TurnWindow::~TurnWindow()
 {
     delete ui;
 }
+
+void TurnWindow::NextTurn()
+{
+    moteur->run_tour(inputWidget->get_production(), inputWidget->get_prix(), inputWidget->get_recherche());
+
+}
+
 
 void TurnWindow::openLoadingWindow()
 {

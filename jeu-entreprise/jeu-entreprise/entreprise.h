@@ -1,7 +1,7 @@
 ﻿#ifndef ENTREPRISE_H
 #define ENTREPRISE_H
 
-#include <QString>
+#include <string>
 #include <typeinfo> // a retirer plus tard  http://stackoverflow.com/questions/351845/finding-the-type-of-an-object-in-c
 
 #include "entite.h"
@@ -18,7 +18,7 @@ class Entreprise : public Entite
         bool max_recherche;
 
     public:
-        Entreprise(const QString &, float, bool);
+        Entreprise(const std::string &, float, bool);
 
         float get_prix_de_vente() const;
         void set_prix_de_vente(float);
@@ -42,9 +42,9 @@ class Entreprise : public Entite
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);
 
-        void phase_de_marketing(int);
-        void phase_de_production(int);
-        void phase_de_recherche(int);
+        void phase_de_marketing();
+        void phase_de_production();
+        void phase_de_recherche();
 };
 
 #endif // ENTREPRISE_H
