@@ -93,61 +93,25 @@ void Entreprise::vente_objet(Objet * objet){
     tresorerie = tresorerie + prix_de_vente;
 }
 
-void Entreprise::phase_de_marketing(){
+void Entreprise::phase_de_marketing(int input){
     if(ia == true){
         prix_de_vente = 1.5 * (cout_fixe / stock.size() + cout_variable);
     } else{
-        bool intervention_user = false;
-        float valeur_entree = 0;
-        while(!intervention_user){
-            cout << "Entrez votre prix de vente : " << endl;
-            if (cin >> valeur_entree){
-                intervention_user = true;
-            }
-            else{
-                cout << "Nombre invalide, mauvais caractère" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-        prix_de_vente = valeur_entree;
+        prix_de_vente = input;
     }
 }
 
-void Entreprise::phase_de_production(){
+void Entreprise::phase_de_production(int input){
     if(ia){
         int production = (tresorerie - cout_fixe) / (2 * cout_variable);
         produire(production);
     } else {
-        bool intervention_user = false;
-        int valeur_entree = 0;
+        produire(input);
 
-        while(!intervention_user){ // boucle pour être sur qu'on produit bien un nombre entier de vélo
-            cout << "Combien de vélos voulez vous produire ?" << endl;
-            cout << "Vous avez déjà : " << stock.size() << " vélos." << endl;
-            cout << "Votre trésorerie est de : " << tresorerie << endl;
-            cout << "Votre cout fixe est de : " << cout_fixe;
-            cout << " et votre cout variable de : " << cout_variable << endl;
-            cout << endl;
-
-            if (cin >> valeur_entree && tresorerie > cout_fixe + valeur_entree * cout_variable){
-                intervention_user = true;
-            }
-            else{
-                cout << "Nombre invalide, mauvais caractère ou vous n'avez pas assez d'argent" << endl;
-                cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            }
-        }
-        produire(valeur_entree);
-        cout << "Vous produisez :  " << valeur_entree << " vélo(s)." << endl;
-        cout << "Nouvelle trésorerie : " << tresorerie << endl;
-        cout << "Nouveau stock :" << stock.size() << endl;
-        cout << endl;
     }
 }
 
-void Entreprise::phase_de_recherche(){
+void Entreprise::phase_de_recherche(int input){
     // L'IA investi entre 0 et 1000$ par tour tant qu'elle n'a pas maxé sa recherche
     if(ia && !max_recherche){
         int investissement = rand() % 1000;
@@ -155,27 +119,9 @@ void Entreprise::phase_de_recherche(){
     }
 
     else {
-        cout << endl;
-        cout << " ---------Phase de recherche-------------" << endl;
-        cout << endl;
 
-        if(max_recherche){
-            cout << "Vous avez déja investi la somme maximale en recherche!" << endl;
-        } else{
-            bool intervention_user = false;
-            float valeur_entree = 0;
-            while(!intervention_user){
-                cout << "Combien  voulez vous investir en R&D pour augmenter la qualité de vos vélos? : " << endl;
-                if (cin >> valeur_entree && valeur_entree < tresorerie){
-                    intervention_user = true;
-                }
-                else{
-                    cout << "Nombre invalide, mauvais caractère" << endl;
-                    cin.clear();
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                }
-            }
-            investir(valeur_entree);
+        if(input > 0){
+            investir(input);
         }
     }
 }
