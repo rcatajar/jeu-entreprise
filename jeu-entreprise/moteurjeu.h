@@ -15,13 +15,13 @@
 class MoteurJeu
 {
 protected:
-    std::vector <Entreprise*> entreprises;
     std::vector <Client*> clients;
     int tour;
     int tour_max;
     QString nom_joueur;
 
 public:
+    std::vector <Entreprise*> entreprises;
     Historique* historique;
     MoteurJeu(int, int, int, int, int, QString);
     void creation_entreprises_initiales(int, int);

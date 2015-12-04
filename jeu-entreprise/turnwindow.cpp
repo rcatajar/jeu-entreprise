@@ -43,6 +43,7 @@ TurnWindow::~TurnWindow()
 void TurnWindow::NextTurn()
 {
     moteur->run_tour(inputWidget->get_production(), inputWidget->get_prix(), inputWidget->get_recherche());
+    inputWidget->initialiser();
 }
 
 
