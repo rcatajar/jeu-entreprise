@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>643</width>
+    <width>640</width>
     <height>275</height>
    </rect>
   </property>
@@ -19,20 +19,35 @@
   <property name="windowTitle">
    <string>Graphs Finance</string>
   </property>
-  <widget class="Line" name="line">
+  <widget class="QCustomPlot" name="graph1" native="true">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>190</y>
-     <width>118</width>
-     <height>51</height>
+     <x>10</x>
+     <y>10</y>
+     <width>300</width>
+     <height>260</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+  </widget>
+  <widget class="QCustomPlot" name="graph2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>10</y>
+     <width>300</width>
+     <height>260</height>
+    </rect>
    </property>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
  <slots>
