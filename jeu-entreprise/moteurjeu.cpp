@@ -20,7 +20,9 @@ MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_i
     creation_clients_initiaux(nb_clients, argent_initial);
     int nb_objets_initials = rand() % nb_clients;
     creation_objets_initiaux(nb_objets_initials);
-    historique = new Historique(tour, tour_max, nom_joueur, nb_ia, nb_clients);
+    int cout_fixe = entreprises[0]->get_cout_fixe();
+    int cout_variable = entreprises[0]->get_cout_variable();
+    historique = new Historique(tour, tour_max, nom_joueur, nb_ia, nb_clients, cout_fixe, cout_variable);
     set_historique_intiale();
 }
 
@@ -222,6 +224,8 @@ void MoteurJeu::set_historique_recherche(){
         investissements.push_back(entreprises[i]->get_investissement_realise());
         qualite.push_back(entreprises[i]->get_qualite_marginale());
     }
+    historique->investissements_recherche.push_back(investissements);
+    historique->qualites_marginale.push_back(qualite);
 }
 
 void MoteurJeu::set_historique_tresoreries(){

@@ -38,7 +38,7 @@
 class Historique
 {
 public:
-    Historique(int, int, QString, int, int);
+    Historique(int, int, QString, int, int, int, int);
 
     // J'ai mis toute les variables en public pour qu'on puisse les modfier directement
     // (c'est pas top mais c'est plus rapide a faire)
@@ -52,6 +52,8 @@ public:
     std::vector <int> prix_de_vente_moyen;
 
     // Entreprise
+    int cout_fixe;
+    int cout_variable;
     QString nom_joueur;
     int nombre_ias;
     std::vector <std::vector <int>> stocks;
@@ -74,7 +76,10 @@ public:
     QVector <QString> get_labels();
     QVector <double> get_tresorerie();
     QVector <double> get_ca();
-
+    QVector <double> get_cout_fixe();
+    QVector <double> get_cout_variable();
+    QVector <double> get_investissement();
+    double max_cout();
 };
 
 #endif // HISTORIQUE_H

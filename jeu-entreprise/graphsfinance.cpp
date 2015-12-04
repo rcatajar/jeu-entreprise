@@ -136,11 +136,10 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     investissements->moveAbove(coutsVariables);
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels = moteur->historique->get_labels();
     ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
+
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -149,12 +148,10 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y :
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 12.1);
+    customPlot->yAxis->setRange(0, moteur->historique->max_cout() + 10);
     customPlot->yAxis->setPadding(5);
     customPlot->yAxis->setLabel("Répartition des coûts");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -166,14 +163,9 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     customPlot->yAxis->grid()->setSubGridPen(gridPen);
 
     // Ajout de données:
-    // TODO : doit se mettre à jour à chaque tour
-    QVector<double> investissementsData, coutsVariablesData, coutsFixesData;
-    coutsVariablesData  << 0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2 << 0.90*4.2 << 0.67*11.2;
-    coutsFixesData << 0.08*10.5 << 0.12*5.5 << 0.12*5.5 << 0.40*5.8 << 0.09*5.2 << 0.00*4.2 << 0.07*11.2;
-    investissementsData   << 0.06*10.5 << 0.05*5.5 << 0.04*5.5 << 0.06*5.8 << 0.02*5.2 << 0.07*4.2 << 0.25*11.2;
-    investissements->setData(ticks, investissementsData);
-    coutsVariables->setData(ticks, coutsVariablesData);
-    coutsFixes->setData(ticks, coutsFixesData);
+    investissements->setData(ticks, moteur->historique->get_investissement());
+    coutsVariables->setData(ticks, moteur->historique->get_cout_variable());
+    coutsFixes->setData(ticks, moteur->historique->get_cout_fixe());
 
     // Légende:
     customPlot->legend->setVisible(true);
