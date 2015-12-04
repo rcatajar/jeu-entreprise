@@ -32,6 +32,7 @@
 
 #include <vector>
 #include <QString>
+#include <QVector>
 
 
 class Historique
@@ -67,6 +68,10 @@ public:
     std::vector <int> nombre_acheteurs;
     std::vector <int> objets_achetes;
     std::vector <int> objets_detruits_client;
+
+    // Pour les graphes
+    QVector <double> get_ticks();
+    QVector <QString> get_labels();
 
 };
 

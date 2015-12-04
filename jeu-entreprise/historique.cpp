@@ -10,3 +10,20 @@ Historique::Historique(int _tour, int _tour_max, QString _nom_joueur, int _nombr
     nombre_clients = _nombre_clients;
 
 }
+
+QVector <double> Historique::get_ticks(){
+    QVector <double> ticks;
+    for (int i=0; i <= tour; i++){
+        ticks.push_back(i);
+    }
+    return ticks;
+}
+
+QVector <QString> Historique::get_labels(){
+    QVector <QString> labels;
+    for (int i=0; i <= tour; i++){
+        QString label = QString("Tour %1").arg(i);
+        labels.push_back(label);
+    }
+    return labels;
+}
