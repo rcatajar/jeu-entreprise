@@ -48,7 +48,8 @@ QVector <double> Historique::get_ca(){
 
 QVector <double> Historique::get_cout_fixe(){
     QVector <double> fixe;
-    for (int i = 0; i <= tour; i++){
+    fixe.push_back(0);
+    for (int i = 1; i <= tour; i++){
         fixe.push_back(cout_fixe);
     }
     return fixe;
@@ -82,4 +83,40 @@ double Historique::max_cout(){
     maxs.push_back(*std::max_element(invest.begin(), invest.end()));
 
     return *std::max_element(maxs.begin(), maxs.end());
+}
+
+QVector <double> Historique::get_production(){
+    QVector <double> prod;
+    for (int i = 0; i <= tour; i++){
+        prod.push_back(productions[i][0]);
+    }
+    return prod;
+}
+
+QVector <double> Historique::get_vente(){
+    QVector <double> vente;
+    for (int i = 0; i <= tour; i++){
+        vente.push_back(ventes[i][0]);
+    }
+    return vente;
+}
+
+QVector <double> Historique::get_invendu(){
+    QVector <double> invendu;
+    QVector <double> vente = get_vente();
+    for (int i=0; i<=tour; i++){
+        invendu.push_back(productions[i][0] + stocks[i][0] - vente[i]);
+    }
+    return invendu;
+}
+
+double Historique::max_vente_invendu(){
+    double max_vente = *std::max_element(get_vente().begin(), get_vente().end());
+    double max_invendu = *std::max_element(get_invendu().begin(), get_invendu().end());
+    if (max_vente > max_invendu){
+        return max_vente;
+    } else{
+        return max_invendu;
+    }
+
 }

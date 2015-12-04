@@ -80,6 +80,10 @@ public:
     QVector <double> get_cout_variable();
     QVector <double> get_investissement();
     double max_cout();
+    QVector <double> get_production();
+    QVector <double> get_vente();
+    QVector <double> get_invendu();
+    double max_vente_invendu();
 };
 
 #endif // HISTORIQUE_H
