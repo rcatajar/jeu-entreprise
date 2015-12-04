@@ -18,7 +18,7 @@ TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
 
     QVBoxLayout *layout = new QVBoxLayout;
     inputWidget = new InputWidget(0, moteur);
-    TabWidget *tabWidget = new TabWidget;
+    TabWidget *tabWidget = new TabWidget(0, moteur);
     QPushButton *endTurnButton = new QPushButton("Fin du tour");
 
     // Insertion des widgets dans le VLayout
