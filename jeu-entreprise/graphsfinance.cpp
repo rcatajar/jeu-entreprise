@@ -65,7 +65,7 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
     // TODO : range doit évoluer avec nombre de tours passés
-    customPlot->xAxis->setRange(0, 8);
+    customPlot->xAxis->setRange(0.5, 7.5);
 
     // Préparation de l'axe Y:
     // TODO : range doit évoluer automatiquement avec les données
@@ -156,7 +156,7 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->xAxis->setRange(0, 8);
+    customPlot->xAxis->setRange(0.5, 7.5);
 
     // Préparation de l'axe Y :
     // TODO : range doit évoluer automatiquement avec les données
