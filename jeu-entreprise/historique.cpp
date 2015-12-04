@@ -27,3 +27,19 @@ QVector <QString> Historique::get_labels(){
     }
     return labels;
 }
+
+QVector <double> Historique::get_tresorerie(){
+    QVector <double> treso;
+    for (int i=0; i <= tour; i++){
+        treso.push_back(tresoreries[i][0]);
+    }
+    return treso;
+}
+
+QVector <double> Historique::get_ca(){
+    QVector <double> ca;
+    for (int i = 0; i <= tour; i++){
+        ca.push_back(ventes[i][0] * prix_de_vente[i][0]);
+    }
+    return ca;
+}

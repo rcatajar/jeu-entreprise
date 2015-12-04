@@ -45,9 +45,6 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     // Noms et couleurs graph 0:
     QPen pen0;
     pen0.setWidthF(1.2);
-
-//    pen0.setColor(QColor(255, 131, 0));
-//    pen.setColor(QColor(150, 222, 0));
     pen0.setColor(QColor(1, 91, 191));
     customPlot->graph(0)->setPen(pen0);
     customPlot->graph(0)->setBrush(QColor(1, 92, 191, 50));
@@ -67,8 +64,10 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 12.1);
+    QVector<double> ca = moteur->historique->get_ca();
+    double max_ca = *std::max_element(ca.begin(), ca.end());
+
+    customPlot->yAxis->setRange(0, max_ca + 10);
     customPlot->yAxis->setPadding(5); // a bit more space to the left border
     customPlot->yAxis->setLabel("CA");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -80,22 +79,18 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->yAxis->grid()->setSubGridPen(gridPen);
 
     // Ajout de données :
-    QVector<double> CAData;
-    // TODO : CAData doivent se MaJ à chaque tour
-    CAData  << 0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2 << 0.90*4.2 << 0.67*11.2;
-    CA->setData(ticks, CAData);
+    CA->setData(ticks, ca);
 
     // Pour le 2e graphe (plus classique) :
     // Ajout de données :
-    QVector<double> TresoData;
-    // TODO : TresoData doivent se MaJ à chaque tour
-    TresoData << 1 << 2 << 5 << 3 << 7 << 2 << 6;
+    QVector<double> treso = moteur->historique->get_tresorerie();
+    double max_treso = *std::max_element(treso.begin(), treso.end());
 
     // Traçage :
-    customPlot->graph(0)->setData(ticks, TresoData);
+    customPlot->graph(0)->setData(ticks, treso);
     customPlot->yAxis2->setVisible(true);
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis2->setRangeUpper(8);
+    customPlot->yAxis2->setRange(0, max_treso + 10);
     customPlot->yAxis2->setLabel("Trésorerie");
 
 

@@ -72,6 +72,8 @@ public:
     // Pour les graphes
     QVector <double> get_ticks();
     QVector <QString> get_labels();
+    QVector <double> get_tresorerie();
+    QVector <double> get_ca();
 
 };
 
