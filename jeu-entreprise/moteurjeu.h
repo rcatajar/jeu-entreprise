@@ -15,28 +15,28 @@
 class MoteurJeu
 {
 protected:
-    std::vector <Entreprise*> entreprises;
     std::vector <Client*> clients;
     int tour;
     int tour_max;
     QString nom_joueur;
 
 public:
+    std::vector <Entreprise*> entreprises;
     Historique* historique;
     MoteurJeu(int, int, int, int, int, QString);
     void creation_entreprises_initiales(int, int);
     void creation_clients_initiaux(int, int);
     void creation_objets_initiaux(int);
-    void phase_de_production();
-    void phase_de_marketing();
+    void phase_de_production(int);
+    void phase_de_marketing(int);
     void phase_de_vente();
-    void phase_de_recherche();
+    void phase_de_recherche(int);
     void phase_de_revenu();
     std::vector <Objet*> get_objets_marche();
     void phase_de_gestion_des_stocks();
     Entreprise* get_gagnant();
-    void run_tour();
-    Entreprise* run();
+    void run_tour(int, int, int);
+    //Entreprise* run();
 
     // Les méthodes utilisées pour remplir l'historique
     void set_historique_intiale();

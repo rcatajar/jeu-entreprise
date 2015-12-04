@@ -42,9 +42,9 @@ class Entreprise : public Entite
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);
 
-        void phase_de_marketing();
-        void phase_de_production();
-        void phase_de_recherche();
+        void phase_de_marketing(int);
+        void phase_de_production(int);
+        void phase_de_recherche(int);
 };
 
 #endif // ENTREPRISE_H
