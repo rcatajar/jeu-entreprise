@@ -6,14 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>640</width>
+    <height>275</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Graphs Recherche</string>
   </property>
+  <widget class="QCustomPlot" name="graph1" native="true">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>300</width>
+     <height>260</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCustomPlot" name="graph2" native="true">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>10</y>
+     <width>300</width>
+     <height>260</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomPlot</class>
+   <extends>QWidget</extends>
+   <header>qcustomplot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

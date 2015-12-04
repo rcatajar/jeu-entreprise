@@ -2,6 +2,7 @@
 #define GRAPHSMARKETING_H
 
 #include <QWidget>
+#include "qcustomplot.h"
 
 namespace Ui {
 class GraphsMarketing;
@@ -14,6 +15,9 @@ class GraphsMarketing : public QWidget
 public:
     explicit GraphsMarketing(QWidget *parent = 0);
     ~GraphsMarketing();
+
+    void ajouterGraphPrixDesVelos(QCustomPlot *customPlot);
+    void ajouterGraphNbVelosRestantsVendus(QCustomPlot *customPlot);
 
 private:
     Ui::GraphsMarketing *ui;
