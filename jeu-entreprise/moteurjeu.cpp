@@ -21,6 +21,7 @@ MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_i
     int nb_objets_initials = rand() % nb_clients;
     creation_objets_initiaux(nb_objets_initials);
     historique = new Historique(tour, tour_max, nom_joueur, nb_ia, nb_clients);
+    set_historique_intiale();
 }
 
 void MoteurJeu::creation_entreprises_initiales(int nb_ia, int treso_initiale){
@@ -257,8 +258,9 @@ void MoteurJeu::set_historique_acheteurs(){
 }
 
 void MoteurJeu::set_historique_productions(){
-    vector <int> previous_stock = historique->stocks[tour];
     vector <int> production;
+    vector <int> previous_stock = historique->stocks[tour];
+
     for(int i=0; i < entreprises.size(); i++){
         production.push_back(entreprises[i]->get_stock().size() - previous_stock[i]);
     }
