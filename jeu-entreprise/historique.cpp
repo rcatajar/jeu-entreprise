@@ -73,6 +73,43 @@ QVector <double> Historique::get_investissement(){
     return invest;
 }
 
+QVector <double> Historique::get_investissement_cumule(){
+    QVector <double> invest;
+    QVector <double> invest_cumule;
+    double tampon = 0;
+
+    invest = get_investissement();
+
+    for(int i=0; i<=tour; i++){
+        tampon = 0. ;
+
+        for (int j=0; j<i; j++){
+            tampon += invest[j];
+        }
+        invest_cumule.push_back(tampon);
+    }
+    return invest_cumule;
+
+}
+
+double Historique::get_investissement_max(){
+    QVector <double> invest = get_investissement_cumule();
+
+    double max= 0.;
+
+    if(tour==0){
+        max = 0.;
+    }
+    else{
+
+        max = *std::max_element(invest.begin(),invest.end());
+
+    }
+
+   return max;
+
+}
+
 double Historique::max_cout(){
     QVector <double> maxs;
     QVector <double> fixe = get_cout_fixe();
@@ -134,3 +171,22 @@ double Historique::max_vente_invendu(){
     }
 
 }
+
+QVector <double> Historique::get_prix_de_vente(){
+    QVector <double> prix_de_vente_vec;
+
+    for(int i=0; i<=tour; i++){
+        prix_de_vente_vec.push_back(prix_de_vente[i][0]);
+    }
+    return prix_de_vente_vec;
+}
+
+QVector <double> Historique::get_prix_de_vente_moyen(){
+    QVector <double> prix_de_vente_moyen_vec;
+
+    for(int i=0; i<=tour; i++){
+        prix_de_vente_moyen_vec.push_back(prix_de_vente_moyen[i]);
+    }
+    return prix_de_vente_moyen_vec;
+}
+

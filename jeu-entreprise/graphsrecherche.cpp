@@ -40,8 +40,8 @@ void GraphsRecherche::ajouterGraphInvestissementRecherche(QCustomPlot *customPlo
     investissementRecherche->setBrush(QColor(1, 92, 191, 50));
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels = moteur->historique->get_labels();
     ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
 
     // Décalage des ticks pour mettre les barres côte à côte
@@ -67,11 +67,11 @@ void GraphsRecherche::ajouterGraphInvestissementRecherche(QCustomPlot *customPlo
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y :
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 12.1);
+    customPlot->yAxis->setRange(0, moteur->historique->get_investissement_max() + 100.) ;
     customPlot->yAxis->setPadding(5);
     customPlot->yAxis->setLabel("Investissement");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -84,11 +84,8 @@ void GraphsRecherche::ajouterGraphInvestissementRecherche(QCustomPlot *customPlo
 
     // Ajout de données:
     // TODO : doit se mettre à jour à chaque tour
-    QVector<double> investissementCumuleData, investissementRechercheData;
-    investissementCumuleData   << 0.6*10.5 << 0.5*5.5 << 0.4*5.5 << 0.6*5.8 << 0.9*5.2 << 0.7*4.2 << 0.75*11.2;
-    investissementRechercheData  << 0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2 << 0.90*4.2 << 0.67*11.2;
-    investissementRecherche->setData(ticksDroite, investissementRechercheData);
-    investissementCumule->setData(ticksGauche, investissementCumuleData);
+    investissementCumule->setData(ticks, moteur->historique->get_investissement_cumule());
+    investissementRecherche->setData(ticks, moteur->historique->get_investissement());
 
     // Légende:
     customPlot->legend->setVisible(true);

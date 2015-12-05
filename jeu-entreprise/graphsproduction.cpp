@@ -49,7 +49,7 @@ void GraphsProduction::ajouterGraphNbVelosProduits(QCustomPlot *customPlot)
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
+    customPlot->xAxis->setRange(0.5, moteur->historique->tour + 0.5);
     plot->setData(ticks, prod);
 
     // Préparation de l'axe Y :

@@ -79,11 +79,16 @@ public:
     QVector <double> get_cout_fixe();
     QVector <double> get_cout_variable();
     QVector <double> get_investissement();
+    QVector <double> get_investissement_cumule();
+    double get_investissement_max();
     double max_cout();
     QVector <double> get_production();
     QVector <double> get_vente();
     QVector <double> get_invendu();
     double max_vente_invendu();
+    QVector <double> get_prix_de_vente();
+    QVector <double> get_prix_de_vente_moyen();
+
 };
 
 #endif // HISTORIQUE_H
