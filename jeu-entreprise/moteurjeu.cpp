@@ -124,10 +124,11 @@ vector <Objet*> MoteurJeu::get_objets_marche(){
 void MoteurJeu::phase_de_vente(){
 
     // Permettra de calculer le nombre de vélo vendus
-    int entreprises_tresorerie_precedente[entreprises.size()];
+    vector <int> stock_precedent;
+
 
     for(int i=0; i < entreprises.size(); i++){
-        entreprises_tresorerie_precedente[i] = entreprises[i]->get_tresorerie();
+        stock_precedent.push_back(entreprises[i]->get_stock().size());
     }
 
     for (int i=0; i < clients.size(); i++){
@@ -142,12 +143,16 @@ void MoteurJeu::phase_de_vente(){
     // On affiche les achats et remplit l'historique
     vector <int> ventes;
     int achat = 0;
+
+
+
     for (int i=0; i <entreprises.size(); i++){
 
-        int augmentation_treso = entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
-        int quantite_vendus = augmentation_treso / entreprises[i]->get_prix_de_vente();
+        int quantite_vendus = stock_precedent[i] - entreprises[i]->get_stock().size();
+
         ventes.push_back(quantite_vendus);
         achat += quantite_vendus;
+
     }
     historique->ventes.push_back(ventes);
     historique->objets_achetes.push_back(achat);

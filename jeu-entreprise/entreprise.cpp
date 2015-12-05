@@ -95,9 +95,14 @@ void Entreprise::vente_objet(Objet * objet){
 
 void Entreprise::phase_de_marketing(int input){
     if(ia == true){
-        prix_de_vente = 1.5 * (cout_fixe / stock.size() + cout_variable);
+        prix_de_vente = 1.5 * (cout_fixe / (stock.size() + 10) + cout_variable);
     } else{
-        prix_de_vente = input;
+        if (input >= 0){
+            prix_de_vente = input;
+        }
+        else{
+            prix_de_vente = 0;
+        }
     }
 }
 

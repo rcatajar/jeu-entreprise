@@ -111,8 +111,22 @@ QVector <double> Historique::get_invendu(){
 }
 
 double Historique::max_vente_invendu(){
-    double max_vente = *std::max_element(get_vente().begin(), get_vente().end());
-    double max_invendu = *std::max_element(get_invendu().begin(), get_invendu().end());
+    QVector <double> vente = get_vente();
+    QVector <double> invendu = get_invendu();
+
+    double max_vente = vente[0];
+    double max_invendu = invendu[0];
+
+
+    for(int i=0; i <= tour; i++){
+        if (vente[i] > max_vente){
+            max_vente = vente[i];
+        }
+        if (invendu[i] > max_invendu){
+            max_invendu = invendu[i];
+        }
+    }
+
     if (max_vente > max_invendu){
         return max_vente;
     } else{
