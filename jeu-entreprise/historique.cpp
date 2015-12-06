@@ -170,6 +170,7 @@ QVector <double> Historique::get_prix_de_vente(){
     for(int i=0; i<=tour; i++){
         prix_de_vente_vec.push_back(prix_de_vente[i][0]);
     }
+
     return prix_de_vente_vec;
 }
 
@@ -180,5 +181,16 @@ QVector <double> Historique::get_prix_de_vente_moyen(){
         prix_de_vente_moyen_vec.push_back(prix_de_vente_moyen[i]);
     }
     return prix_de_vente_moyen_vec;
+}
+
+QVector <double> Historique::get_qualite_moyenne(){
+    QVector <double> qualite_moy;
+
+     for(int i=0; i<=tour; i++){
+         qualite_moy.push_back(qualite[i]);
+     }
+
+    return qualite_moy;
+
 }
 

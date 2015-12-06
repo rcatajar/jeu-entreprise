@@ -46,6 +46,7 @@ public:
     void set_historique_acheteurs();
     void set_historique_productions();
     void set_historique_prix_de_vente();
+    void set_historique_qualite();
 
 };
 

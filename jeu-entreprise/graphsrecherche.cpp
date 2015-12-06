@@ -94,14 +94,6 @@ void GraphsRecherche::ajouterGraphQualiteVelos(QCustomPlot *customPlot)
     // Création d'un premier graphe (classique)
     customPlot->addGraph(customPlot->xAxis, customPlot->yAxis);
     customPlot->graph(0)->setName("Qualité des vélos");
-    // Création d'un deuxième graphe (erreurs)
-    customPlot->addGraph(customPlot->xAxis, customPlot->yAxis);
-    customPlot->graph(1)->setName("Qualité du stock");
-    customPlot->graph(1)->setPen(QPen(Qt::blue));
-    customPlot->graph(1)->setLineStyle(QCPGraph::lsNone);
-    customPlot->graph(1)->setScatterStyle(QCPScatterStyle(QCPScatterStyle::ssCross, QPen(QColor(255,131,0)), QBrush(QColor(255, 131, 0, 20)), 5));
-    customPlot->graph(1)->setErrorType(QCPGraph::etValue);
-    customPlot->graph(1)->setErrorPen(QPen(QColor(255,131,0)));
 
     // Noms et couleurs graph 0:
     QPen pen0;
@@ -112,12 +104,9 @@ void GraphsRecherche::ajouterGraphQualiteVelos(QCustomPlot *customPlot)
     customPlot->graph(0)->setBrush(QColor(1, 92, 191, 50));
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels = moteur->historique->get_labels();
 
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -126,13 +115,11 @@ void GraphsRecherche::ajouterGraphQualiteVelos(QCustomPlot *customPlot)
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    // TODO : range doit évoluer avec nombre de tours passés
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 200);
-    customPlot->yAxis->setPadding(5); // a bit more space to the left border
+    customPlot->yAxis->setRange(0, 200); // ici
+    customPlot->yAxis->setPadding(5);
     customPlot->yAxis->setLabel("Qualité des vélos");
     customPlot->yAxis->grid()->setSubGridVisible(true);
     QPen gridPen;
@@ -145,16 +132,11 @@ void GraphsRecherche::ajouterGraphQualiteVelos(QCustomPlot *customPlot)
     // Pour le 1er graphe :
     // Ajout de données :
     QVector<double> QualiteData;
-    // TODO : TresoData doivent se MaJ à chaque tour
-    QualiteData << 100 << 120 << 170 << 80 << 145 << 95 << 138;
 
-    QVector<double> ErrResteDuStock;
-    ErrResteDuStock << 15 << 20 << 10 << 30 << 15 << 25 << 15;
 
     // Traçage :
-    customPlot->graph(0)->setData(ticks, QualiteData);
-    customPlot->graph(1)->setDataValueError(ticks, QualiteData, ErrResteDuStock);
-    customPlot->graph(1)->rescaleAxes(true);
+    customPlot->graph(0)->setData(ticks, moteur->historique->get_qualite_moyenne());
+
 
     // Setup de la légende:
     customPlot->legend->setVisible(true);

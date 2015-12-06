@@ -64,6 +64,7 @@ public:
     std::vector <std::vector <int>> ventes;
     std::vector <std::vector <int>> tresoreries;
     std::vector <std::vector <int>> objets_detruits;
+    std::vector <int> qualite;
 
     // Client
     int nombre_clients;
@@ -88,6 +89,7 @@ public:
     double max_vente_invendu();
     QVector <double> get_prix_de_vente();
     QVector <double> get_prix_de_vente_moyen();
+    QVector <double> get_qualite_moyenne();
 
 };
 

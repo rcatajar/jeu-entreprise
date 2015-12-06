@@ -1,10 +1,7 @@
 #include <vector>
 #include <QString>
-#include <iostream>
-#include <istream>
-#include <sstream>
 #include <math.h>
-#include<limits>
+#include <limits>
 
 #include "moteurjeu.h"
 #include "entreprise.h"
@@ -67,6 +64,8 @@ void MoteurJeu::run_tour(int prod, int prix, int recherche){
 
     phase_de_production(prod);
     set_historique_productions();
+
+    set_historique_qualite();
 
     set_historique_objets_en_vente();
     set_historique_acheteurs();
@@ -207,6 +206,7 @@ void MoteurJeu::set_historique_intiale(){
     set_historique_recherche();
     set_historique_tresoreries();
     set_historique_acheteurs();
+    set_historique_qualite();
 }
 
 void MoteurJeu::set_historique_objets_en_vente(){
@@ -265,6 +265,7 @@ void MoteurJeu::set_historique_productions(){
 void MoteurJeu::set_historique_prix_de_vente(){
     vector <int> prix_de_vente;
     int prix_moyen = 0;
+
     for (int i =0; i < entreprises.size(); i++){
         int prix = entreprises[i]->get_prix_de_vente();
         prix_de_vente.push_back(prix);
@@ -274,3 +275,25 @@ void MoteurJeu::set_historique_prix_de_vente(){
     historique->prix_de_vente_moyen.push_back(prix_moyen);
     historique->prix_de_vente.push_back(prix_de_vente);
 }
+
+void MoteurJeu::set_historique_qualite(){
+    int qualite_moyenne = 0;
+    int taille_stock = entreprises[0]->get_stock().size();
+
+    if (taille_stock > 0){
+        std::vector <Objet*> stock;
+        stock = entreprises[0]->get_stock();
+
+        for (int i =0; i < taille_stock; i++){
+            qualite_moyenne += stock[i]->get_qualite();
+        }
+        qualite_moyenne = qualite_moyenne / taille_stock;
+        historique->qualite.push_back(qualite_moyenne);
+
+
+    }
+    else{
+        historique->qualite.push_back(0.);
+    }
+}
+

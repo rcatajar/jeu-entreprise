@@ -66,7 +66,7 @@ void Entreprise::produire(int n){
     // Diminue sa trésorerie du cout de production associé
     float cout_prod = cout_fixe + n * cout_variable;
     for (int i=0; i<n; i++){
-        Objet* objet_cree = new Objet(this, 50 + qualite_marginale);
+        Objet* objet_cree = new Objet(this, 40 + qualite_marginale);
         ajouter_au_stock(objet_cree);
     }
     tresorerie -= cout_prod;
@@ -79,12 +79,12 @@ void Entreprise::investir(int n){
 
     investissement_realise += n;
     tresorerie -= n;
-    if (investissement_realise > 10 * seuil){
-        qualite_marginale = 50;
+    if (investissement_realise > 40 * seuil){
+        qualite_marginale = 40;
         max_recherche = true;
     }
     else{
-        qualite_marginale = 5 * (investissement_realise / seuil);
+        qualite_marginale = (investissement_realise / seuil);
     }
 }
 
