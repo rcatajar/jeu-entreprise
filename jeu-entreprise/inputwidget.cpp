@@ -74,7 +74,7 @@ void InputWidget::initialiser(){
 
     ui->sliderPrice->setRange(0,500);
     ui->sliderProd->setRange(0,(tresorerie - moteur->entreprises[0]->get_cout_fixe())/moteur->entreprises[0]->get_cout_variable());
-    ui->sliderUseless->setRange(0,tresorerie);
+    ui->sliderUseless->setRange(0, moteur->entreprises[0]->get_investissement_max());
 
     ui->sliderPrice->setValue(0);
     ui->sliderUseless->setValue(0);
