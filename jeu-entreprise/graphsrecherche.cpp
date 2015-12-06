@@ -42,22 +42,11 @@ void GraphsRecherche::ajouterGraphInvestissementRecherche(QCustomPlot *customPlo
     // Préparation de l'axe X :
     QVector<double> ticks = moteur->historique->get_ticks();
     QVector<QString> labels = moteur->historique->get_labels();
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
-
-    // Décalage des ticks pour mettre les barres côte à côte
-    QVector<double> ticksGauche;
-    ticksGauche = ticks;
-    std::for_each(ticksGauche.begin(), ticksGauche.end(), [](double& d) { d-=0.2;});
-    QVector<double> ticksDroite;
-    ticksDroite = ticks;
-    std::for_each(ticksDroite.begin(), ticksDroite.end(), [](double& d) { d+=0.2;});
 
     // Réglage de l'épaisseur des barres
     investissementCumule->setWidth(0.4);
     investissementRecherche->setWidth(0.4);
 
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -71,7 +60,7 @@ void GraphsRecherche::ajouterGraphInvestissementRecherche(QCustomPlot *customPlo
 
     // Préparation de l'axe Y :
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, moteur->historique->get_investissement_max() + 100.) ;
+    customPlot->yAxis->setRange(0, moteur->historique->get_investissement_max() + 500.) ;
     customPlot->yAxis->setPadding(5);
     customPlot->yAxis->setLabel("Investissement");
     customPlot->yAxis->grid()->setSubGridVisible(true);

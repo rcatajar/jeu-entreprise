@@ -77,19 +77,9 @@ QVector <double> Historique::get_investissement(){
 }
 
 QVector <double> Historique::get_investissement_cumule(){
-    QVector <double> invest;
     QVector <double> invest_cumule;
-    double tampon = 0;
-
-    invest = get_investissement();
-
-    for(int i=0; i<=tour; i++){
-        tampon = 0. ;
-
-        for (int j=0; j<i; j++){
-            tampon += invest[j];
-        }
-        invest_cumule.push_back(tampon);
+    for (int i=0; i <=tour; i++){
+        invest_cumule.push_back(investissements_recherche[i][0]);
     }
     return invest_cumule;
 
