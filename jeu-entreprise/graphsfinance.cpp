@@ -67,7 +67,7 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     QVector<double> ca = moteur->historique->get_ca();
     double max_ca = *std::max_element(ca.begin(), ca.end());
 
-    customPlot->yAxis->setRange(0, max_ca + 10);
+    customPlot->yAxis->setRange(0, max_ca + 200);
     customPlot->yAxis->setPadding(5); // a bit more space to the left border
     customPlot->yAxis->setLabel("CA");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -90,7 +90,7 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->graph(0)->setData(ticks, treso);
     customPlot->yAxis2->setVisible(true);
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis2->setRange(0, max_treso + 10);
+    customPlot->yAxis2->setRange(0, max_treso + 200);
     customPlot->yAxis2->setLabel("Trésorerie");
 
 
