@@ -24,12 +24,12 @@ class TurnWindow : public QWidget
     Q_OBJECT
 
 public slots:
-    void openLoadingWindow();
     void NextTurn();
 
 
 public:
     explicit TurnWindow(QWidget *parent = 0, MoteurJeu* moteur = NULL);
+    void openLoadingWindow();
     MoteurJeu* moteur;
     ~TurnWindow();
 

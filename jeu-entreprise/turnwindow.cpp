@@ -30,7 +30,6 @@ TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
     window->show();
 
     connect(endTurnButton, SIGNAL(clicked()), this, SLOT(NextTurn()));
-    connect(endTurnButton, SIGNAL(clicked()), this, SLOT(openLoadingWindow()));
 
     ui->verticalPushed->addWidget(window);
 
@@ -44,7 +43,9 @@ TurnWindow::~TurnWindow()
 void TurnWindow::NextTurn()
 {
     moteur->run_tour(inputWidget->get_production(), inputWidget->get_prix(), inputWidget->get_recherche());
-    // TODO: refresh les graphes
+
+    openLoadingWindow();
+    // refresh les graphes
     tabWidget->redraw();
     // Refresh les inputs
     inputWidget->initialiser();
