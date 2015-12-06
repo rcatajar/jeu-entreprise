@@ -1,6 +1,10 @@
 #include "historique.h"
+#include <iostream>
+
 #include <QString>
+
 using namespace std;
+
 Historique::Historique(int _tour, int _tour_max, QString _nom_joueur, int _nombre_ias, int _nombre_clients, int _cout_fixe, int _cout_variable)
 {
     tour = _tour;
@@ -94,16 +98,13 @@ QVector <double> Historique::get_investissement_cumule(){
 
 double Historique::get_investissement_max(){
     QVector <double> invest = get_investissement_cumule();
-
     double max= 0.;
 
     if(tour==0){
         max = 0.;
     }
     else{
-
         max = *std::max_element(invest.begin(),invest.end());
-
     }
 
    return max;
@@ -111,15 +112,18 @@ double Historique::get_investissement_max(){
 }
 
 double Historique::max_cout(){
-    QVector <double> maxs;
+    double max = 0.;
     QVector <double> fixe = get_cout_fixe();
-    maxs.push_back(*std::max_element(fixe.begin(), fixe.end()));
     QVector <double> variable = get_cout_variable();
-    maxs.push_back(*std::max_element(variable.begin(), variable.end()));
     QVector <double> invest = get_investissement();
-    maxs.push_back(*std::max_element(invest.begin(), invest.end()));
-
-    return *std::max_element(maxs.begin(), maxs.end());
+    for (int i=0; i<= tour; i++){
+        double cout = fixe[i] + variable[i] + invest[i];
+        if (cout > max){
+            max = cout;
+        }
+    }
+    cout << max << endl;
+    return max;
 }
 
 QVector <double> Historique::get_production(){

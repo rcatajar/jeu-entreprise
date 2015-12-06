@@ -138,7 +138,6 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     // Préparation de l'axe X :
     QVector<double> ticks = moteur->historique->get_ticks();
     QVector<QString> labels = moteur->historique->get_labels();
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
 
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
