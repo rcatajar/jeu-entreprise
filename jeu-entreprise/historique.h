@@ -32,12 +32,13 @@
 
 #include <vector>
 #include <QString>
+#include <QVector>
 
 
 class Historique
 {
 public:
-    Historique(int, int, QString, int, int);
+    Historique(int, int, QString, int, int, int, int);
 
     // J'ai mis toute les variables en public pour qu'on puisse les modfier directement
     // (c'est pas top mais c'est plus rapide a faire)
@@ -51,6 +52,8 @@ public:
     std::vector <int> prix_de_vente_moyen;
 
     // Entreprise
+    int cout_fixe;
+    int cout_variable;
     QString nom_joueur;
     int nombre_ias;
     std::vector <std::vector <int>> stocks;
@@ -61,12 +64,32 @@ public:
     std::vector <std::vector <int>> ventes;
     std::vector <std::vector <int>> tresoreries;
     std::vector <std::vector <int>> objets_detruits;
+    std::vector <int> qualite;
 
     // Client
     int nombre_clients;
     std::vector <int> nombre_acheteurs;
     std::vector <int> objets_achetes;
     std::vector <int> objets_detruits_client;
+
+    // Pour les graphes
+    QVector <double> get_ticks();
+    QVector <QString> get_labels();
+    QVector <double> get_tresorerie();
+    QVector <double> get_ca();
+    QVector <double> get_cout_fixe();
+    QVector <double> get_cout_variable();
+    QVector <double> get_investissement();
+    QVector <double> get_investissement_cumule();
+    double get_investissement_max();
+    double max_cout();
+    QVector <double> get_production();
+    QVector <double> get_vente();
+    QVector <double> get_invendu();
+    double max_vente_invendu();
+    QVector <double> get_prix_de_vente();
+    QVector <double> get_prix_de_vente_moyen();
+    QVector <double> get_qualite_moyenne();
 
 };
 

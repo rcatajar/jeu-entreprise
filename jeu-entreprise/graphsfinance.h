@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "qcustomplot.h"
+#include "moteurjeu.h"
 
 namespace Ui {
 class GraphsFinance;
@@ -13,7 +14,8 @@ class GraphsFinance : public QWidget
     Q_OBJECT
 
 public:
-    explicit GraphsFinance(QWidget *parent = 0);
+    explicit GraphsFinance(QWidget *parent = 0, MoteurJeu* moteur = NULL);
+    MoteurJeu* moteur;
     ~GraphsFinance();
 
     void ajouterGraphTresoCA(QCustomPlot *customPlot);

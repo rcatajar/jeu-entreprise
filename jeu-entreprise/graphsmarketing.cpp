@@ -1,10 +1,14 @@
 #include "graphsmarketing.h"
 #include "ui_graphsmarketing.h"
 
-GraphsMarketing::GraphsMarketing(QWidget *parent) :
+
+#include "moteurjeu.h"
+
+GraphsMarketing::GraphsMarketing(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsMarketing)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     ajouterGraphPrixDesVelos(ui->graph1);
@@ -20,13 +24,11 @@ void GraphsMarketing::ajouterGraphPrixDesVelos(QCustomPlot *customPlot)
 {
     // Création d'un premier graphe (classique)
     customPlot->addGraph(customPlot->xAxis, customPlot->yAxis);
-    customPlot->graph(0)->setName("Entreprise 1");
+    customPlot->graph(0)->setName(moteur->historique->nom_joueur);
     // Création d'un deuxième graphe (classique)
     customPlot->addGraph(customPlot->xAxis, customPlot->yAxis);
-    customPlot->graph(1)->setName("Entreprise 2");
-    // Création d'un deuxième graphe (classique)
-    customPlot->addGraph(customPlot->xAxis, customPlot->yAxis);
-    customPlot->graph(2)->setName("Entreprise 3");
+    customPlot->graph(1)->setName("Prix moyen");
+
 
     // Noms et couleurs graph 0:
     QPen pen0;
@@ -44,21 +46,12 @@ void GraphsMarketing::ajouterGraphPrixDesVelos(QCustomPlot *customPlot)
     customPlot->graph(1)->setPen(pen1);
     customPlot->graph(1)->setBrush(QColor(150, 222, 0, 70));
 
-    // Noms et couleurs graph 2:
-    QPen pen2;
-    pen2.setWidthF(1.2);
-
-    pen2.setColor(QColor(255, 131, 0));
-    customPlot->graph(2)->setPen(pen2);
-    customPlot->graph(2)->setBrush(QColor(255, 131, 0, 30));
-
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels =  moteur->historique->get_labels();
     ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
 
     // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -68,13 +61,13 @@ void GraphsMarketing::ajouterGraphPrixDesVelos(QCustomPlot *customPlot)
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
     // TODO : range doit évoluer avec nombre de tours passés
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 200);
+    customPlot->yAxis->setRange(0, 500);
     customPlot->yAxis->setPadding(5); // a bit more space to the left border
-    customPlot->yAxis->setLabel("Nb de vélos vendus");
+    customPlot->yAxis->setLabel("Prix des vélos");
     customPlot->yAxis->grid()->setSubGridVisible(true);
     QPen gridPen;
     gridPen.setStyle(Qt::SolidLine);
@@ -85,27 +78,27 @@ void GraphsMarketing::ajouterGraphPrixDesVelos(QCustomPlot *customPlot)
 
     // Pour le 1er graphe :
     // Ajout de données :
-    QVector<double> Entreprise1Data;
+    QVector <double> Entreprise1Data;
     // TODO : TresoData doivent se MaJ à chaque tour
-    Entreprise1Data << 100 << 120 << 170 << 80 << 145 << 95 << 138;
+    Entreprise1Data = moteur->historique->get_prix_de_vente();
 
     // Pour le 2e graphe :
     // Ajout de données :
     QVector<double> Entreprise2Data;
     // TODO : TresoData doivent se MaJ à chaque tour
-    Entreprise2Data << 20 << 80 << 40 << 100 << 48 << 78 << 100;
+    Entreprise2Data = moteur->historique->get_prix_de_vente_moyen();
 
 
     // Pour le 3e graphe :
     // Ajout de données :
-    QVector<double> Entreprise3Data;
+    //QVector<double> Entreprise3Data;
     // TODO : TresoData doivent se MaJ à chaque tour
-    Entreprise3Data << 120 << 100 << 80 << 140 << 30 << 28 << 150;
+    //Entreprise3Data << 120 << 100 << 80 << 140 << 30 << 28 << 150;
 
     // Traçage :
     customPlot->graph(0)->setData(ticks, Entreprise1Data);
     customPlot->graph(1)->setData(ticks, Entreprise2Data);
-    customPlot->graph(2)->setData(ticks, Entreprise3Data);
+    //customPlot->graph(2)->setData(ticks, Entreprise3Data);
 
     // Setup de la légende:
     customPlot->legend->setVisible(true);
@@ -128,7 +121,7 @@ void GraphsMarketing::ajouterGraphNbVelosRestantsVendus(QCustomPlot *customPlot)
     customPlot->graph(0)->setName("Nb vélos vendus");
     // Création d'un deuxième graphe (classique)
     customPlot->addGraph(customPlot->xAxis, customPlot->yAxis);
-    customPlot->graph(1)->setName("Nb vélos restants");
+    customPlot->graph(1)->setName("Nb vélos invendus");
 
     // Noms et couleurs graph 0:
     QPen pen0;
@@ -147,12 +140,9 @@ void GraphsMarketing::ajouterGraphNbVelosRestantsVendus(QCustomPlot *customPlot)
     customPlot->graph(1)->setBrush(QColor(150, 222, 0, 70));
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels =  moteur->historique->get_labels();
 
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -162,11 +152,11 @@ void GraphsMarketing::ajouterGraphNbVelosRestantsVendus(QCustomPlot *customPlot)
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
     // TODO : range doit évoluer avec nombre de tours passés
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 200);
+    customPlot->yAxis->setRange(0, moteur->historique->max_vente_invendu() + 10);
     customPlot->yAxis->setPadding(5); // a bit more space to the left border
     customPlot->yAxis->setLabel("Nb de vélos");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -178,16 +168,9 @@ void GraphsMarketing::ajouterGraphNbVelosRestantsVendus(QCustomPlot *customPlot)
     customPlot->yAxis->grid()->setSubGridPen(gridPen);
 
     // Pour le 1er graphe :
-    // Ajout de données :
-    QVector<double> VendusData;
-    // TODO : TresoData doivent se MaJ à chaque tour
-    VendusData << 100 << 120 << 170 << 80 << 145 << 95 << 138;
-
+    QVector<double> VendusData = moteur->historique->get_vente();
     // Pour le 2e graphe :
-    // Ajout de données :
-    QVector<double> RestantsData;
-    // TODO : TresoData doivent se MaJ à chaque tour
-    RestantsData << 20 << 80 << 40 << 100 << 48 << 78 << 100;
+    QVector<double> RestantsData = moteur->historique->get_invendu();
 
     // Traçage :
     customPlot->graph(0)->setData(ticks, VendusData);

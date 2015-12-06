@@ -1,4 +1,5 @@
 #include <vector>
+#include <random>
 #include <algorithm>  // needed for retirer_au_stock
 
 #include "entite.h"
@@ -12,11 +13,12 @@ using namespace std;
 
 Entreprise::Entreprise(const QString &n, float treso, bool _ia):
     Entite(n, treso){
-    cout_fixe = 200;
-    cout_variable = 10;
+    cout_fixe = 1000;
+    cout_variable = 20;
     investissement_realise = 0;
     qualite_marginale = 0;
     max_recherche = false;
+    investissement_max = 40000;
     ia = _ia;
 
 }
@@ -61,6 +63,12 @@ bool Entreprise::recherche_max_atteinte() const{
     return max_recherche;
 }
 
+int Entreprise::get_investissement_restant_avant_max() const{
+    int investissement_avant_max = investissement_max - investissement_realise;
+    return investissement_avant_max;
+}
+
+
 void Entreprise::produire(int n){
     // Produit n objets et les ajoute au stock de l'entreprise
     // Diminue sa trésorerie du cout de production associé
@@ -75,16 +83,15 @@ void Entreprise::produire(int n){
 void Entreprise::investir(int n){
     // Investir de l'argent permet d'améliorer la qualité des objets produits
     // La qualité marginale augmente de 5 tout les seuil=1000$ investi
-    int seuil = 1000;
 
     investissement_realise += n;
     tresorerie -= n;
-    if (investissement_realise > 10 * seuil){
-        qualite_marginale = 50;
+    if (investissement_realise > investissement_max){
+        qualite_marginale = 40;
         max_recherche = true;
     }
     else{
-        qualite_marginale = 5 * (investissement_realise / seuil);
+        qualite_marginale = (investissement_realise / (investissement_max / 40 ));
     }
 }
 
@@ -95,15 +102,27 @@ void Entreprise::vente_objet(Objet * objet){
 
 void Entreprise::phase_de_marketing(int input){
     if(ia == true){
-        prix_de_vente = 1.5 * (cout_fixe / stock.size() + cout_variable);
-    } else{
-        prix_de_vente = input;
+        default_random_engine generator;
+
+        do{
+            float valeur_centrale = 2 * (cout_fixe / (stock.size() + 10) + cout_variable);
+            normal_distribution<float> distribution(valeur_centrale, valeur_centrale/5);
+            prix_de_vente = distribution(generator);
+
+         }while(prix_de_vente >= 0);
+    }else{
+        if (input >= 0){
+            prix_de_vente = input;
+        }
+        else{
+            prix_de_vente = 0;
+        }
     }
 }
 
 void Entreprise::phase_de_production(int input){
     if(ia){
-        int production = (tresorerie - cout_fixe) / (2 * cout_variable);
+        int production = rand() % (int) (tresorerie - cout_fixe) / (2 * cout_variable);
         produire(production);
     } else {
         produire(input);
@@ -112,9 +131,9 @@ void Entreprise::phase_de_production(int input){
 }
 
 void Entreprise::phase_de_recherche(int input){
-    // L'IA investi entre 0 et 1000$ par tour tant qu'elle n'a pas maxé sa recherche
+    // L'IA investi entre 0 et la moitié de sa trésorerie par tour tant qu'elle n'a pas maxé sa recherche
     if(ia && !max_recherche){
-        int investissement = rand() % 1000;
+        int investissement = rand() % (int) tresorerie / 2;
         investir(investissement);
     }
 

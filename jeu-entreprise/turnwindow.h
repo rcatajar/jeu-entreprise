@@ -13,6 +13,7 @@
 #include "loadingwindow.h"
 #include "moteurjeu.h"
 #include "inputwidget.h"
+#include "tabwidget.h"
 
 namespace Ui {
 class TurnWindow;
@@ -23,20 +24,20 @@ class TurnWindow : public QWidget
     Q_OBJECT
 
 public slots:
-    void openLoadingWindow();
     void NextTurn();
 
 
 public:
     explicit TurnWindow(QWidget *parent = 0, MoteurJeu* moteur = NULL);
+    void openLoadingWindow();
     MoteurJeu* moteur;
     ~TurnWindow();
-    //MoteurJeu* get_moteur() const;
 
 private:
     Ui::TurnWindow *ui;
     LoadingWindow *mLoadingWindow;
     InputWidget *inputWidget;
+    TabWidget *tabWidget;
 };
 
 #endif // TURNWINDOW_H

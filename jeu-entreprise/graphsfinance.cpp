@@ -1,10 +1,13 @@
 #include "graphsfinance.h"
 #include "ui_graphsfinance.h"
+#include "moteurjeu.h"
 
-GraphsFinance::GraphsFinance(QWidget *parent) :
+
+GraphsFinance::GraphsFinance(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsFinance)
 {
+    moteur = _moteur;
     ui->setupUi(this);
 
     ajouterGraphTresoCA(ui->graph1);
@@ -42,20 +45,14 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     // Noms et couleurs graph 0:
     QPen pen0;
     pen0.setWidthF(1.2);
-
-//    pen0.setColor(QColor(255, 131, 0));
-//    pen.setColor(QColor(150, 222, 0));
     pen0.setColor(QColor(1, 91, 191));
     customPlot->graph(0)->setPen(pen0);
     customPlot->graph(0)->setBrush(QColor(1, 92, 191, 50));
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels = moteur->historique->get_labels();
 
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -64,12 +61,13 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    // TODO : range doit évoluer avec nombre de tours passés
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 12.1);
+    QVector<double> ca = moteur->historique->get_ca();
+    double max_ca = *std::max_element(ca.begin(), ca.end());
+
+    customPlot->yAxis->setRange(0, max_ca + 200);
     customPlot->yAxis->setPadding(5); // a bit more space to the left border
     customPlot->yAxis->setLabel("CA");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -81,22 +79,18 @@ void GraphsFinance::ajouterGraphTresoCA(QCustomPlot *customPlot)
     customPlot->yAxis->grid()->setSubGridPen(gridPen);
 
     // Ajout de données :
-    QVector<double> CAData;
-    // TODO : CAData doivent se MaJ à chaque tour
-    CAData  << 0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2 << 0.90*4.2 << 0.67*11.2;
-    CA->setData(ticks, CAData);
+    CA->setData(ticks, ca);
 
     // Pour le 2e graphe (plus classique) :
     // Ajout de données :
-    QVector<double> TresoData;
-    // TODO : TresoData doivent se MaJ à chaque tour
-    TresoData << 1 << 2 << 5 << 3 << 7 << 2 << 6;
+    QVector<double> treso = moteur->historique->get_tresorerie();
+    double max_treso = *std::max_element(treso.begin(), treso.end());
 
     // Traçage :
-    customPlot->graph(0)->setData(ticks, TresoData);
+    customPlot->graph(0)->setData(ticks, treso);
     customPlot->yAxis2->setVisible(true);
     // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis2->setRangeUpper(8);
+    customPlot->yAxis2->setRange(0, max_treso + 200);
     customPlot->yAxis2->setLabel("Trésorerie");
 
 
@@ -142,11 +136,9 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     investissements->moveAbove(coutsVariables);
 
     // Préparation de l'axe X :
-    QVector<double> ticks;
-    QVector<QString> labels;
-    ticks << 1 << 2 << 3 << 4 << 5 << 6 << 7;
-    // TODO : labels doit représenter le nombre de tour passés
-    labels << "Tour 1" << "Tour 2" << "Tour 3" << "Tour 4" << "Tour 5" << "Tour 6" << "Tour 7";
+    QVector<double> ticks = moteur->historique->get_ticks();
+    QVector<QString> labels = moteur->historique->get_labels();
+
     customPlot->xAxis->setAutoTicks(false);
     customPlot->xAxis->setAutoTickLabels(false);
     customPlot->xAxis->setTickVector(ticks);
@@ -155,12 +147,10 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->xAxis->setRange(0.5, 7.5);
+    customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y :
-    // TODO : range doit évoluer automatiquement avec les données
-    customPlot->yAxis->setRange(0, 12.1);
+    customPlot->yAxis->setRange(0, moteur->historique->max_cout() + 200);
     customPlot->yAxis->setPadding(5);
     customPlot->yAxis->setLabel("Répartition des coûts");
     customPlot->yAxis->grid()->setSubGridVisible(true);
@@ -172,14 +162,9 @@ void GraphsFinance::ajouterGraphRepartitionCouts(QCustomPlot *customPlot)
     customPlot->yAxis->grid()->setSubGridPen(gridPen);
 
     // Ajout de données:
-    // TODO : doit se mettre à jour à chaque tour
-    QVector<double> investissementsData, coutsVariablesData, coutsFixesData;
-    coutsVariablesData  << 0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2 << 0.90*4.2 << 0.67*11.2;
-    coutsFixesData << 0.08*10.5 << 0.12*5.5 << 0.12*5.5 << 0.40*5.8 << 0.09*5.2 << 0.00*4.2 << 0.07*11.2;
-    investissementsData   << 0.06*10.5 << 0.05*5.5 << 0.04*5.5 << 0.06*5.8 << 0.02*5.2 << 0.07*4.2 << 0.25*11.2;
-    investissements->setData(ticks, investissementsData);
-    coutsVariables->setData(ticks, coutsVariablesData);
-    coutsFixes->setData(ticks, coutsFixesData);
+    investissements->setData(ticks, moteur->historique->get_investissement());
+    coutsVariables->setData(ticks, moteur->historique->get_cout_variable());
+    coutsFixes->setData(ticks, moteur->historique->get_cout_fixe());
 
     // Légende:
     customPlot->legend->setVisible(true);

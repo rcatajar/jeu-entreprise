@@ -16,6 +16,7 @@ class Entreprise : public Entite
         int qualite_marginale;
         bool ia;
         bool max_recherche;
+        float investissement_max;
 
     public:
         Entreprise(const QString &, float, bool);
@@ -38,6 +39,8 @@ class Entreprise : public Entite
 
         float get_investissement_realise() const;
         int get_qualite_marginale() const;
+
+        int get_investissement_restant_avant_max() const;
 
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);

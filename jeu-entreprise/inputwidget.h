@@ -35,9 +35,6 @@ private:
     Ui::InputWidget *ui;
     QTabWidget *tabWidget;
     TabWidget *mTabWidget;
-    int prix_voulu;
-    int production_voulue;
-    int recherche_voulue;
 };
 
 #endif // INPUTWIDGET_H

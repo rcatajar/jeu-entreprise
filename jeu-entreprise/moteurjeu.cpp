@@ -1,10 +1,7 @@
 #include <vector>
 #include <QString>
-#include <iostream>
-#include <istream>
-#include <sstream>
 #include <math.h>
-#include<limits>
+#include <limits>
 
 #include "moteurjeu.h"
 #include "entreprise.h"
@@ -20,7 +17,9 @@ MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_i
     creation_clients_initiaux(nb_clients, argent_initial);
     int nb_objets_initials = rand() % nb_clients;
     creation_objets_initiaux(nb_objets_initials);
-    historique = new Historique(tour, tour_max, nom_joueur, nb_ia, nb_clients);
+    int cout_fixe = entreprises[0]->get_cout_fixe();
+    int cout_variable = entreprises[0]->get_cout_variable();
+    historique = new Historique(tour, tour_max, nom_joueur, nb_ia, nb_clients, cout_fixe, cout_variable);
     set_historique_intiale();
 }
 
@@ -49,16 +48,6 @@ void MoteurJeu::creation_objets_initiaux(int nb_objets){
     }
 }
 
-/*
-
-Entreprise* MoteurJeu::run(){
-    while (tour < tour_max){
-        run_tour();
-    }
-    return get_gagnant();
-}
-*/
-
 void MoteurJeu::run_tour(int prod, int prix, int recherche){
 
     tour ++;
@@ -75,6 +64,8 @@ void MoteurJeu::run_tour(int prod, int prix, int recherche){
 
     phase_de_production(prod);
     set_historique_productions();
+
+    set_historique_qualite();
 
     set_historique_objets_en_vente();
     set_historique_acheteurs();
@@ -132,10 +123,11 @@ vector <Objet*> MoteurJeu::get_objets_marche(){
 void MoteurJeu::phase_de_vente(){
 
     // Permettra de calculer le nombre de vélo vendus
-    int entreprises_tresorerie_precedente[entreprises.size()];
+    vector <int> stock_precedent;
+
 
     for(int i=0; i < entreprises.size(); i++){
-        entreprises_tresorerie_precedente[i] = entreprises[i]->get_tresorerie();
+        stock_precedent.push_back(entreprises[i]->get_stock().size());
     }
 
     for (int i=0; i < clients.size(); i++){
@@ -150,21 +142,22 @@ void MoteurJeu::phase_de_vente(){
     // On affiche les achats et remplit l'historique
     vector <int> ventes;
     int achat = 0;
+
+
+
     for (int i=0; i <entreprises.size(); i++){
 
-        int augmentation_treso = entreprises[i]->get_tresorerie()  - entreprises_tresorerie_precedente[i];
-        int quantite_vendus = augmentation_treso / entreprises[i]->get_prix_de_vente();
+        int quantite_vendus = stock_precedent[i] - entreprises[i]->get_stock().size();
+
         ventes.push_back(quantite_vendus);
         achat += quantite_vendus;
+
     }
     historique->ventes.push_back(ventes);
     historique->objets_achetes.push_back(achat);
 }
 
 void MoteurJeu::phase_de_gestion_des_stocks(){
-    cout << endl;
-    cout << " ---------Phase de gestion des stocks -------------" << endl;
-    cout << endl;
 
     int objets_detruits_clients = 0;
     vector <int> objets_detruits;
@@ -213,6 +206,7 @@ void MoteurJeu::set_historique_intiale(){
     set_historique_recherche();
     set_historique_tresoreries();
     set_historique_acheteurs();
+    set_historique_qualite();
 }
 
 void MoteurJeu::set_historique_objets_en_vente(){
@@ -235,6 +229,8 @@ void MoteurJeu::set_historique_recherche(){
         investissements.push_back(entreprises[i]->get_investissement_realise());
         qualite.push_back(entreprises[i]->get_qualite_marginale());
     }
+    historique->investissements_recherche.push_back(investissements);
+    historique->qualites_marginale.push_back(qualite);
 }
 
 void MoteurJeu::set_historique_tresoreries(){
@@ -269,6 +265,7 @@ void MoteurJeu::set_historique_productions(){
 void MoteurJeu::set_historique_prix_de_vente(){
     vector <int> prix_de_vente;
     int prix_moyen = 0;
+
     for (int i =0; i < entreprises.size(); i++){
         int prix = entreprises[i]->get_prix_de_vente();
         prix_de_vente.push_back(prix);
@@ -278,3 +275,25 @@ void MoteurJeu::set_historique_prix_de_vente(){
     historique->prix_de_vente_moyen.push_back(prix_moyen);
     historique->prix_de_vente.push_back(prix_de_vente);
 }
+
+void MoteurJeu::set_historique_qualite(){
+    int qualite_moyenne = 0;
+    int taille_stock = entreprises[0]->get_stock().size();
+
+    if (taille_stock > 0){
+        std::vector <Objet*> stock;
+        stock = entreprises[0]->get_stock();
+
+        for (int i =0; i < taille_stock; i++){
+            qualite_moyenne += stock[i]->get_qualite();
+        }
+        qualite_moyenne = qualite_moyenne / taille_stock;
+        historique->qualite.push_back(qualite_moyenne);
+
+
+    }
+    else{
+        historique->qualite.push_back(0.);
+    }
+}
+

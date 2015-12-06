@@ -22,7 +22,7 @@
      <height>281</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="2,1,1">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="2,0">
     <property name="leftMargin">
      <number>20</number>
     </property>
@@ -39,7 +39,7 @@
        </font>
       </property>
       <property name="text">
-       <string>Fin du tour n°#</string>
+       <string>Fin du tour</string>
       </property>
       <property name="textFormat">
        <enum>Qt::AutoText</enum>
@@ -50,27 +50,70 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="calculEnCours">
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-        <strikeout>false</strikeout>
-       </font>
-      </property>
-      <property name="text">
-       <string>Calcul du tour suivant en cours ...</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QProgressBar" name="barreChargement">
-      <property name="value">
-       <number>24</number>
-      </property>
-     </widget>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="4" column="1">
+       <widget class="QLCDNumber" name="lcd_qualite"/>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_tresorerie">
+        <property name="text">
+         <string>Trésorerie :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLCDNumber" name="lcd_tresorerie"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_stock">
+        <property name="text">
+         <string>Stock restant :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_qualite">
+        <property name="text">
+         <string>Qualité moyenne du stock : </string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_ventes">
+        <property name="text">
+         <string>Vélos vendus :</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLCDNumber" name="lcd_stock"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QLCDNumber" name="lcd_ventes"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_mois">
+        <property name="text">
+         <string>Mois actuel : </string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QLCDNumber" name="lcd_mois">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>13</pointsize>
+         </font>
+        </property>
+        <property name="digitCount">
+         <number>5</number>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>

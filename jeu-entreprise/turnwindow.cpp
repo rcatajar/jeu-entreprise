@@ -18,7 +18,7 @@ TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
 
     QVBoxLayout *layout = new QVBoxLayout;
     inputWidget = new InputWidget(0, moteur);
-    TabWidget *tabWidget = new TabWidget;
+    tabWidget = new TabWidget(0, moteur);
     QPushButton *endTurnButton = new QPushButton("Fin du tour");
 
     // Insertion des widgets dans le VLayout
@@ -43,6 +43,11 @@ TurnWindow::~TurnWindow()
 void TurnWindow::NextTurn()
 {
     moteur->run_tour(inputWidget->get_production(), inputWidget->get_prix(), inputWidget->get_recherche());
+
+    openLoadingWindow();
+    // refresh les graphes
+    tabWidget->redraw();
+    // Refresh les inputs
     inputWidget->initialiser();
 }
 
@@ -51,7 +56,7 @@ void TurnWindow::openLoadingWindow()
 {
     // TODO: run le tour pour les IA et le joueur avec les paramètres entrés
     // TODO: Si c'est le dernier tour, on arrête le jeu et affiche le gagnant
-    mLoadingWindow = new LoadingWindow();
+    mLoadingWindow = new LoadingWindow(0, moteur);
     mLoadingWindow->show();
 
 
