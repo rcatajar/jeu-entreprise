@@ -18,10 +18,10 @@ InputWidget::InputWidget(QWidget *parent, MoteurJeu* _moteur) :
 
     connect(ui->sliderPrice, SIGNAL(valueChanged(int)), ui->lcdNumberPrice, SLOT(display(int)));
     connect(ui->sliderProd, SIGNAL(valueChanged(int)), ui->lcdNumberProd, SLOT(display(int)));
-    connect(ui->sliderUseless, SIGNAL(valueChanged(int)), ui->lcdNumberUseless, SLOT(display(int)));
+    connect(ui->sliderRecherche, SIGNAL(valueChanged(int)), ui->lcdNumberRecherche, SLOT(display(int)));
 
     connect(ui->sliderProd, SIGNAL(valueChanged(int)), this, SLOT(changement_production(int)));
-    connect(ui->sliderUseless, SIGNAL(valueChanged(int)), this, SLOT(changement_recherche(int)));
+    connect(ui->sliderRecherche, SIGNAL(valueChanged(int)), this, SLOT(changement_recherche(int)));
 
 }
 
@@ -32,24 +32,20 @@ void InputWidget::changement_production(int production){
     int CV;
     int tresorerie_restante;
 
-    prix_voulu = ui->sliderPrice->value();
-    production_voulue = production;
-    recherche_voulue = ui->sliderUseless->value();
+    int recherche = ui->sliderRecherche->value();
 
     tresorerie = moteur->entreprises[0]->get_tresorerie();
     CF = moteur->entreprises[0]->get_cout_fixe();
     CV = moteur->entreprises[0]->get_cout_variable();
 
-    tresorerie_restante = tresorerie - recherche_voulue - CF - CV * production;
+    tresorerie_restante = tresorerie - recherche - CF - CV * production;
 
     ui->progressBar->setValue(tresorerie_restante);
 }
 
 void InputWidget::changement_recherche(int recherche){
 
-    prix_voulu = ui->sliderPrice->value();
-    production_voulue = ui->sliderProd->value();
-    recherche_voulue = recherche;
+    int production_voulue = ui->sliderProd->value();
 
     int tresorerie;
     int CF;
@@ -74,10 +70,10 @@ void InputWidget::initialiser(){
 
     ui->sliderPrice->setRange(0,500);
     ui->sliderProd->setRange(0,(tresorerie - moteur->entreprises[0]->get_cout_fixe())/moteur->entreprises[0]->get_cout_variable());
-    ui->sliderUseless->setRange(0, moteur->entreprises[0]->get_investissement_max());
+    ui->sliderRecherche->setRange(0,tresorerie);
 
     ui->sliderPrice->setValue(0);
-    ui->sliderUseless->setValue(0);
+    ui->sliderRecherche->setValue(0);
     ui->sliderProd->setValue(0);
 
 }
@@ -90,12 +86,12 @@ InputWidget::~InputWidget()
 }
 
 int InputWidget::get_prix() const{
-    return prix_voulu;
+    return ui->sliderPrice->value();
 }
 
 int InputWidget::get_production() const{
-    return production_voulue;
+    return ui->sliderProd->value();
 }
 int InputWidget::get_recherche() const{
-    return recherche_voulue;
+    return ui->sliderRecherche->value();
 }
