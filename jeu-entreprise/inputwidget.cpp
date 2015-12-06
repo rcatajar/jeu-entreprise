@@ -39,8 +39,10 @@ void InputWidget::changement_production(int production){
     CV = moteur->entreprises[0]->get_cout_variable();
 
     tresorerie_restante = tresorerie - recherche - CF - CV * production;
+    int max_recherche_possible = tresorerie_restante + recherche;
 
     ui->progressBar->setValue(tresorerie_restante);
+    ui->sliderRecherche->setRange(0, max_recherche_possible);
 }
 
 void InputWidget::changement_recherche(int recherche){
@@ -57,8 +59,10 @@ void InputWidget::changement_recherche(int recherche){
     CV = moteur->entreprises[0]->get_cout_variable();
 
     tresorerie_restante = tresorerie - recherche - CF - CV * production_voulue;
+    int max_prod_possible = production_voulue + (tresorerie_restante - CF) / CV;
 
     ui->progressBar->setValue(tresorerie_restante);
+    ui->sliderProd->setRange(0, max_prod_possible);
 }
 
 void InputWidget::initialiser(){
