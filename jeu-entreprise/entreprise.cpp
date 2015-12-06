@@ -63,9 +63,11 @@ bool Entreprise::recherche_max_atteinte() const{
     return max_recherche;
 }
 
-float Entreprise::get_investissement_max() const{
-    return investissement_max;
+int Entreprise::get_investissement_restant_avant_max() const{
+    int investissement_avant_max = investissement_max - investissement_realise;
+    return investissement_avant_max;
 }
+
 
 void Entreprise::produire(int n){
     // Produit n objets et les ajoute au stock de l'entreprise

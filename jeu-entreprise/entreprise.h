@@ -40,7 +40,7 @@ class Entreprise : public Entite
         float get_investissement_realise() const;
         int get_qualite_marginale() const;
 
-        float get_investissement_max() const;
+        int get_investissement_restant_avant_max() const;
 
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);
