@@ -1,5 +1,4 @@
 #include "historique.h"
-#include <iostream>
 
 #include <QString>
 
@@ -122,7 +121,6 @@ double Historique::max_cout(){
             max = cout;
         }
     }
-    cout << max << endl;
     return max;
 }
 
