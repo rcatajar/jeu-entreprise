@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>521</width>
+    <height>379</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
-     <x>9</x>
-     <y>9</y>
+     <x>70</x>
+     <y>40</y>
      <width>386</width>
      <height>281</height>
     </rect>
@@ -52,29 +52,52 @@
     <item>
      <layout class="QGridLayout" name="gridLayout">
       <item row="4" column="1">
-       <widget class="QLCDNumber" name="lcd_qualite"/>
+       <widget class="QLCDNumber" name="lcd_qualite">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
       </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_tresorerie">
         <property name="text">
-         <string>Trésorerie :</string>
+         <string>Trésorerie (k€) :</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QLCDNumber" name="lcd_tresorerie"/>
+       <widget class="QLCDNumber" name="lcd_tresorerie">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_stock">
         <property name="text">
          <string>Stock restant :</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_qualite">
         <property name="text">
-         <string>Qualité moyenne du stock : </string>
+         <string>Qualité moyenne du stock :</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -83,18 +106,38 @@
         <property name="text">
          <string>Vélos vendus :</string>
         </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+        </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QLCDNumber" name="lcd_stock"/>
+       <widget class="QLCDNumber" name="lcd_stock">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QLCDNumber" name="lcd_ventes"/>
+       <widget class="QLCDNumber" name="lcd_ventes">
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Flat</enum>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_mois">
         <property name="text">
-         <string>Mois actuel : </string>
+         <string>Mois actuel :</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -108,8 +151,14 @@
           <pointsize>13</pointsize>
          </font>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
         <property name="digitCount">
          <number>5</number>
+        </property>
+        <property name="segmentStyle">
+         <enum>QLCDNumber::Flat</enum>
         </property>
        </widget>
       </item>
