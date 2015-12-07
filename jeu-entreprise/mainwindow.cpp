@@ -32,7 +32,7 @@ void MainWindow::openTurnWindow()
     int ias = ui->ia->value();
     QString nom = ui->nom->text();
 
-    int tour_max = 10;
+    int tour_max = 12;
     int clients = 500;
     int treso = 10000;
     int argent = 500;

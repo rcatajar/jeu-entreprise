@@ -1,7 +1,9 @@
 #include "gameover.h"
 #include "ui_gameover.h"
 #include "moteurjeu.h"
+#include "entreprise.h"
 #include <numeric>
+
 
 GameOver::GameOver(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
@@ -21,6 +23,10 @@ GameOver::GameOver(QWidget *parent, MoteurJeu* _moteur) :
     ui->lcd_qualite->display(mean_qualite);
     ui->lcd_tresorerie->display(moteur->historique->get_tresorerie().back());
     ui->lcd_ventes->display(sum_ventes);
+
+    Entreprise* gagnant = moteur->get_gagnant();
+    QString texte_gagnant = "Le gagnant est: " + gagnant->get_nom() + " avec une tresorerie de " + QString::number(gagnant->get_tresorerie());
+    ui->gagnant->setText(texte_gagnant);
 }
 
 GameOver::~GameOver()

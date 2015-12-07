@@ -58,7 +58,7 @@ void TurnWindow::openLoadingWindow()
 {
     int tresorerie = moteur->entreprises[0]->get_tresorerie();
 
-    if (tresorerie > 0)
+    if (tresorerie > 0 && moteur->historique->tour < moteur->historique->tour_max)
     {
         mLoadingWindow = new LoadingWindow(0, moteur);
         mLoadingWindow->show();
