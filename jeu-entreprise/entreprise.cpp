@@ -105,8 +105,8 @@ void Entreprise::phase_de_marketing(int input){
         default_random_engine generator;
 
         do{
-            float valeur_centrale = 2 * (cout_fixe / (stock.size() + 10) + cout_variable);
-            normal_distribution<float> distribution(valeur_centrale, valeur_centrale/2);
+            float valeur_centrale = 1.5 * (cout_fixe / (stock.size() + 10) + cout_variable);
+            normal_distribution<float> distribution(valeur_centrale, valeur_centrale / 5);
             prix_de_vente = distribution(generator);
 
          } while(prix_de_vente <= 0); // loop make sure prix de vente > 0
