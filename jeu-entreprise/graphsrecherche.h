@@ -6,6 +6,7 @@
 
 #include "moteurjeu.h"
 
+
 namespace Ui {
 class GraphsRecherche;
 }

@@ -5,12 +5,13 @@
 #define MOTEURJEU_H
 
 #include <vector>
+#include "QString"
 
 #include "entreprise.h"
 #include "objet.h"
 #include "client.h"
 #include "historique.h"
-#include "QString"
+
 
 class MoteurJeu
 {

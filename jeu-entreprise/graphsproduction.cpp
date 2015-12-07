@@ -3,6 +3,7 @@
 
 #include "moteurjeu.h"
 
+
 GraphsProduction::GraphsProduction(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsProduction)
@@ -25,7 +26,6 @@ void GraphsProduction::ajouterGraphNbVelosProduits(QCustomPlot *customPlot)
     //pour le moment je plot que le joueur
 
     // Création de 3 barcharts vides :
-    // TODO : relier au nombre d'entreprises
     QCPBars *plot = new QCPBars(customPlot->xAxis, customPlot->yAxis);
     customPlot->addPlottable(plot);
     // Noms et couleurs :
@@ -114,11 +114,9 @@ void GraphsProduction::ajouterGraphNbVelosRestantsVendus(QCustomPlot *customPlot
     customPlot->xAxis->setSubTickCount(0);
     customPlot->xAxis->setTickLength(0, 4);
     customPlot->xAxis->grid()->setVisible(true);
-    // TODO : range doit évoluer avec nombre de tours passés
     customPlot->xAxis->setRange(-0.5, moteur->historique->tour + 0.5);
 
     // Préparation de l'axe Y:
-    // TODO : range doit évoluer automatiquement avec les données
     customPlot->yAxis->setRange(0, moteur->historique->max_vente_invendu() + 10);
     customPlot->yAxis->setPadding(5); // a bit more space to the left border
     customPlot->yAxis->setLabel("Nb de vélos");

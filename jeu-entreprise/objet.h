@@ -3,6 +3,7 @@
 
 #include "entite.h"
 
+
 class Objet
 {
 protected:

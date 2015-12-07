@@ -2,13 +2,13 @@
 #include <iostream>
 #include <typeinfo>
 #include <math.h>
+#include <QString>
 
 #include "entite.h"
 #include "client.h"
 #include "objet.h"
 #include "entreprise.h"
 
-#include <QString>
 
 using namespace std;
 

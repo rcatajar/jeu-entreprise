@@ -1,3 +1,5 @@
+#include <QPushButton>
+
 #include "turnwindow.h"
 #include "ui_turnwindow.h"
 #include "inputwidget.h"
@@ -5,7 +7,6 @@
 #include "loadingwindow.h"
 #include "moteurjeu.h"
 
-#include <QPushButton>
 
 TurnWindow::TurnWindow(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),

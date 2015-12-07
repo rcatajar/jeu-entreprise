@@ -1,9 +1,8 @@
 #include "inputwidget.h"
 #include "ui_inputwidget.h"
 #include "tabwidget.h"
-#include "moteurjeu.h"
 
-#include <iostream>
+#include "moteurjeu.h"
 
 
 InputWidget::InputWidget(QWidget *parent, MoteurJeu* _moteur) :
@@ -87,11 +86,9 @@ void InputWidget::initialiser(){
 
 }
 
-
 InputWidget::~InputWidget()
 {
     delete ui;
-
 }
 
 int InputWidget::get_prix() const{

@@ -2,8 +2,10 @@
 #define GRAPHSFINANCE_H
 
 #include <QWidget>
+
 #include "qcustomplot.h"
 #include "moteurjeu.h"
+
 
 namespace Ui {
 class GraphsFinance;

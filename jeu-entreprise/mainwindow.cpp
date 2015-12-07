@@ -1,3 +1,7 @@
+#include <QTabWidget>
+#include <QWidget>
+#include <QFileInfo>
+#include <QString>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -5,10 +9,6 @@
 
 #include "inputwidget.h"
 
-#include <QTabWidget>
-#include <QWidget>
-#include <QFileInfo>
-#include <QString>
 
 using namespace std;
 

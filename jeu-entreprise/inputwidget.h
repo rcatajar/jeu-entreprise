@@ -10,6 +10,7 @@
 #include "tabwidget.h"
 #include "moteurjeu.h"
 
+
 namespace Ui {
 class InputWidget;
 }

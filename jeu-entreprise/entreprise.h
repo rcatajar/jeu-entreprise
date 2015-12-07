@@ -33,14 +33,12 @@ class Entreprise : public Entite
         bool is_ia() const;
 
         bool recherche_max_atteinte() const;
-
-        void produire(int);
         void investir(int);
-
         float get_investissement_realise() const;
         int get_qualite_marginale() const;
-
         int get_investissement_restant_avant_max() const;
+
+        void produire(int);
 
         // à appeler avec l'objet vendu. Le retire du stock et augmente la tréso
         void vente_objet(Objet*);

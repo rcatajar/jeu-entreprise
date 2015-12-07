@@ -4,6 +4,7 @@
 
 #include "moteurjeu.h"
 
+
 GraphsMarketing::GraphsMarketing(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
     ui(new Ui::GraphsMarketing)
