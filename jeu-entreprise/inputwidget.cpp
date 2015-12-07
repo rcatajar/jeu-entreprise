@@ -79,7 +79,7 @@ void InputWidget::initialiser(){
     ui->sliderProd->setRange(0,(tresorerie - moteur->entreprises[0]->get_cout_fixe())/moteur->entreprises[0]->get_cout_variable());
 
     int max_recherche = moteur->entreprises[0]->get_investissement_restant_avant_max();
-    max_recherche = std::min(tresorerie, max_recherche);
+    max_recherche = std::min(tresorerie - moteur->entreprises[0]->get_cout_fixe(), max_recherche);
     ui->sliderRecherche->setRange(0, max_recherche);
 
     ui->sliderPrice->setValue(0);
