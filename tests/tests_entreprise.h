@@ -31,8 +31,11 @@ private Q_SLOTS:
     void test_investir_set_tresorerie();
     void test_vente_objet();
     void test_phase_de_marketing_ia();
+    void test_phase_de_marketing_joueur();
     void test_phase_de_production_ia();
+    void test_phase_de_production_joueur();
     void test_phase_de_recherche_ia();
+    void test_phase_de_recherche_joueur();
 
 private:
     Entreprise* entreprise;

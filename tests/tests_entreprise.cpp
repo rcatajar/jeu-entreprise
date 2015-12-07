@@ -1,6 +1,7 @@
 #include <QString>
 #include <QtTest>
 #include <vector>
+#include <iostream>
 
 #include "../jeu-entreprise/objet.h"
 #include "../jeu-entreprise/entreprise.h"
@@ -92,9 +93,10 @@ void TestsEntreprise::test_investir_pas_de_changement_de_seuil(){
 
 void TestsEntreprise::test_investir_saut_de_seuil(){
     entreprise->investir(1000);
-    QVERIFY(entreprise->get_qualite_marginale() == 5);
+    cout << entreprise->get_qualite_marginale();
+    QVERIFY(entreprise->get_qualite_marginale() == 1);
     entreprise->investir(2000);
-    QVERIFY(entreprise->get_qualite_marginale() == 15);
+    QVERIFY(entreprise->get_qualite_marginale() == 3);
     QVERIFY(entreprise->recherche_max_atteinte() == false);
 }
 
@@ -130,19 +132,18 @@ void TestsEntreprise::test_vente_objet(){
 
 void TestsEntreprise::test_phase_de_marketing_ia(){
     // On test que durant la phase de marketing l'IA set son prix de vente correctement
-    // Le prix de vente dépend de: cout fixe, cout variable et taille du stock
-    int cout_fixe = entreprise->get_cout_fixe();
-    int cout_variable = entreprise->get_cout_variable();
-    int taille_stock = 5;
-
     // On crée un stock a l'entreprise de test
-    for (int i=0; i < taille_stock; i++){
+    for (int i=0; i < 10; i++){
         entreprise->ajouter_au_stock(new Objet(entreprise));
     }
-    float prix_de_vente_attendu = 1.5 * (cout_fixe / taille_stock + cout_variable);
+    entreprise->phase_de_marketing(10);
+    QVERIFY(entreprise->get_prix_de_vente() > 0);
+}
 
-    entreprise->phase_de_marketing();
-    QVERIFY(entreprise->get_prix_de_vente() == prix_de_vente_attendu);
+void TestsEntreprise::test_phase_de_marketing_joueur(){
+    Entreprise* e = new Entreprise("Test", 1000, false);
+    e->phase_de_marketing(100);
+    QVERIFY(e->get_prix_de_vente() == 100);
 }
 
 void TestsEntreprise::test_phase_de_production_ia(){
@@ -153,11 +154,25 @@ void TestsEntreprise::test_phase_de_production_ia(){
     int cout_variable = entreprise->get_cout_variable();
     int production_attendu = (tresorerie - cout_fixe) / (2 * cout_variable);
 
-    entreprise->phase_de_production();
-    QVERIFY(entreprise->get_stock().size() == production_attendu);
+    entreprise->phase_de_production(100);
+    QVERIFY(entreprise->get_stock().size() <= production_attendu);
+}
+
+void TestsEntreprise::test_phase_de_production_joueur(){
+    Entreprise* e = new Entreprise("Test", 1000, false);
+    e->phase_de_production(10);
+    QVERIFY(e->get_stock().size() == 10);
 }
 
 void TestsEntreprise::test_phase_de_recherche_ia(){
-    entreprise->phase_de_recherche();
-    QVERIFY(entreprise->get_investissement_realise() < 1000);
+    entreprise->phase_de_recherche(100);
+    // L'IA n'invesit jamais plus de la moitié de sa tréso
+    QVERIFY(entreprise->get_investissement_realise() <= entreprise->get_tresorerie() / 2);
 }
+
+void TestsEntreprise::test_phase_de_recherche_joueur(){
+    Entreprise* e = new Entreprise("test", 1000, false);
+    e->phase_de_recherche(100);
+    QVERIFY(e->get_investissement_realise() == 100);
+}
+
