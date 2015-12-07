@@ -14,6 +14,7 @@
 #include "moteurjeu.h"
 #include "inputwidget.h"
 #include "tabwidget.h"
+#include "gameover.h"
 
 namespace Ui {
 class TurnWindow;
@@ -38,6 +39,7 @@ private:
     LoadingWindow *mLoadingWindow;
     InputWidget *inputWidget;
     TabWidget *tabWidget;
+    GameOver *mGameOver;
 };
 
 #endif // TURNWINDOW_H

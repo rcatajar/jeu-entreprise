@@ -4,6 +4,7 @@
 #include "tabwidget.h"
 #include "loadingwindow.h"
 #include "moteurjeu.h"
+#include "gameover.h"
 
 #include <QPushButton>
 
@@ -54,10 +55,19 @@ void TurnWindow::NextTurn()
 
 void TurnWindow::openLoadingWindow()
 {
-    // TODO: run le tour pour les IA et le joueur avec les paramètres entrés
-    // TODO: Si c'est le dernier tour, on arrête le jeu et affiche le gagnant
-    mLoadingWindow = new LoadingWindow(0, moteur);
-    mLoadingWindow->show();
+    int tresorerie = moteur->entreprises[0]->get_tresorerie();
+
+    if (tresorerie > 0)
+    {
+        mLoadingWindow = new LoadingWindow(0, moteur);
+        mLoadingWindow->show();
+    }
+    else
+    {
+        this->close();
+        mGameOver = new GameOver(0, moteur);
+        mGameOver->show();
+    }
 
 
 }
