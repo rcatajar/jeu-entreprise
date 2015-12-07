@@ -104,7 +104,7 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_tresorerie">
         <property name="text">
-         <string>Trésorerie :</string>
+         <string>Trésorerie finale :</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
