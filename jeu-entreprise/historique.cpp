@@ -1,6 +1,7 @@
+#include <QString>
+
 #include "historique.h"
 
-#include <QString>
 
 using namespace std;
 

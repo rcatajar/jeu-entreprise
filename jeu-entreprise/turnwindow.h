@@ -10,11 +10,15 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
+
 #include "loadingwindow.h"
-#include "moteurjeu.h"
 #include "inputwidget.h"
 #include "tabwidget.h"
 #include "gameover.h"
+
+#include "moteurjeu.h"
+
+
 
 namespace Ui {
 class TurnWindow;

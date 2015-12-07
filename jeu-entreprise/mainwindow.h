@@ -9,12 +9,14 @@
 #include <QTabWidget>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QMessageBox>
 
 #include "inputwidget.h"
 #include "turnwindow.h"
 #include "inputwidget.h"
 
 #include "moteurjeu.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +39,7 @@ private:
     Ui::MainWindow *ui;
     QPushButton *startButton;
     TurnWindow *mTurnWindow;
+    QMessageBox *mMessageBox;
 
 };
 

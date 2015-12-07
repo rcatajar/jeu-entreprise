@@ -1,9 +1,10 @@
 #include <vector>
 #include <algorithm>  // needed for retirer_au_stock
+#include "QString"
 
 #include "entite.h"
 #include "objet.h"
-#include "QString"
+
 
 using namespace std;
 

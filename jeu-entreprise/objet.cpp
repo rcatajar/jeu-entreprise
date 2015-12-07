@@ -4,6 +4,7 @@
 #include "objet.h"
 #include "entite.h"
 
+
 using namespace std;
 
 Objet::Objet(Entite* e):

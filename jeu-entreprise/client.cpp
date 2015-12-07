@@ -2,13 +2,13 @@
 #include <iostream>
 #include <typeinfo>
 #include <math.h>
+#include <QString>
 
 #include "entite.h"
 #include "client.h"
 #include "objet.h"
 #include "entreprise.h"
 
-#include <QString>
 
 using namespace std;
 
@@ -36,23 +36,24 @@ void Client::achat(std::vector <Objet*> objets_a_vendre){
 
     int n = objets_a_vendre.size();
 
-    float tableau_preferences[n];
-    float argent_restant[n];
-    Entreprise *e[n];
+    vector <float> tableau_preferences;
+    vector <float> argent_restant;
+    vector <Entreprise*> e;
 
     float norm = 0;
     int index_max = 0;
 
     for(int i=0; i<n; i++){
-        e[i] = (Entreprise *) objets_a_vendre[i]->get_proprietaire();
-        argent_restant[i] = tresorerie - e[i]->get_prix_de_vente();
-
+        e.push_back((Entreprise*) objets_a_vendre[i]->get_proprietaire());
+        argent_restant.push_back(tresorerie - e[i]->get_prix_de_vente());
+        float pref;
         if(argent_restant[i] > 0){
-            tableau_preferences[i] = pow(argent_restant[i], preference_tresorerie) * pow(objets_a_vendre[i]->get_qualite(), preference_qualite);
-            norm += tableau_preferences[i] * tableau_preferences[i];
+            pref = pow(argent_restant[i], preference_tresorerie) * pow(objets_a_vendre[i]->get_qualite(), preference_qualite);
+            norm += pref * pref;
         } else{
-            tableau_preferences[i] = 0;
+            pref = 0;
         }
+        tableau_preferences.push_back(pref);
 
     }
     if(norm != 0){ // si il y a bien un objet qu'peut acheter la dedans

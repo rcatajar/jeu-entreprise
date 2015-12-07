@@ -27,8 +27,8 @@ class Entite
         Entite(const QString &, float);
 
         const QString & get_nom() const;
-        float get_tresorerie() const;
 
+        float get_tresorerie() const;
         void set_tresorerie(float);
 
         std::vector <Objet*> get_stock() const;

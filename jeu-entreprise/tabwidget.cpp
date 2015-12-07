@@ -1,16 +1,16 @@
-#include "tabwidget.h"
-#include "ui_tabwidget.h"
-
-#include "graphsproduction.h"
-#include "graphsfinance.h"
-#include "graphsrecherche.h"
-#include "graphsmarketing.h"
-#include "moteurjeu.h"
-
 #include <QTabWidget>
 #include <QFileInfo>
 #include <QDialogButtonBox>
 #include <QVBoxLayout>
+
+#include "tabwidget.h"
+#include "ui_tabwidget.h"
+#include "graphsproduction.h"
+#include "graphsfinance.h"
+#include "graphsrecherche.h"
+#include "graphsmarketing.h"
+
+#include "moteurjeu.h"
 
 
 TabWidget::TabWidget(QWidget *parent, MoteurJeu* _moteur) :

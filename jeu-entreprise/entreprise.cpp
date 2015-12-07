@@ -1,13 +1,13 @@
 #include <vector>
 #include <random>
 #include <algorithm>  // needed for retirer_au_stock
+#include <QString>
 
 #include "entite.h"
 #include "entreprise.h"
 #include "objet.h"
 #include "iostream"
 
-#include <QString>
 
 using namespace std;
 

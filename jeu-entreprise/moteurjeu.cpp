@@ -6,6 +6,7 @@
 #include "moteurjeu.h"
 #include "entreprise.h"
 
+
 using namespace std;
 
 MoteurJeu::MoteurJeu(int nb_ia, int treso_initiale, int nb_clients, int argent_initial, int param_tour_max, QString nom)

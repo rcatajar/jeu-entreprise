@@ -47,7 +47,5 @@ HEADERS  += ../jeu-entreprise/objet.h \
     ../jeu-entreprise/moteurjeu.h \
     ../jeu-entreprise/historique.h
 
-DEFINES += SRCDIR=\\\"$$PWD/\\\"
-
 CONFIG += c++11
 

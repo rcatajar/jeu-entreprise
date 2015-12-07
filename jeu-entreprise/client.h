@@ -2,9 +2,11 @@
 #define CLIENT_H
 
 #include <vector>
+#include <QString>
 
 #include "entite.h"
-#include <QString>
+
+
 class Client : public Entite
 {
 private:
@@ -14,6 +16,7 @@ private:
 
 public:
     Client(const QString&, float);
+
     int quantite_a_acheter();
     int get_revenu() const;
     void achat(std::vector <Objet*>);

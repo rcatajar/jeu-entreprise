@@ -1,6 +1,8 @@
 #include "loadingwindow.h"
 #include "ui_loadingwindow.h"
+
 #include "moteurjeu.h"
+
 
 LoadingWindow::LoadingWindow(QWidget *parent, MoteurJeu* _moteur) :
     QWidget(parent),
