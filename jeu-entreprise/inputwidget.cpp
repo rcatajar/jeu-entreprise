@@ -54,13 +54,15 @@ void InputWidget::changement_recherche(int recherche){
     int CF;
     int CV;
     int tresorerie_restante;
+    int max_prod_possible;
 
     tresorerie = moteur->entreprises[0]->get_tresorerie();
     CF = moteur->entreprises[0]->get_cout_fixe();
     CV = moteur->entreprises[0]->get_cout_variable();
 
     tresorerie_restante = tresorerie - recherche - CF - CV * production_voulue;
-    int max_prod_possible = production_voulue + (tresorerie_restante - CF) / CV;
+    max_prod_possible = production_voulue + (tresorerie_restante - CF) / CV;
+
 
     ui->progressBar->setValue(tresorerie_restante);
     ui->sliderProd->setRange(0, max_prod_possible);
