@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     graphsrecherche.cpp \
     graphsmarketing.cpp \
     historique.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    gameover.cpp
 
 HEADERS  += mainwindow.h \
     objet.h \
@@ -45,7 +46,8 @@ HEADERS  += mainwindow.h \
     graphsrecherche.h \
     graphsmarketing.h \
     historique.h \
-    qcustomplot.h
+    qcustomplot.h \
+    gameover.h
 
 FORMS    += mainwindow.ui \
     turnwindow.ui \
@@ -55,6 +57,7 @@ FORMS    += mainwindow.ui \
     graphsfinance.ui \
     graphsproduction.ui \
     graphsrecherche.ui \
-    graphsmarketing.ui
+    graphsmarketing.ui \
+    gameover.ui
 
 CONFIG += c++11

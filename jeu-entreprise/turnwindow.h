@@ -14,6 +14,7 @@
 #include "loadingwindow.h"
 #include "inputwidget.h"
 #include "tabwidget.h"
+#include "gameover.h"
 
 #include "moteurjeu.h"
 
@@ -42,6 +43,7 @@ private:
     LoadingWindow *mLoadingWindow;
     InputWidget *inputWidget;
     TabWidget *tabWidget;
+    GameOver *mGameOver;
 };
 
 #endif // TURNWINDOW_H

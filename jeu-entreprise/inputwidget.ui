@@ -192,7 +192,7 @@
        <enum>QFrame::Plain</enum>
       </property>
       <property name="text">
-       <string>Prix unitaire (€)</string>
+       <string>Prix unitaire (k€)</string>
       </property>
       <property name="textFormat">
        <enum>Qt::AutoText</enum>
@@ -211,7 +211,7 @@
        </sizepolicy>
       </property>
       <property name="text">
-       <string>Budget Recherche (€)</string>
+       <string>Budget Recherche (k€)</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
