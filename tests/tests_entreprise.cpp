@@ -1,7 +1,6 @@
 #include <QString>
 #include <QtTest>
 #include <vector>
-#include <iostream>
 
 #include "../jeu-entreprise/objet.h"
 #include "../jeu-entreprise/entreprise.h"
@@ -93,7 +92,6 @@ void TestsEntreprise::test_investir_pas_de_changement_de_seuil(){
 
 void TestsEntreprise::test_investir_saut_de_seuil(){
     entreprise->investir(1000);
-    cout << entreprise->get_qualite_marginale();
     QVERIFY(entreprise->get_qualite_marginale() == 1);
     entreprise->investir(2000);
     QVERIFY(entreprise->get_qualite_marginale() == 3);
