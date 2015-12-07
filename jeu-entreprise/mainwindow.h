@@ -9,6 +9,7 @@
 #include <QTabWidget>
 #include <QDialogButtonBox>
 #include <QPushButton>
+#include <QMessageBox>
 
 #include "inputwidget.h"
 #include "turnwindow.h"
@@ -37,6 +38,7 @@ private:
     Ui::MainWindow *ui;
     QPushButton *startButton;
     TurnWindow *mTurnWindow;
+    QMessageBox *mMessageBox;
 
 };
 

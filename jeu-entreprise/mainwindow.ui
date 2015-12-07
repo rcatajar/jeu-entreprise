@@ -65,7 +65,11 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="nom"/>
+        <widget class="QLineEdit" name="nom">
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
+        </widget>
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="label_3">
@@ -75,7 +79,14 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QSpinBox" name="ia"/>
+        <widget class="QSpinBox" name="ia">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="value">
+          <number>1</number>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -132,27 +143,11 @@
    <sender>nextButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>528</x>
-     <y>346</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>4</x>
-     <y>313</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>nextButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
    <slot>openTurnWindow()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>535</x>
-     <y>333</y>
+     <x>609</x>
+     <y>321</y>
     </hint>
     <hint type="destinationlabel">
      <x>339</x>
@@ -162,6 +157,7 @@
   </connection>
  </connections>
  <slots>
+  <signal>textChanged()</signal>
   <slot>openTurnWindow()</slot>
  </slots>
 </ui>

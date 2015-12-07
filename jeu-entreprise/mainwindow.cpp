@@ -37,8 +37,21 @@ void MainWindow::openTurnWindow()
     int treso = 10000;
     int argent = 500;
 
-    moteur = new MoteurJeu(ias, treso, clients, argent, tour_max, nom);
-    mTurnWindow = new TurnWindow(0, moteur);
-    mTurnWindow->show();
+    if (!ui->nom->text().isEmpty())
+    {
+        moteur = new MoteurJeu(ias, treso, clients, argent, tour_max, nom);
+        mTurnWindow = new TurnWindow(0, moteur);
+        mTurnWindow->show();
+        this->close();
+    }
+    else
+    {
+        QMessageBox mMessageBox;
+        mMessageBox.setText("Tu as oublié de rentrer ton nom :)");
+        mMessageBox.setWindowTitle("Oups !");
+        mMessageBox.exec();
+
+    }
+
 
 }
