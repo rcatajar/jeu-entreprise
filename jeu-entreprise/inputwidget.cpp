@@ -37,7 +37,7 @@ void InputWidget::changement_production(int production){
     CF = moteur->entreprises[0]->get_cout_fixe();
     CV = moteur->entreprises[0]->get_cout_variable();
 
-    tresorerie_restante = tresorerie - recherche - CF - CV * production;
+    tresorerie_restante = tresorerie - recherche - 1.2 * CF - CV * production;
     int max_recherche_possible = tresorerie_restante + recherche;
     int recherche_avant_max = moteur->entreprises[0]->get_investissement_restant_avant_max();
     int max_recherche = std::min(recherche_avant_max, max_recherche_possible);
@@ -60,8 +60,8 @@ void InputWidget::changement_recherche(int recherche){
     CF = moteur->entreprises[0]->get_cout_fixe();
     CV = moteur->entreprises[0]->get_cout_variable();
 
-    tresorerie_restante = tresorerie - recherche - CF - CV * production_voulue;
-    max_prod_possible = production_voulue + (tresorerie_restante - CF) / CV;
+    tresorerie_restante = tresorerie - recherche - 1.2 * CF - CV * production_voulue;
+    max_prod_possible = production_voulue + (tresorerie_restante - 1.2 * CF) / CV;
 
 
     ui->progressBar->setValue(tresorerie_restante);
@@ -76,10 +76,11 @@ void InputWidget::initialiser(){
     ui->progressBar->setValue(tresorerie);
 
     ui->sliderPrice->setRange(0,500);
-    ui->sliderProd->setRange(0,(tresorerie - moteur->entreprises[0]->get_cout_fixe())/moteur->entreprises[0]->get_cout_variable());
+    ui->sliderProd->setRange(0,(tresorerie - 1.2 * moteur->entreprises[0]->get_cout_fixe())/moteur->entreprises[0]->get_cout_variable());
 
     int max_recherche = moteur->entreprises[0]->get_investissement_restant_avant_max();
-    max_recherche = std::min(tresorerie - moteur->entreprises[0]->get_cout_fixe(), max_recherche);
+    int max_recherche_possible = tresorerie - 1.2 * moteur->entreprises[0]->get_cout_fixe();
+    max_recherche = std::min(max_recherche_possible, max_recherche);
     ui->sliderRecherche->setRange(0, max_recherche);
 
     ui->sliderPrice->setValue(0);
