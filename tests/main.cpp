@@ -27,5 +27,8 @@ int main(int argc, char** argv)
        TestsEntreprise tc;
        status |= QTest::qExec(&tc, argc, argv);
    }
+
+   system("pause");
+
    return status;
 }
